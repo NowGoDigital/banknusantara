@@ -870,31 +870,49 @@
         .contact-form .btn-gold { width: 100%; justify-content: center; padding: 16px; font-size: 15px; }
         .map-section iframe { width: 100%; height: 380px; border: none; display: block; }
 
-        /* =============================================
-   FOOTER - BIRU #0033A0 TEMA
+/* =============================================
+   FOOTER - BIRU #0033A0 GRADASI + FONT PUTIH
    ============================================= */
 .footer {
-    background: linear-gradient(180deg, #000A24 0%, #000618 100%);
-    color: rgba(255,255,255,0.65);
+    background: linear-gradient(160deg, #000A24 0%, #001A5C 40%, #0033A0 100%);
+    color: #ffffff; /* ✅ SEMUA FONT PUTIH */
     padding: 90px 0 0;
     position: relative;
     overflow: hidden;
 }
+/* Garis cahaya dekoratif di bagian atas */
 .footer::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(102,153,224,0.3), transparent);
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #6699E0, #C9A84C, #6699E0, transparent);
 }
+/* Glow biru dekoratif di pojok kanan bawah */
+.footer::after {
+    content: '';
+    position: absolute;
+    bottom: -200px;
+    right: -200px;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(102,153,224,0.15) 0%, transparent 70%);
+    pointer-events: none;
+}
+
 .footer-grid {
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr 1fr;
     gap: 50px;
     margin-bottom: 60px;
+    position: relative;
+    z-index: 1;
 }
+
+/* Logo Footer */
 .footer-logo {
     display: flex;
     align-items: center;
@@ -902,61 +920,80 @@
     margin-bottom: 22px;
 }
 .footer-logo .nav-logo-icon {
-    width: 40px;
-    height: 40px;
-    font-size: 18px;
-    background: linear-gradient(135deg, #3366CC, #6699E0);
-    box-shadow: 0 4px 15px rgba(51,102,204,0.4);
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+    background: linear-gradient(135deg, #C9A84C, #e4c76b);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0033A0;
+    box-shadow: 0 4px 20px rgba(201,168,76,0.4);
 }
 .footer-logo span {
     font-family: 'Playfair Display', serif;
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 700;
-    color: #80b3ff;
+    color: #ffffff; /* ✅ PUTIH */
 }
+
+/* Teks About */
 .footer-about p {
     font-size: 14px;
-    line-height: 1.8;
+    line-height: 1.9;
     margin-bottom: 22px;
+    color: #ffffff; /* ✅ PUTIH */
+    opacity: 0.9;
 }
+
+/* Badge OJK & LPS */
 .footer-badges {
     display: flex;
     gap: 12px;
+    flex-wrap: wrap;
 }
 .footer-badge {
-    background: rgba(102,153,224,0.1);
-    border: 1px solid rgba(102,153,224,0.25);
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.25);
     padding: 8px 16px;
     border-radius: 10px;
-    font-size: 11px;
-    color: #80b3ff;
+    font-size: 12px;
+    color: #ffffff; /* ✅ PUTIH */
     font-weight: 700;
     display: flex;
     align-items: center;
     gap: 6px;
+    backdrop-filter: blur(10px);
 }
-.footer-badge i { color: #6699E0; }
+.footer-badge i {
+    color: #C9A84C;
+}
 
+/* Judul Kolom Footer */
 .footer h4 {
-    color: #fff;
-    font-size: 15px;
+    color: #ffffff; /* ✅ PUTIH */
+    font-size: 16px;
     margin-bottom: 25px;
     font-family: 'Inter', sans-serif;
     font-weight: 700;
     position: relative;
     padding-bottom: 12px;
+    letter-spacing: 0.5px;
 }
 .footer h4::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 30px;
-    height: 2px;
-    background: linear-gradient(90deg, #3366CC, #6699E0);
+    width: 35px;
+    height: 3px;
+    background: linear-gradient(90deg, #C9A84C, #e4c76b);
     border-radius: 2px;
+    box-shadow: 0 0 10px rgba(201,168,76,0.5);
 }
 
+/* Link Cepat */
 .footer-links li {
     margin-bottom: 12px;
 }
@@ -966,63 +1003,141 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    color: rgba(255,255,255,0.65);
+    color: #ffffff; /* ✅ PUTIH */
+    opacity: 0.85;
 }
 .footer-links a:hover {
-    color: #80b3ff;
+    color: #C9A84C;
+    opacity: 1;
     transform: translateX(4px);
 }
 .footer-links a::before {
     content: '→';
-    color: #6699E0;
+    color: #C9A84C;
     font-size: 12px;
+    transition: transform 0.3s ease;
+}
+.footer-links a:hover::before {
+    transform: translateX(2px);
 }
 
+/* Kontak Footer */
 .footer-contact li {
     display: flex;
     gap: 10px;
     margin-bottom: 16px;
     font-size: 14px;
+    color: #ffffff; /* ✅ PUTIH */
+    opacity: 0.9;
 }
 .footer-contact li i {
-    color: #6699E0;
+    color: #C9A84C;
     margin-top: 3px;
     min-width: 16px;
 }
 
+/* Social Icons di Footer */
+.footer .contact-socials {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+.footer .contact-socials a {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff; /* ✅ PUTIH */
+    font-size: 15px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+.footer .contact-socials a:hover {
+    background: linear-gradient(135deg, #C9A84C, #e4c76b);
+    color: #0033A0;
+    border-color: transparent;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(201,168,76,0.4);
+}
+
+/* Footer Bottom (Baris Bawah) */
 .footer-bottom {
-    border-top: 1px solid rgba(102,153,224,0.12);
+    border-top: 1px solid rgba(255,255,255,0.15);
     padding: 28px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
     gap: 15px;
+    position: relative;
+    z-index: 1;
 }
 .footer-bottom p {
     font-size: 13px;
-    color: rgba(255,255,255,0.5);
+    color: #ffffff; /* ✅ PUTIH */
+    opacity: 0.8;
 }
 .footer-bottom a {
-    color: #80b3ff;
-    transition: color 0.3s ease;
+    color: #C9A84C;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-weight: 600;
 }
 .footer-bottom a:hover {
-    color: #b3d1ff;
+    color: #e4c76b;
+    text-shadow: 0 0 10px rgba(201,168,76,0.5);
 }
 
-/* Social icons di footer */
-.footer .contact-socials a {
-    background: rgba(102,153,224,0.1);
-    border: 1px solid rgba(102,153,224,0.2);
-    color: #80b3ff;
+/* =============================================
+   RESPONSIVE FOOTER
+   ============================================= */
+@media (max-width: 1024px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
 }
-.footer .contact-socials a:hover {
-    background: linear-gradient(135deg, #3366CC, #6699E0);
-    color: #fff;
-    border-color: transparent;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(51,102,204,0.4);
+@media (max-width: 768px) {
+    .footer {
+        padding: 60px 0 0;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+    .footer h4 {
+        text-align: center;
+    }
+    .footer h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .footer-links a {
+        justify-content: center;
+    }
+    .footer-contact li {
+        justify-content: center;
+        text-align: center;
+    }
+    .footer-badges {
+        justify-content: center;
+    }
+    .footer .contact-socials {
+        justify-content: center;
+    }
+    .footer-about p {
+        text-align: center;
+    }
 }
 
         /* RESPONSIVE */
