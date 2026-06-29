@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BPR Nusantara Sejahtera - Hero Section</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <title>BPR Nusantara Sejahtera - Mitra Keuangan Terpercaya</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; scroll-padding-top: 90px; }
         body {
             font-family: 'Inter', sans-serif;
             color: #1a1a2e;
@@ -18,8 +18,11 @@
         }
         h1,h2,h3,h4,h5,h6 { font-family: 'Playfair Display', serif; }
         a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
         img { max-width: 100%; display: block; }
         ::selection { background: #C9A84C; color: #fff; }
+        .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+        .section-pad { padding: 120px 0; }
 
         :root {
             --navy: #0a0f1e;
@@ -30,55 +33,233 @@
             --gold3: #b8943e;
             --gold4: #f0d97a;
             --cream: #faf7f0;
+            --light: #f4f1ea;
             --white: #ffffff;
             --text: #2d2d3a;
             --text-light: #6b6b7b;
             --border: #e8e4db;
         }
 
+        .gold-text {
+            background: linear-gradient(135deg, #b8943e, #e4c76b, #c9a84c);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .section-label {
+            display: inline-flex; align-items: center; gap: 12px;
+            font-size: 12px; font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
+            color: var(--gold); margin-bottom: 16px; font-family: 'Inter', sans-serif;
+        }
+        .section-label::before, .section-label::after {
+            content: ''; width: 30px; height: 1px; background: var(--gold);
+        }
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700; color: var(--navy);
+            line-height: 1.2; margin-bottom: 20px;
+        }
+        .section-subtitle {
+            font-size: 17px; color: var(--text-light); line-height: 1.8; max-width: 560px;
+        }
+        .section-head { text-align: center; margin-bottom: 70px; }
+        .section-head .section-subtitle { margin: 0 auto; }
+
+        .btn-gold {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: linear-gradient(135deg, var(--gold3), var(--gold), var(--gold2));
+            color: var(--navy); padding: 16px 36px; border-radius: 60px; font-weight: 700;
+            font-size: 14px; letter-spacing: 0.5px; border: none; cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); font-family: 'Inter', sans-serif;
+            box-shadow: 0 8px 30px rgba(201,168,76,0.3);
+            position: relative; overflow: hidden;
+        }
+        .btn-gold::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s ease;
+        }
+        .btn-gold:hover::before { left: 100%; }
+        .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(201,168,76,0.45); }
+
+        .btn-ghost {
+            display: inline-flex; align-items: center; gap: 10px;
+            border: 1.5px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); padding: 15px 36px;
+            border-radius: 60px; font-weight: 600; font-size: 14px; cursor: pointer;
+            transition: all 0.3s ease; background: rgba(255,255,255,0.03); font-family: 'Inter', sans-serif;
+            backdrop-filter: blur(10px);
+        }
+        .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: var(--gold); color: var(--gold); }
+
+        .btn-dark {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--navy); color: var(--gold); padding: 14px 32px;
+            border-radius: 60px; font-weight: 600; font-size: 14px; cursor: pointer;
+            transition: all 0.3s ease; border: 1px solid rgba(201,168,76,0.3);
+            font-family: 'Inter', sans-serif;
+        }
+        .btn-dark:hover { background: var(--gold); color: var(--navy); }
+
         /* =============================================
-           HERO SECTION - ULTRA PREMIUM
+           PRELOADER
+           ============================================= */
+        #preloader {
+            position: fixed; inset: 0; background: var(--navy); z-index: 99999;
+            display: flex; align-items: center; justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+        }
+        #preloader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .pre-inner { text-align: center; }
+        .pre-logo {
+            font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700;
+            background: linear-gradient(135deg, var(--gold3), var(--gold2));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
+        }
+        .pre-bar { width: 220px; height: 2px; background: rgba(255,255,255,0.08); border-radius: 10px; overflow: hidden; margin: 0 auto; }
+        .pre-bar::after {
+            content: ''; display: block; width: 40%; height: 100%;
+            background: linear-gradient(90deg, var(--gold3), var(--gold2));
+            animation: preSlide 1.5s ease-in-out infinite;
+        }
+        @keyframes preSlide { 0%{transform:translateX(-120%)} 100%{transform:translateX(450%)} }
+
+        /* =============================================
+           TOP BAR
+           ============================================= */
+        .topbar {
+            background: var(--navy); color: rgba(255,255,255,0.7); font-size: 13px;
+            padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .topbar-inner {
+            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1240px; margin: 0 auto; padding: 0 24px;
+        }
+        .topbar-left { display: flex; gap: 25px; }
+        .topbar-left span { display: flex; align-items: center; gap: 8px; }
+        .topbar-left i { color: var(--gold); font-size: 12px; }
+        .topbar-right { display: flex; gap: 12px; }
+        .topbar-right a {
+            width: 30px; height: 30px; border-radius: 50%; background: rgba(255,255,255,0.06);
+            display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.6);
+            font-size: 12px; transition: all 0.3s ease;
+        }
+        .topbar-right a:hover { background: var(--gold); color: var(--navy); }
+
+        /* =============================================
+           NAVBAR
+           ============================================= */
+        .navbar {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+            transition: all 0.4s ease;
+        }
+        .navbar .topbar { transition: all 0.3s ease; }
+        .navbar.scrolled .topbar {
+            max-height: 0; padding: 0; overflow: hidden; border: none; opacity: 0;
+        }
+        .nav-main {
+            background: rgba(255,255,255,0.0); transition: all 0.4s ease;
+            padding: 0;
+        }
+        .navbar.scrolled .nav-main {
+            background: rgba(255,255,255,0.97); backdrop-filter: blur(25px) saturate(1.5);
+            box-shadow: 0 4px 40px rgba(0,0,0,0.08);
+        }
+        .nav-container {
+            max-width: 1240px; margin: 0 auto; padding: 0 24px;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 75px;
+        }
+        .nav-logo { display: flex; align-items: center; gap: 14px; }
+        .nav-logo-icon {
+            width: 44px; height: 44px; background: linear-gradient(135deg, var(--gold3), var(--gold2));
+            border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            font-size: 20px; color: var(--navy); box-shadow: 0 4px 15px rgba(201,168,76,0.3);
+        }
+        .nav-logo-text { font-family: 'Playfair Display', serif; }
+        .nav-logo-text .name { font-size: 17px; font-weight: 700; color: var(--gold); line-height: 1.2; display: block; }
+        .nav-logo-text .tag { font-size: 10px; color: rgba(255,255,255,0.5); letter-spacing: 2px; text-transform: uppercase; font-family: 'Inter', sans-serif; font-weight: 500; }
+        .navbar.scrolled .nav-logo-text .tag { color: var(--text-light); }
+
+        .nav-menu { display: flex; align-items: center; gap: 0; }
+        .nav-item { position: relative; }
+        .nav-link {
+            display: flex; align-items: center; gap: 6px;
+            padding: 26px 18px; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85);
+            transition: color 0.3s ease; cursor: pointer; white-space: nowrap;
+            font-family: 'Inter', sans-serif; letter-spacing: 0.2px;
+        }
+        .nav-link i.fa-chevron-down { font-size: 8px; transition: transform 0.3s ease; margin-left: 2px; }
+        .nav-item:hover .nav-link, .nav-item.active .nav-link { color: var(--gold); }
+        .nav-item:hover .nav-link i.fa-chevron-down { transform: rotate(180deg); }
+        .navbar.scrolled .nav-link { color: var(--navy); }
+        .navbar.scrolled .nav-item:hover .nav-link, .navbar.scrolled .nav-item.active .nav-link { color: var(--gold); }
+
+        .dropdown {
+            position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(10px);
+            background: #fff; border-radius: 16px; padding: 14px; min-width: 260px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04);
+            opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            z-index: 100;
+        }
+        .dropdown::before {
+            content: ''; position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
+            width: 16px; height: 16px; background: #fff; border-radius: 3px; rotate: 45deg;
+            box-shadow: -2px -2px 5px rgba(0,0,0,0.03);
+        }
+        .nav-item:hover .dropdown { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
+        .dropdown a {
+            display: flex; align-items: center; gap: 14px; padding: 12px 16px;
+            border-radius: 10px; font-size: 14px; font-weight: 500; color: var(--text);
+            transition: all 0.2s ease; font-family: 'Inter', sans-serif;
+        }
+        .dropdown a:hover { background: var(--cream); color: var(--gold3); }
+        .dropdown a .dd-icon {
+            width: 38px; height: 38px; min-width: 38px; background: var(--cream);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            color: var(--gold3); font-size: 15px; transition: all 0.2s ease;
+        }
+        .dropdown a:hover .dd-icon { background: var(--gold); color: var(--navy); }
+        .dropdown a .dd-text .dd-title { font-weight: 600; color: var(--navy); font-size: 14px; }
+        .dropdown a .dd-text .dd-desc { font-size: 12px; color: var(--text-light); margin-top: 2px; }
+
+        .nav-cta-wrap { margin-left: 12px; }
+        .nav-cta {
+            background: linear-gradient(135deg, var(--gold3), var(--gold), var(--gold2));
+            color: var(--navy) !important; padding: 10px 24px; border-radius: 50px;
+            font-weight: 700; font-size: 13px; transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(201,168,76,0.3);
+        }
+        .nav-cta:hover { transform: scale(1.05); box-shadow: 0 8px 25px rgba(201,168,76,0.4); }
+
+        .hamburger { display: none; flex-direction: column; gap: 6px; cursor: pointer; z-index: 1001; padding: 5px; }
+        .hamburger span { width: 26px; height: 2.5px; background: #fff; border-radius: 3px; transition: all 0.3s ease; }
+        .navbar.scrolled .hamburger span { background: var(--navy); }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+
+        /* =============================================
+           HERO SECTION - BLOB MORPHING
            ============================================= */
         .hero {
-            min-height: 100vh;
-            position: relative;
-            overflow: hidden;
-            background: var(--navy);
-            display: flex;
-            align-items: center;
+            min-height: 100vh; position: relative; overflow: hidden;
+            background: var(--navy); display: flex; align-items: center;
         }
-
-        /* --- LAYER 1: Animated gradient background --- */
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-        }
+        .hero-bg { position: absolute; inset: 0; z-index: 0; }
         .hero-bg::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: 
+            content: ''; position: absolute; inset: 0;
+            background:
                 radial-gradient(ellipse 80% 60% at 20% 50%, rgba(17,24,50,1) 0%, transparent 70%),
                 radial-gradient(ellipse 60% 80% at 80% 30%, rgba(26,35,64,0.8) 0%, transparent 60%),
                 radial-gradient(ellipse 50% 50% at 50% 80%, rgba(15,20,40,1) 0%, transparent 50%),
                 linear-gradient(160deg, #070b18 0%, #0c1225 25%, #111d3a 50%, #0f1729 75%, #080d1c 100%);
         }
         .hero-bg::after {
-            content: '';
-            position: absolute;
-            inset: 0;
+            content: ''; position: absolute; inset: 0;
             background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80') center/cover;
-            opacity: 0.04;
-            mix-blend-mode: luminosity;
+            opacity: 0.04; mix-blend-mode: luminosity;
         }
-
-        /* --- LAYER 2: Grid pattern overlay --- */
         .hero-grid-pattern {
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-            opacity: 0.025;
+            position: absolute; inset: 0; z-index: 1; opacity: 0.025;
             background-image:
                 linear-gradient(rgba(201,168,76,1) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(201,168,76,1) 1px, transparent 1px);
@@ -86,395 +267,93 @@
             mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, transparent 70%);
             -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, transparent 70%);
         }
+        .hero-orb { position: absolute; border-radius: 50%; filter: blur(80px); z-index: 1; pointer-events: none; }
+        .hero-orb.orb1 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%); top: -10%; right: 10%; animation: orbFloat1 12s ease-in-out infinite; }
+        .hero-orb.orb2 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(30,58,95,0.3) 0%, transparent 70%); bottom: -5%; left: 5%; animation: orbFloat2 15s ease-in-out infinite; }
+        .hero-orb.orb3 { width: 300px; height: 300px; background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%); top: 40%; left: 30%; animation: orbFloat3 18s ease-in-out infinite; }
+        @keyframes orbFloat1 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(-30px,20px) scale(1.05)} 66%{transform:translate(20px,-15px) scale(0.95)} }
+        @keyframes orbFloat2 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(25px,-20px) scale(1.1)} }
+        @keyframes orbFloat3 { 0%,100%{transform:translate(0,0)} 25%{transform:translate(15px,10px)} 50%{transform:translate(-10px,20px)} 75%{transform:translate(-20px,-10px)} }
 
-        /* --- LAYER 3: Animated glow orbs --- */
-        .hero-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            z-index: 1;
-            pointer-events: none;
-        }
-        .hero-orb.orb1 {
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
-            top: -10%; right: 10%;
-            animation: orbFloat1 12s ease-in-out infinite;
-        }
-        .hero-orb.orb2 {
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(30,58,95,0.3) 0%, transparent 70%);
-            bottom: -5%; left: 5%;
-            animation: orbFloat2 15s ease-in-out infinite;
-        }
-        .hero-orb.orb3 {
-            width: 300px; height: 300px;
-            background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
-            top: 40%; left: 30%;
-            animation: orbFloat3 18s ease-in-out infinite;
-        }
-        @keyframes orbFloat1 {
-            0%,100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(-30px, 20px) scale(1.05); }
-            66% { transform: translate(20px, -15px) scale(0.95); }
-        }
-        @keyframes orbFloat2 {
-            0%,100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(25px, -20px) scale(1.1); }
-        }
-        @keyframes orbFloat3 {
-            0%,100% { transform: translate(0, 0); }
-            25% { transform: translate(15px, 10px); }
-            50% { transform: translate(-10px, 20px); }
-            75% { transform: translate(-20px, -10px); }
-        }
+        .hero-particles { position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
+        .h-particle { position: absolute; background: var(--gold); border-radius: 50%; opacity: 0; animation: particleRise linear infinite; }
+        @keyframes particleRise { 0%{transform:translateY(100vh) scale(0);opacity:0} 10%{opacity:0.5} 90%{opacity:0.5} 100%{transform:translateY(-5vh) scale(1);opacity:0} }
 
-        /* --- LAYER 4: Floating particles --- */
-        .hero-particles {
-            position: absolute;
-            inset: 0;
-            z-index: 2;
-            pointer-events: none;
-            overflow: hidden;
-        }
-        .h-particle {
-            position: absolute;
-            background: var(--gold);
-            border-radius: 50%;
-            opacity: 0;
-            animation: particleRise linear infinite;
-        }
-        @keyframes particleRise {
-            0% { transform: translateY(100vh) scale(0); opacity: 0; }
-            10% { opacity: 0.5; }
-            90% { opacity: 0.5; }
-            100% { transform: translateY(-5vh) scale(1); opacity: 0; }
-        }
-
-        /* --- LAYER 5: Decorative lines --- */
-        .hero-lines {
-            position: absolute;
-            inset: 0;
-            z-index: 2;
-            pointer-events: none;
-            overflow: hidden;
-        }
-        .hero-line {
-            position: absolute;
-            background: linear-gradient(180deg, transparent, rgba(201,168,76,0.15), transparent);
-            width: 1px;
-        }
+        .hero-lines { position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
+        .hero-line { position: absolute; background: linear-gradient(180deg, transparent, rgba(201,168,76,0.15), transparent); width: 1px; }
         .hero-line.l1 { left: 15%; height: 100%; animation: lineShimmer 8s ease-in-out infinite; }
         .hero-line.l2 { left: 35%; height: 80%; top: 10%; animation: lineShimmer 8s ease-in-out infinite 2s; }
         .hero-line.l3 { right: 25%; height: 70%; top: 15%; animation: lineShimmer 8s ease-in-out infinite 4s; }
         .hero-line.l4 { right: 10%; height: 90%; top: 5%; animation: lineShimmer 8s ease-in-out infinite 6s; }
-        @keyframes lineShimmer {
-            0%,100% { opacity: 0.3; }
-            50% { opacity: 0.8; }
-        }
+        @keyframes lineShimmer { 0%,100%{opacity:0.3} 50%{opacity:0.8} }
 
-        /* --- HERO CONTENT GRID --- */
         .hero-content {
-            position: relative;
-            z-index: 10;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            width: 100%;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 140px 40px 100px;
+            position: relative; z-index: 10; display: grid; grid-template-columns: 1fr 1fr;
+            gap: 60px; align-items: center; width: 100%; max-width: 1280px;
+            margin: 0 auto; padding: 140px 40px 100px;
         }
 
-        /* ===== LEFT: TEXT ===== */
         .hero-text { color: #fff; }
-
-        /* Top badge */
         .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(201,168,76,0.08);
-            border: 1px solid rgba(201,168,76,0.2);
-            padding: 10px 24px;
-            border-radius: 60px;
-            font-size: 13px;
-            color: var(--gold2);
-            font-weight: 600;
-            margin-bottom: 32px;
-            backdrop-filter: blur(10px);
-            opacity: 0;
-            animation: heroFadeUp 0.8s ease 0.2s forwards;
+            display: inline-flex; align-items: center; gap: 10px;
+            background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.2);
+            padding: 10px 24px; border-radius: 60px; font-size: 13px; color: var(--gold2);
+            font-weight: 600; margin-bottom: 32px; backdrop-filter: blur(10px);
+            opacity: 0; animation: heroFadeUp 0.8s ease 0.2s forwards;
         }
-        .hero-badge .badge-dot {
-            width: 8px; height: 8px;
-            background: var(--gold);
-            border-radius: 50%;
-            animation: badgePulse 2s ease-in-out infinite;
-        }
-        @keyframes badgePulse {
-            0%,100% { box-shadow: 0 0 0 0 rgba(201,168,76,0.4); }
-            50% { box-shadow: 0 0 0 8px rgba(201,168,76,0); }
-        }
+        .hero-badge .badge-dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; animation: badgePulse 2s ease-in-out infinite; }
+        @keyframes badgePulse { 0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,0.4)} 50%{box-shadow:0 0 0 8px rgba(201,168,76,0)} }
 
-        /* Heading */
-        .hero-h1 {
-            font-size: clamp(2.6rem, 5.5vw, 4.5rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 8px;
-            letter-spacing: -2px;
-        }
-        .hero-h1 .line {
-            display: block;
-            overflow: hidden;
-        }
-        .hero-h1 .line-inner {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(100%);
-            animation: heroLineReveal 0.9s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-        }
+        .hero-h1 { font-size: clamp(2.6rem, 5.5vw, 4.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 8px; letter-spacing: -2px; }
+        .hero-h1 .line { display: block; overflow: hidden; }
+        .hero-h1 .line-inner { display: inline-block; opacity: 0; transform: translateY(100%); animation: heroLineReveal 0.9s cubic-bezier(0.23,1,0.32,1) forwards; }
         .hero-h1 .line:nth-child(1) .line-inner { animation-delay: 0.4s; }
         .hero-h1 .line:nth-child(2) .line-inner { animation-delay: 0.55s; }
         .hero-h1 .line:nth-child(3) .line-inner { animation-delay: 0.7s; }
-
         .hero-h1 .gold-word {
             background: linear-gradient(135deg, #b8943e 0%, #e4c76b 40%, #f0d97a 60%, #c9a84c 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            position: relative;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-        .hero-h1 .italic-serif {
-            font-style: italic;
-            font-weight: 500;
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.1em;
-        }
+        .hero-h1 .italic-serif { font-style: italic; font-weight: 500; font-family: 'Cormorant Garamond', serif; font-size: 1.1em; }
+        @keyframes heroLineReveal { to { opacity: 1; transform: translateY(0); } }
 
-        @keyframes heroLineReveal {
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .hero-sub { font-size: 19px; color: rgba(255,255,255,0.7); line-height: 1.7; margin: 28px 0 12px; max-width: 520px; font-weight: 300; opacity: 0; animation: heroFadeUp 0.8s ease 1s forwards; }
+        .hero-desc { font-size: 14px; color: rgba(255,255,255,0.4); line-height: 1.8; margin-bottom: 40px; max-width: 480px; opacity: 0; animation: heroFadeUp 0.8s ease 1.1s forwards; }
+        .hero-btns { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 55px; opacity: 0; animation: heroFadeUp 0.8s ease 1.2s forwards; }
+        .btn-ghost .play-icon { width: 28px; height: 28px; background: rgba(201,168,76,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--gold); }
 
-        /* Subtitle */
-        .hero-sub {
-            font-size: 19px;
-            color: rgba(255,255,255,0.7);
-            line-height: 1.7;
-            margin: 28px 0 12px;
-            max-width: 520px;
-            font-weight: 300;
-            opacity: 0;
-            animation: heroFadeUp 0.8s ease 1s forwards;
-        }
-        .hero-desc {
-            font-size: 14px;
-            color: rgba(255,255,255,0.4);
-            line-height: 1.8;
-            margin-bottom: 40px;
-            max-width: 480px;
-            opacity: 0;
-            animation: heroFadeUp 0.8s ease 1.1s forwards;
-        }
-
-        /* Buttons */
-        .hero-btns {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            margin-bottom: 55px;
-            opacity: 0;
-            animation: heroFadeUp 0.8s ease 1.2s forwards;
-        }
-        .btn-gold {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(135deg, var(--gold3), var(--gold), var(--gold2));
-            color: var(--navy);
-            padding: 16px 38px;
-            border-radius: 60px;
-            font-weight: 700;
-            font-size: 14px;
-            letter-spacing: 0.5px;
-            border: none;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            font-family: 'Inter', sans-serif;
-            box-shadow: 0 8px 30px rgba(201,168,76,0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        .btn-gold::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: left 0.6s ease;
-        }
-        .btn-gold:hover::before { left: 100%; }
-        .btn-gold:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 45px rgba(201,168,76,0.45);
-        }
-        .btn-ghost {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            border: 1.5px solid rgba(255,255,255,0.15);
-            color: rgba(255,255,255,0.8);
-            padding: 15px 36px;
-            border-radius: 60px;
-            font-weight: 600;
-            font-size: 14px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: rgba(255,255,255,0.03);
-            font-family: 'Inter', sans-serif;
-            backdrop-filter: blur(10px);
-        }
-        .btn-ghost:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: var(--gold);
-            color: var(--gold);
-        }
-        .btn-ghost .play-icon {
-            width: 28px; height: 28px;
-            background: rgba(201,168,76,0.15);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            color: var(--gold);
-        }
-
-        /* Stats row */
-        .hero-stats {
-            display: flex;
-            gap: 0;
-            opacity: 0;
-            animation: heroFadeUp 0.8s ease 1.4s forwards;
-        }
-        .hero-stat {
-            padding: 0 32px;
-            position: relative;
-        }
+        .hero-stats { display: flex; gap: 0; opacity: 0; animation: heroFadeUp 0.8s ease 1.4s forwards; }
+        .hero-stat { padding: 0 32px; position: relative; }
         .hero-stat:first-child { padding-left: 0; }
-        .hero-stat + .hero-stat::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 4px;
-            bottom: 4px;
-            width: 1px;
-            background: linear-gradient(180deg, transparent, rgba(201,168,76,0.3), transparent);
-        }
-        .hero-stat .num {
-            font-family: 'Playfair Display', serif;
-            font-size: 36px;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--gold3), var(--gold2), var(--gold4));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            display: block;
-            line-height: 1;
-        }
-        .hero-stat .suffix {
-            font-family: 'Playfair Display', serif;
-            font-size: 36px;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--gold3), var(--gold2));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .hero-stat .lbl {
-            font-size: 12px;
-            color: rgba(255,255,255,0.35);
-            margin-top: 6px;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-        }
+        .hero-stat + .hero-stat::before { content: ''; position: absolute; left: 0; top: 4px; bottom: 4px; width: 1px; background: linear-gradient(180deg, transparent, rgba(201,168,76,0.3), transparent); }
+        .hero-stat .num { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 800; background: linear-gradient(135deg, var(--gold3), var(--gold2), var(--gold4)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: block; line-height: 1; }
+        .hero-stat .lbl { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 6px; font-weight: 500; letter-spacing: 0.5px; }
+        @keyframes heroFadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        @keyframes heroFadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        /* BLOB IMAGE */
+        .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; opacity: 0; animation: heroVisualIn 1.2s cubic-bezier(0.23,1,0.32,1) 0.6s forwards; }
+        @keyframes heroVisualIn { from { opacity: 0; transform: translateX(50px) scale(0.95); } to { opacity: 1; transform: translateX(0) scale(1); } }
+        .hero-frame { position: relative; width: 100%; max-width: 560px; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; }
 
-        /* ===== RIGHT: BLOB IMAGE FRAME ===== */
-        .hero-visual {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            animation: heroVisualIn 1.2s cubic-bezier(0.23, 1, 0.32, 1) 0.6s forwards;
-        }
-        @keyframes heroVisualIn {
-            from { opacity: 0; transform: translateX(50px) scale(0.95); }
-            to { opacity: 1; transform: translateX(0) scale(1); }
-        }
-
-        .hero-frame {
-            position: relative;
-            width: 100%;
-            max-width: 560px;
-            aspect-ratio: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* --- BLOB SHAPE: Main Image --- */
         .blob-main {
-            position: relative;
-            z-index: 5;
-            width: 88%;
-            height: 88%;
-            overflow: hidden;
+            position: relative; z-index: 5; width: 88%; height: 88%; overflow: hidden;
             border-radius: 62% 38% 46% 54% / 55% 60% 40% 45%;
             animation: blobMorph 12s ease-in-out infinite;
-            box-shadow:
-                0 0 0 0 rgba(201,168,76,0),
-                0 30px 80px rgba(0,0,0,0.4);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
         }
-        .blob-main img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            animation: blobImgFloat 8s ease-in-out infinite;
-        }
-        /* Gold shimmer overlay on image */
-        .blob-main::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(201,168,76,0.1) 0%, transparent 40%, transparent 60%, rgba(201,168,76,0.05) 100%);
-            border-radius: inherit;
-            pointer-events: none;
-        }
-
+        .blob-main img { width: 100%; height: 100%; object-fit: cover; animation: blobImgFloat 8s ease-in-out infinite; }
+        .blob-main::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(201,168,76,0.1) 0%, transparent 40%, transparent 60%, rgba(201,168,76,0.05) 100%); border-radius: inherit; pointer-events: none; }
         @keyframes blobMorph {
-            0%   { border-radius: 62% 38% 46% 54% / 55% 60% 40% 45%; }
-            25%  { border-radius: 45% 55% 62% 38% / 40% 45% 55% 60%; }
-            50%  { border-radius: 55% 45% 38% 62% / 60% 40% 55% 45%; }
-            75%  { border-radius: 38% 62% 55% 45% / 45% 55% 38% 62%; }
-            100% { border-radius: 62% 38% 46% 54% / 55% 60% 40% 45%; }
+            0%{border-radius:62% 38% 46% 54% / 55% 60% 40% 45%}
+            25%{border-radius:45% 55% 62% 38% / 40% 45% 55% 60%}
+            50%{border-radius:55% 45% 38% 62% / 60% 40% 55% 45%}
+            75%{border-radius:38% 62% 55% 45% / 45% 55% 38% 62%}
+            100%{border-radius:62% 38% 46% 54% / 55% 60% 40% 45%}
         }
-        @keyframes blobImgFloat {
-            0%,100% { transform: scale(1) translateY(0); }
-            50% { transform: scale(1.03) translateY(-8px); }
-        }
+        @keyframes blobImgFloat { 0%,100%{transform:scale(1) translateY(0)} 50%{transform:scale(1.03) translateY(-8px)} }
 
-        /* --- BLOB BORDER: Animated gold outline --- */
         .blob-border {
-            position: absolute;
-            z-index: 4;
-            width: 92%;
-            height: 92%;
+            position: absolute; z-index: 4; width: 92%; height: 92%;
             border-radius: 62% 38% 46% 54% / 55% 60% 40% 45%;
             animation: blobMorph 12s ease-in-out infinite;
             border: 2px solid transparent;
@@ -482,242 +361,357 @@
                         linear-gradient(135deg, var(--gold3), var(--gold2), transparent, var(--gold3)) border-box;
             opacity: 0.6;
         }
-
-        /* --- BLOB GLOW: Soft glow behind --- */
         .blob-glow {
-            position: absolute;
-            z-index: 2;
-            width: 85%;
-            height: 85%;
+            position: absolute; z-index: 2; width: 85%; height: 85%;
             border-radius: 62% 38% 46% 54% / 55% 60% 40% 45%;
             animation: blobMorph 12s ease-in-out infinite;
             background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);
             filter: blur(40px);
         }
 
-        /* --- ROTATING ORBIT RINGS --- */
-        .orbit-ring {
-            position: absolute;
-            border-radius: 50%;
-            border: 1px dashed rgba(201,168,76,0.08);
-            z-index: 3;
-        }
-        .orbit-ring.o1 {
-            width: 110%;
-            height: 110%;
-            animation: orbitSpin 50s linear infinite;
-        }
-        .orbit-ring.o2 {
-            width: 130%;
-            height: 130%;
-            border-style: dotted;
-            border-color: rgba(201,168,76,0.05);
-            animation: orbitSpin 70s linear infinite reverse;
-        }
-        .orbit-ring.o3 {
-            width: 95%;
-            height: 95%;
-            border-color: rgba(255,255,255,0.04);
-            animation: orbitSpin 35s linear infinite;
-        }
+        .orbit-ring { position: absolute; border-radius: 50%; border: 1px dashed rgba(201,168,76,0.08); z-index: 3; }
+        .orbit-ring.o1 { width: 110%; height: 110%; animation: orbitSpin 50s linear infinite; }
+        .orbit-ring.o2 { width: 130%; height: 130%; border-style: dotted; border-color: rgba(201,168,76,0.05); animation: orbitSpin 70s linear infinite reverse; }
+        .orbit-ring.o3 { width: 95%; height: 95%; border-color: rgba(255,255,255,0.04); animation: orbitSpin 35s linear infinite; }
         @keyframes orbitSpin { to { transform: rotate(360deg); } }
-
-        /* Orbit diamonds */
-        .orbit-diamond {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: var(--gold);
-            transform: rotate(45deg);
-            box-shadow: 0 0 20px rgba(201,168,76,0.5);
-        }
+        .orbit-diamond { position: absolute; width: 10px; height: 10px; background: var(--gold); transform: rotate(45deg); box-shadow: 0 0 20px rgba(201,168,76,0.5); }
         .orbit-ring.o1 .orbit-diamond { top: 5%; right: 10%; }
         .orbit-ring.o1 .orbit-diamond:nth-child(2) { bottom: 10%; left: 5%; top: auto; right: auto; }
-        .orbit-ring.o2 .orbit-diamond {
-            top: 15%; left: 3%;
-            width: 7px; height: 7px;
-            background: var(--gold2);
-            box-shadow: 0 0 15px rgba(201,168,76,0.3);
-        }
-        .orbit-ring.o2 .orbit-diamond:nth-child(2) {
-            bottom: 5%; right: 15%;
-            top: auto; left: auto;
-            width: 6px; height: 6px;
-        }
+        .orbit-ring.o2 .orbit-diamond { top: 15%; left: 3%; width: 7px; height: 7px; background: var(--gold2); box-shadow: 0 0 15px rgba(201,168,76,0.3); }
+        .orbit-ring.o2 .orbit-diamond:nth-child(2) { bottom: 5%; right: 15%; top: auto; left: auto; width: 6px; height: 6px; }
 
-        /* --- FLOATING CARDS --- */
         .float-card {
-            position: absolute;
-            z-index: 8;
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(20px) saturate(1.5);
-            border-radius: 18px;
-            padding: 18px 22px;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            box-shadow:
-                0 15px 40px rgba(0,0,0,0.12),
-                0 0 0 1px rgba(255,255,255,0.1);
+            position: absolute; z-index: 8; background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px) saturate(1.5); border-radius: 18px; padding: 18px 22px;
+            display: flex; align-items: center; gap: 14px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12), 0 0 0 1px rgba(255,255,255,0.1);
         }
-        .float-card .fc-icon {
-            width: 46px;
-            height: 46px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, var(--gold3), var(--gold2));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            color: var(--navy);
-            flex-shrink: 0;
-        }
-        .float-card .fc-text .fc-val {
-            font-size: 18px;
-            font-weight: 800;
-            color: var(--navy);
-            font-family: 'Playfair Display', serif;
-            line-height: 1.2;
-        }
-        .float-card .fc-text .fc-lbl {
-            font-size: 11px;
-            color: var(--text-light);
-            font-weight: 500;
-        }
+        .float-card .fc-icon { width: 46px; height: 46px; border-radius: 14px; background: linear-gradient(135deg, var(--gold3), var(--gold2)); display: flex; align-items: center; justify-content: center; font-size: 18px; color: var(--navy); flex-shrink: 0; }
+        .float-card .fc-text .fc-val { font-size: 18px; font-weight: 800; color: var(--navy); font-family: 'Playfair Display', serif; line-height: 1.2; }
+        .float-card .fc-text .fc-lbl { font-size: 11px; color: var(--text-light); font-weight: 500; }
+        .float-card.fc-shield { bottom: 12%; left: -8%; animation: floatCard1 7s ease-in-out infinite; }
+        .float-card.fc-chart { top: 8%; right: -5%; animation: floatCard2 8s ease-in-out infinite 1s; }
+        .float-card.fc-users { top: 55%; right: -12%; animation: floatCard3 9s ease-in-out infinite 0.5s; }
+        @keyframes floatCard1 { 0%,100%{transform:translateY(0) rotate(-2deg)} 50%{transform:translateY(-18px) rotate(1deg)} }
+        @keyframes floatCard2 { 0%,100%{transform:translateY(0) rotate(2deg)} 50%{transform:translateY(-14px) rotate(-1deg)} }
+        @keyframes floatCard3 { 0%,100%{transform:translateY(0) rotate(1deg)} 50%{transform:translateY(-12px) rotate(-2deg)} }
 
-        .float-card.fc-shield {
-            bottom: 12%;
-            left: -8%;
-            animation: floatCard1 7s ease-in-out infinite;
-        }
-        .float-card.fc-chart {
-            top: 8%;
-            right: -5%;
-            animation: floatCard2 8s ease-in-out infinite 1s;
-        }
-        .float-card.fc-users {
-            top: 55%;
-            right: -12%;
-            animation: floatCard3 9s ease-in-out infinite 0.5s;
-        }
-
-        @keyframes floatCard1 {
-            0%,100% { transform: translateY(0) rotate(-2deg); }
-            50% { transform: translateY(-18px) rotate(1deg); }
-        }
-        @keyframes floatCard2 {
-            0%,100% { transform: translateY(0) rotate(2deg); }
-            50% { transform: translateY(-14px) rotate(-1deg); }
-        }
-        @keyframes floatCard3 {
-            0%,100% { transform: translateY(0) rotate(1deg); }
-            50% { transform: translateY(-12px) rotate(-2deg); }
-        }
-
-        /* --- Small decorative dots around blob --- */
-        .blob-dot {
-            position: absolute;
-            width: 6px;
-            height: 6px;
-            background: var(--gold);
-            border-radius: 50%;
-            z-index: 6;
-            opacity: 0.5;
-        }
+        .blob-dot { position: absolute; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; z-index: 6; opacity: 0.5; }
         .blob-dot.d1 { top: 5%; left: 20%; animation: dotPulse 3s ease-in-out infinite; }
         .blob-dot.d2 { top: 30%; right: 2%; animation: dotPulse 3s ease-in-out infinite 1s; }
         .blob-dot.d3 { bottom: 20%; left: 5%; animation: dotPulse 3s ease-in-out infinite 2s; width: 4px; height: 4px; }
         .blob-dot.d4 { bottom: 5%; right: 25%; animation: dotPulse 3s ease-in-out infinite 0.5s; width: 5px; height: 5px; }
-        @keyframes dotPulse {
-            0%,100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.5); }
-        }
+        @keyframes dotPulse { 0%,100%{opacity:0.3;transform:scale(1)} 50%{opacity:0.8;transform:scale(1.5)} }
 
-        /* --- Gold accent arc (SVG-like decorative curve) --- */
-        .hero-accent-arc {
-            position: absolute;
-            z-index: 3;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-        .hero-accent-arc svg {
-            width: 100%;
-            height: 100%;
-        }
+        .scroll-indicator { position: absolute; bottom: 35px; left: 50%; transform: translateX(-50%); z-index: 10; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+        .scroll-mouse { width: 24px; height: 38px; border: 2px solid rgba(255,255,255,0.15); border-radius: 20px; position: relative; }
+        .scroll-mouse::after { content: ''; width: 3px; height: 8px; background: var(--gold); border-radius: 3px; position: absolute; top: 7px; left: 50%; transform: translateX(-50%); animation: scrollDot 2s ease infinite; }
+        @keyframes scrollDot { 0%{opacity:1;top:7px} 100%{opacity:0;top:22px} }
+        .scroll-indicator span { font-size: 10px; color: rgba(255,255,255,0.25); letter-spacing: 3px; text-transform: uppercase; font-weight: 600; }
 
-        /* ===== SCROLL INDICATOR ===== */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 35px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-        .scroll-mouse {
-            width: 24px;
-            height: 38px;
-            border: 2px solid rgba(255,255,255,0.15);
-            border-radius: 20px;
-            position: relative;
-        }
-        .scroll-mouse::after {
-            content: '';
-            width: 3px;
-            height: 8px;
-            background: var(--gold);
-            border-radius: 3px;
-            position: absolute;
-            top: 7px;
-            left: 50%;
-            transform: translateX(-50%);
-            animation: scrollDot 2s ease infinite;
-        }
-        @keyframes scrollDot {
-            0% { opacity: 1; top: 7px; }
-            100% { opacity: 0; top: 22px; }
-        }
-        .scroll-indicator span {
-            font-size: 10px;
-            color: rgba(255,255,255,0.25);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
+        /* =============================================
+           ABOUT SECTION
+           ============================================= */
+        #tentang { background: #fff; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .about-visual { position: relative; }
+        .about-img-main { border-radius: 24px; overflow: hidden; position: relative; box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
+        .about-img-main img { width: 100%; height: 500px; object-fit: cover; }
+        .about-img-accent { position: absolute; bottom: -30px; right: -30px; width: 200px; height: 200px; border-radius: 20px; overflow: hidden; border: 5px solid #fff; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .about-img-accent img { width: 100%; height: 100%; object-fit: cover; }
+        .about-exp-badge { position: absolute; top: -20px; left: -20px; background: linear-gradient(135deg, var(--gold3), var(--gold2)); color: var(--navy); padding: 22px 26px; border-radius: 20px; text-align: center; box-shadow: 0 15px 40px rgba(201,168,76,0.3); }
+        .about-exp-badge .num { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 800; display: block; line-height: 1; }
+        .about-exp-badge .txt { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+        .about-text .section-label { justify-content: flex-start; }
+        .about-text .section-title { text-align: left; }
+        .about-desc { font-size: 15px; color: var(--text-light); line-height: 1.9; margin-bottom: 30px; }
+        .about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 35px; }
+        .about-feat { display: flex; align-items: center; gap: 12px; padding: 14px 18px; background: var(--cream); border-radius: 14px; font-size: 14px; font-weight: 600; color: var(--navy); transition: all 0.3s ease; }
+        .about-feat:hover { background: var(--navy); color: var(--gold); transform: translateX(5px); }
+        .about-feat i { color: var(--gold); font-size: 16px; }
 
-        /* ===== RESPONSIVE ===== */
+        /* =============================================
+           SERVICES
+           ============================================= */
+        #layanan { background: var(--cream); position: relative; overflow: hidden; }
+        #layanan::before { content: ''; position: absolute; top: -200px; right: -200px; width: 500px; height: 500px; border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%); }
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+        .service-card { background: #fff; border-radius: 24px; overflow: hidden; position: relative; transition: all 0.5s cubic-bezier(0.23,1,0.32,1); box-shadow: 0 4px 20px rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.04); }
+        .service-card:hover { transform: translateY(-12px); box-shadow: 0 30px 60px rgba(0,0,0,0.1); }
+        .service-card-img { height: 200px; overflow: hidden; position: relative; }
+        .service-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .service-card:hover .service-card-img img { transform: scale(1.08); }
+        .service-card-img::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 60%; background: linear-gradient(transparent, rgba(0,0,0,0.4)); }
+        .service-card-body { padding: 32px; position: relative; }
+        .sc-icon { width: 64px; height: 64px; background: linear-gradient(135deg, var(--gold3), var(--gold2)); border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 24px; color: var(--navy); margin-top: -56px; position: relative; z-index: 2; box-shadow: 0 10px 30px rgba(201,168,76,0.3); margin-bottom: 22px; }
+        .service-card-body h3 { font-size: 20px; color: var(--navy); margin-bottom: 12px; font-family: 'Inter', sans-serif; font-weight: 700; }
+        .service-card-body p { color: var(--text-light); font-size: 14px; line-height: 1.8; margin-bottom: 22px; }
+        .sc-link { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: var(--gold3); transition: gap 0.3s ease; letter-spacing: 0.5px; }
+        .sc-link:hover { gap: 14px; }
+
+        /* =============================================
+           PRODUCTS
+           ============================================= */
+        #produk { background: #fff; }
+        .product-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 50px; flex-wrap: wrap; }
+        .p-tab { padding: 14px 32px; border-radius: 60px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; border: 2px solid var(--border); background: #fff; color: var(--text-light); font-family: 'Inter', sans-serif; }
+        .p-tab.active, .p-tab:hover { background: var(--navy); color: var(--gold); border-color: var(--navy); }
+        .p-content { display: none; }
+        .p-content.active { display: block; animation: heroFadeUp 0.5s ease; }
+        .p-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .p-item { display: flex; gap: 20px; padding: 28px; background: var(--cream); border-radius: 20px; transition: all 0.3s ease; border: 1px solid transparent; }
+        .p-item:hover { background: #fff; border-color: var(--gold); box-shadow: 0 15px 40px rgba(0,0,0,0.06); transform: translateY(-3px); }
+        .p-item-icon { width: 56px; height: 56px; min-width: 56px; border-radius: 16px; background: var(--navy); display: flex; align-items: center; justify-content: center; font-size: 22px; color: var(--gold); }
+        .p-item h4 { font-size: 16px; color: var(--navy); margin-bottom: 8px; font-family: 'Inter', sans-serif; font-weight: 700; }
+        .p-item p { font-size: 13px; color: var(--text-light); line-height: 1.7; margin-bottom: 10px; }
+        .p-item .p-tag { font-size: 12px; color: var(--gold3); font-weight: 700; display: flex; align-items: center; gap: 6px; }
+
+        /* =============================================
+           ADVANTAGES
+           ============================================= */
+        #keunggulan { background: linear-gradient(160deg, #070b18 0%, #0c1225 40%, #111d3a 100%); position: relative; overflow: hidden; }
+        #keunggulan::before { content: ''; position: absolute; inset: 0; opacity: 0.03; background-image: linear-gradient(rgba(201,168,76,1) 1px, transparent 1px), linear-gradient(90deg, rgba(201,168,76,1) 1px, transparent 1px); background-size: 60px 60px; }
+        #keunggulan .section-title { color: #fff; }
+        #keunggulan .section-subtitle { color: rgba(255,255,255,0.5); }
+        .adv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; position: relative; z-index: 1; }
+        .adv-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 24px; padding: 44px 32px; text-align: center; transition: all 0.4s ease; backdrop-filter: blur(10px); }
+        .adv-card:hover { background: rgba(201,168,76,0.06); border-color: rgba(201,168,76,0.2); transform: translateY(-8px); }
+        .adv-icon { width: 80px; height: 80px; border-radius: 24px; background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05)); border: 1px solid rgba(201,168,76,0.2); display: flex; align-items: center; justify-content: center; font-size: 30px; color: var(--gold); margin: 0 auto 28px; transition: all 0.3s ease; }
+        .adv-card:hover .adv-icon { background: linear-gradient(135deg, var(--gold3), var(--gold2)); color: var(--navy); border-color: transparent; transform: scale(1.05); }
+        .adv-card h3 { color: #fff; font-size: 20px; margin-bottom: 14px; font-family: 'Inter', sans-serif; font-weight: 700; }
+        .adv-card p { color: rgba(255,255,255,0.45); font-size: 14px; line-height: 1.8; }
+
+        /* =============================================
+           TEAM
+           ============================================= */
+        #tim { background: var(--cream); }
+        .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+        .team-card { background: #fff; border-radius: 24px; overflow: hidden; transition: all 0.4s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
+        .team-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(0,0,0,0.1); }
+        .team-photo { position: relative; height: 300px; overflow: hidden; }
+        .team-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .team-card:hover .team-photo img { transform: scale(1.06); }
+        .team-photo::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 50%; background: linear-gradient(transparent, rgba(10,15,30,0.7)); }
+        .team-socials { position: absolute; bottom: 16px; left: 0; right: 0; display: flex; justify-content: center; gap: 8px; z-index: 2; opacity: 0; transform: translateY(10px); transition: all 0.4s ease; }
+        .team-card:hover .team-socials { opacity: 1; transform: translateY(0); }
+        .team-socials a { width: 36px; height: 36px; border-radius: 50%; background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; color: #fff; font-size: 13px; transition: all 0.3s ease; }
+        .team-socials a:hover { background: var(--gold); color: var(--navy); }
+        .team-info { padding: 24px; text-align: center; }
+        .team-info h3 { font-size: 17px; color: var(--navy); margin-bottom: 4px; font-family: 'Inter', sans-serif; font-weight: 700; }
+        .team-info p { font-size: 13px; color: var(--gold3); font-weight: 600; }
+
+        /* =============================================
+           TESTIMONIALS
+           ============================================= */
+        #testimoni { background: #fff; }
+        .testi-wrapper { max-width: 880px; margin: 0 auto; position: relative; }
+        .testi-slider { overflow: hidden; border-radius: 24px; }
+        .testi-track { display: flex; transition: transform 0.6s cubic-bezier(0.23,1,0.32,1); }
+        .testi-card { min-width: 100%; padding: 55px 60px; background: var(--cream); border-radius: 24px; position: relative; }
+        .testi-card .quote-mark { position: absolute; top: 30px; right: 50px; font-size: 80px; font-family: 'Playfair Display', serif; color: rgba(201,168,76,0.15); line-height: 1; font-weight: 800; }
+        .testi-card > p { font-size: 18px; color: var(--text); line-height: 1.9; font-style: italic; margin-bottom: 35px; position: relative; z-index: 1; font-family: 'Cormorant Garamond', serif; font-weight: 500; }
+        .testi-author { display: flex; align-items: center; gap: 16px; }
+        .testi-author img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; border: 3px solid var(--gold); }
+        .testi-author h4 { font-size: 16px; color: var(--navy); font-family: 'Inter', sans-serif; font-weight: 700; }
+        .testi-author span { font-size: 13px; color: var(--gold3); font-weight: 500; }
+        .testi-dots { display: flex; justify-content: center; gap: 10px; margin-top: 35px; }
+        .testi-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--border); cursor: pointer; transition: all 0.3s ease; }
+        .testi-dot.active { background: var(--gold); width: 32px; border-radius: 10px; }
+        .testi-nav { display: flex; justify-content: center; gap: 12px; margin-top: 20px; }
+        .testi-nav button { width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--border); background: #fff; cursor: pointer; font-size: 14px; color: var(--navy); transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; }
+        .testi-nav button:hover { border-color: var(--gold); color: var(--gold); background: var(--cream); }
+
+        /* =============================================
+           GALLERY
+           ============================================= */
+        #galeri { background: var(--cream); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 240px; gap: 16px; }
+        .gallery-item { position: relative; overflow: hidden; border-radius: 20px; cursor: pointer; }
+        .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+        .gallery-item:nth-child(4) { grid-column: span 2; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(10,15,30,0.85)); display: flex; align-items: flex-end; padding: 24px; opacity: 0; transition: opacity 0.4s ease; }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+        .gallery-overlay span { color: #fff; font-size: 15px; font-weight: 600; }
+        .gallery-overlay i { position: absolute; top: 20px; right: 20px; color: var(--gold); font-size: 20px; }
+        .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 10000; display: none; align-items: center; justify-content: center; }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 85%; max-height: 85vh; border-radius: 12px; }
+        .lightbox-close { position: absolute; top: 25px; right: 30px; color: #fff; font-size: 28px; cursor: pointer; z-index: 10001; }
+
+        /* =============================================
+           CAREER
+           ============================================= */
+        #karir { background: linear-gradient(160deg, #070b18, #111d3a); position: relative; overflow: hidden; }
+        #karir::before { content: ''; position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.06), transparent 70%); }
+        #karir .section-title { color: #fff; }
+        #karir .section-subtitle { color: rgba(255,255,255,0.5); }
+        .career-list { max-width: 840px; margin: 0 auto; display: flex; flex-direction: column; gap: 16px; position: relative; z-index: 1; }
+        .career-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 30px 34px; display: flex; align-items: center; justify-content: space-between; gap: 20px; transition: all 0.3s ease; backdrop-filter: blur(10px); }
+        .career-card:hover { background: rgba(201,168,76,0.06); border-color: rgba(201,168,76,0.2); }
+        .career-card h3 { color: #fff; font-size: 18px; margin-bottom: 10px; font-family: 'Inter', sans-serif; font-weight: 700; }
+        .career-tags { display: flex; gap: 10px; flex-wrap: wrap; }
+        .career-tag { font-size: 12px; color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.06); padding: 5px 14px; border-radius: 20px; display: flex; align-items: center; gap: 6px; }
+        .career-tag i { color: var(--gold); font-size: 10px; }
+        .career-card .btn-gold { padding: 10px 24px; font-size: 13px; white-space: nowrap; }
+
+        /* =============================================
+           NEWS
+           ============================================= */
+        #berita { background: #fff; }
+        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+        .news-card { background: #fff; border-radius: 24px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.04); transition: all 0.4s ease; border: 1px solid rgba(0,0,0,0.04); }
+        .news-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(0,0,0,0.08); }
+        .news-img { height: 230px; overflow: hidden; }
+        .news-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .news-card:hover .news-img img { transform: scale(1.06); }
+        .news-body { padding: 30px; }
+        .news-date { display: inline-flex; align-items: center; gap: 8px; background: var(--cream); color: var(--gold3); padding: 6px 16px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-bottom: 16px; }
+        .news-body h3 { font-size: 18px; color: var(--navy); margin-bottom: 12px; line-height: 1.5; font-family: 'Inter', sans-serif; font-weight: 700; }
+        .news-body p { color: var(--text-light); font-size: 14px; line-height: 1.8; margin-bottom: 20px; }
+        .news-link { display: inline-flex; align-items: center; gap: 8px; color: var(--gold3); font-weight: 700; font-size: 13px; transition: gap 0.3s ease; }
+        .news-link:hover { gap: 14px; }
+
+        /* =============================================
+           FAQ
+           ============================================= */
+        #faq { background: var(--cream); }
+        .faq-list { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: #fff; border-radius: 18px; margin-bottom: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.02); border: 1px solid rgba(0,0,0,0.04); transition: all 0.3s ease; }
+        .faq-item.active { box-shadow: 0 10px 30px rgba(0,0,0,0.06); border-color: rgba(201,168,76,0.2); }
+        .faq-q { padding: 24px 28px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 15px; color: var(--navy); transition: color 0.3s ease; font-family: 'Inter', sans-serif; }
+        .faq-q:hover { color: var(--gold3); }
+        .faq-q i { transition: transform 0.3s ease; color: var(--gold); font-size: 13px; }
+        .faq-item.active .faq-q i { transform: rotate(180deg); }
+        .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; padding: 0 28px; }
+        .faq-item.active .faq-a { max-height: 300px; padding: 0 28px 24px; }
+        .faq-a p { color: var(--text-light); font-size: 14px; line-height: 1.9; }
+
+        /* =============================================
+           CONTACT
+           ============================================= */
+        #kontak { background: #fff; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        .contact-info h3 { font-size: 26px; color: var(--navy); margin-bottom: 30px; }
+        .ci-item { display: flex; gap: 16px; margin-bottom: 28px; }
+        .ci-icon { width: 52px; height: 52px; min-width: 52px; background: var(--cream); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--gold3); }
+        .ci-text h4 { font-size: 15px; color: var(--navy); margin-bottom: 4px; font-family: 'Inter', sans-serif; font-weight: 700; }
+        .ci-text p { color: var(--text-light); font-size: 14px; line-height: 1.6; }
+        .contact-socials { display: flex; gap: 10px; margin-top: 35px; }
+        .contact-socials a { width: 46px; height: 46px; border-radius: 14px; background: var(--navy); display: flex; align-items: center; justify-content: center; color: var(--gold); font-size: 17px; transition: all 0.3s ease; }
+        .contact-socials a:hover { background: var(--gold); color: var(--navy); transform: translateY(-3px); }
+        .contact-form { background: var(--cream); border-radius: 24px; padding: 44px; }
+        .fg { margin-bottom: 20px; }
+        .fg label { display: block; font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 8px; font-family: 'Inter', sans-serif; }
+        .fg input, .fg select, .fg textarea { width: 100%; padding: 14px 18px; border: 2px solid var(--border); border-radius: 14px; font-size: 14px; font-family: 'Inter', sans-serif; transition: border-color 0.3s ease; background: #fff; }
+        .fg input:focus, .fg select:focus, .fg textarea:focus { outline: none; border-color: var(--gold); }
+        .fg textarea { height: 120px; resize: vertical; }
+        .fg .error { border-color: #e74c3c; }
+        .form-err { color: #e74c3c; font-size: 12px; margin-top: 5px; display: none; }
+        .contact-form .btn-gold { width: 100%; justify-content: center; padding: 16px; font-size: 15px; }
+        .map-section iframe { width: 100%; height: 380px; border: none; display: block; }
+
+        /* =============================================
+           FOOTER
+           ============================================= */
+        .footer { background: #060a15; color: rgba(255,255,255,0.6); padding: 90px 0 0; }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 50px; margin-bottom: 60px; }
+        .footer-logo { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
+        .footer-logo .nav-logo-icon { width: 40px; height: 40px; font-size: 18px; }
+        .footer-logo span { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; color: var(--gold); }
+        .footer-about p { font-size: 14px; line-height: 1.8; margin-bottom: 22px; }
+        .footer-badges { display: flex; gap: 12px; }
+        .footer-badge { background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.15); padding: 8px 16px; border-radius: 10px; font-size: 11px; color: var(--gold); font-weight: 700; display: flex; align-items: center; gap: 6px; }
+        .footer h4 { color: #fff; font-size: 15px; margin-bottom: 25px; font-family: 'Inter', sans-serif; font-weight: 700; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { font-size: 14px; transition: all 0.3s ease; display: flex; align-items: center; gap: 8px; }
+        .footer-links a:hover { color: var(--gold); transform: translateX(4px); }
+        .footer-links a::before { content: '→'; color: var(--gold); font-size: 12px; }
+        .footer-contact li { display: flex; gap: 10px; margin-bottom: 16px; font-size: 14px; }
+        .footer-contact li i { color: var(--gold); margin-top: 3px; min-width: 16px; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding: 28px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .footer-bottom p { font-size: 13px; }
+        .footer-bottom a { color: var(--gold); }
+
+        .back-top { position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px; background: linear-gradient(135deg, var(--gold3), var(--gold2)); color: var(--navy); border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 18px; cursor: pointer; opacity: 0; visibility: hidden; transition: all 0.3s ease; z-index: 999; box-shadow: 0 8px 25px rgba(201,168,76,0.3); border: none; }
+        .back-top.visible { opacity: 1; visibility: visible; }
+        .back-top:hover { transform: translateY(-4px) scale(1.05); }
+
+        .sr { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.23,1,0.32,1); }
+        .sr.show { opacity: 1; transform: translateY(0); }
+        .sr-l { opacity: 0; transform: translateX(-50px); transition: all 0.8s cubic-bezier(0.23,1,0.32,1); }
+        .sr-l.show { opacity: 1; transform: translateX(0); }
+        .sr-r { opacity: 0; transform: translateX(50px); transition: all 0.8s cubic-bezier(0.23,1,0.32,1); }
+        .sr-r.show { opacity: 1; transform: translateX(0); }
+
+        /* =============================================
+           RESPONSIVE
+           ============================================= */
         @media (max-width: 1024px) {
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                padding: 120px 24px 80px;
-                gap: 50px;
-            }
+            .hero-content { grid-template-columns: 1fr; text-align: center; padding: 120px 24px 80px; gap: 50px; }
+            .hero-visual { order: -1; }
+            .hero-frame { max-width: 400px; }
             .hero-sub, .hero-desc { margin-left: auto; margin-right: auto; }
             .hero-btns { justify-content: center; }
             .hero-stats { justify-content: center; }
-            .hero-visual { order: -1; }
-            .hero-frame { max-width: 400px; }
             .float-card.fc-users { display: none; }
             .float-card.fc-shield { left: 0; bottom: 5%; }
             .float-card.fc-chart { right: 0; }
+            .nav-menu { position: fixed; top: 0; right: -100%; width: 320px; height: 100vh; background: var(--navy); flex-direction: column; padding: 80px 24px 30px; transition: right 0.4s ease; gap: 0; align-items: stretch; overflow-y: auto; box-shadow: -5px 0 30px rgba(0,0,0,0.3); }
+            .nav-menu.active { right: 0; }
+            .nav-link { padding: 14px 0; color: rgba(255,255,255,0.8) !important; border-bottom: 1px solid rgba(255,255,255,0.05); }
+            .nav-item:hover .nav-link { color: var(--gold) !important; }
+            .dropdown { position: static; transform: none; opacity: 1; visibility: visible; box-shadow: none; background: rgba(255,255,255,0.04); min-width: auto; max-height: 0; overflow: hidden; transition: max-height 0.4s ease; padding: 0; border-radius: 12px; }
+            .dropdown::before { display: none; }
+            .nav-item.dd-open .dropdown { max-height: 500px; padding: 8px; margin-bottom: 10px; }
+            .dropdown a { color: rgba(255,255,255,0.7); }
+            .dropdown a:hover { background: rgba(255,255,255,0.05); color: var(--gold); }
+            .dropdown a .dd-icon { background: rgba(201,168,76,0.1); color: var(--gold); }
+            .dropdown a:hover .dd-icon { background: var(--gold); color: var(--navy); }
+            .dropdown a .dd-text .dd-title { color: rgba(255,255,255,0.9); }
+            .dropdown a .dd-text .dd-desc { color: rgba(255,255,255,0.4); }
+            .nav-cta-wrap { margin-left: 0; margin-top: 20px; text-align: center; }
+            .hamburger { display: flex; }
+            .topbar { display: none; }
+            .about-grid { grid-template-columns: 1fr; gap: 50px; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .team-grid { grid-template-columns: repeat(2, 1fr); }
+            .adv-grid { grid-template-columns: repeat(2, 1fr); }
+            .news-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); grid-auto-rows: 200px; }
+            .contact-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 768px) {
+            .section-pad { padding: 80px 0; }
             .hero-h1 { font-size: clamp(2rem, 8vw, 3rem); letter-spacing: -1px; }
             .hero-stats { flex-wrap: wrap; gap: 20px; justify-content: center; }
             .hero-stat { padding: 0 20px; }
             .hero-stat + .hero-stat::before { display: none; }
-            .hero-stat .num, .hero-stat .suffix { font-size: 28px; }
-            .float-card { padding: 14px 18px; }
-            .float-card .fc-icon { width: 38px; height: 38px; font-size: 15px; }
-            .float-card .fc-text .fc-val { font-size: 15px; }
+            .hero-stat .num { font-size: 28px; }
             .hero-frame { max-width: 320px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .p-grid { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: 1fr 1fr; }
+            .adv-grid { grid-template-columns: 1fr; }
+            .news-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 180px; }
+            .gallery-item:nth-child(1) { grid-column: span 2; }
+            .gallery-item:nth-child(4) { grid-column: span 1; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .career-card { flex-direction: column; text-align: center; }
+            .career-tags { justify-content: center; }
+            .testi-card { padding: 35px 28px; }
+            .testi-card > p { font-size: 16px; }
         }
         @media (max-width: 480px) {
+            .team-grid { grid-template-columns: 1fr; }
+            .about-features { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 150px; }
+            .about-img-accent { display: none; }
+            .contact-form { padding: 28px; }
             .hero-frame { max-width: 280px; }
             .float-card.fc-shield { left: -5%; bottom: 0; }
             .float-card.fc-chart { right: -5%; top: 0; }
@@ -728,11 +722,86 @@
 </head>
 <body>
 
-<!-- =============================================
-     HERO SECTION
-     ============================================= -->
+<!-- PRELOADER -->
+<div id="preloader">
+    <div class="pre-inner">
+        <div class="pre-logo">BPR Nusantara Sejahtera</div>
+        <div class="pre-bar"></div>
+    </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+    <div class="topbar">
+        <div class="topbar-inner">
+            <div class="topbar-left">
+                <span><i class="fas fa-phone-alt"></i> (021) 5555-1234</span>
+                <span><i class="fas fa-envelope"></i> info@bprnusantara.co.id</span>
+                <span><i class="fas fa-clock"></i> Sen-Jum: 08.00-16.00 WIB</span>
+            </div>
+            <div class="topbar-right">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="nav-main">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                <div class="nav-logo-icon"><i class="fas fa-landmark"></i></div>
+                <div class="nav-logo-text">
+                    <span class="name">BPR Nusantara Sejahtera</span>
+                    <span class="tag">Trusted Since 1995</span>
+                </div>
+            </a>
+            <div class="nav-menu" id="navMenu">
+                <div class="nav-item"><a href="#hero" class="nav-link">Beranda</a></div>
+                <div class="nav-item has-dropdown">
+                    <span class="nav-link">Tentang <i class="fas fa-chevron-down"></i></span>
+                    <div class="dropdown">
+                        <a href="#tentang"><div class="dd-icon"><i class="fas fa-building"></i></div><div class="dd-text"><div class="dd-title">Profil Perusahaan</div><div class="dd-desc">Sejarah & perjalanan kami</div></div></a>
+                        <a href="#keunggulan"><div class="dd-icon"><i class="fas fa-bullseye"></i></div><div class="dd-text"><div class="dd-title">Visi & Misi</div><div class="dd-desc">Arah & tujuan perusahaan</div></div></a>
+                        <a href="#tim"><div class="dd-icon"><i class="fas fa-users"></i></div><div class="dd-text"><div class="dd-title">Manajemen</div><div class="dd-desc">Tim profesional kami</div></div></a>
+                    </div>
+                </div>
+                <div class="nav-item has-dropdown">
+                    <span class="nav-link">Layanan <i class="fas fa-chevron-down"></i></span>
+                    <div class="dropdown">
+                        <a href="#layanan"><div class="dd-icon"><i class="fas fa-piggy-bank"></i></div><div class="dd-text"><div class="dd-title">Simpanan & Tabungan</div><div class="dd-desc">Bunga kompetitif, aman</div></div></a>
+                        <a href="#layanan"><div class="dd-icon"><i class="fas fa-chart-line"></i></div><div class="dd-text"><div class="dd-title">Deposito Berjangka</div><div class="dd-desc">Investasi terpercaya</div></div></a>
+                        <a href="#layanan"><div class="dd-icon"><i class="fas fa-store"></i></div><div class="dd-text"><div class="dd-title">Kredit Usaha</div><div class="dd-desc">Modal kerja & investasi</div></div></a>
+                        <a href="#layanan"><div class="dd-icon"><i class="fas fa-hand-holding-usd"></i></div><div class="dd-text"><div class="dd-title">Kredit Multiguna</div><div class="dd-desc">Berbagai kebutuhan</div></div></a>
+                        <a href="#produk"><div class="dd-icon"><i class="fas fa-mobile-alt"></i></div><div class="dd-text"><div class="dd-title">Digital Banking</div><div class="dd-desc">Transaksi lebih mudah</div></div></a>
+                    </div>
+                </div>
+                <div class="nav-item"><a href="#produk" class="nav-link">Produk</a></div>
+                <div class="nav-item has-dropdown">
+                    <span class="nav-link">Informasi <i class="fas fa-chevron-down"></i></span>
+                    <div class="dropdown">
+                        <a href="#galeri"><div class="dd-icon"><i class="fas fa-images"></i></div><div class="dd-text"><div class="dd-title">Galeri Foto</div><div class="dd-desc">Dokumentasi kegiatan</div></div></a>
+                        <a href="#berita"><div class="dd-icon"><i class="fas fa-newspaper"></i></div><div class="dd-text"><div class="dd-title">Berita & Artikel</div><div class="dd-desc">Info terkini</div></div></a>
+                        <a href="#testimoni"><div class="dd-icon"><i class="fas fa-star"></i></div><div class="dd-text"><div class="dd-title">Testimoni</div><div class="dd-desc">Kata nasabah kami</div></div></a>
+                        <a href="#faq"><div class="dd-icon"><i class="fas fa-question-circle"></i></div><div class="dd-text"><div class="dd-title">FAQ</div><div class="dd-desc">Pertanyaan umum</div></div></a>
+                    </div>
+                </div>
+                <div class="nav-item"><a href="#karir" class="nav-link">Karir</a></div>
+                <div class="nav-item"><a href="#kontak" class="nav-link">Kontak</a></div>
+                <div class="nav-cta-wrap">
+                    <a href="#kontak" class="nav-link nav-cta"><i class="fas fa-user-plus" style="margin-right:6px"></i> Buka Rekening</a>
+                </div>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
 <section class="hero" id="hero">
-    <!-- Background layers -->
     <div class="hero-bg"></div>
     <div class="hero-grid-pattern"></div>
     <div class="hero-orb orb1"></div>
@@ -745,146 +814,400 @@
         <div class="hero-line l3"></div>
         <div class="hero-line l4"></div>
     </div>
-
-    <!-- Main Content -->
     <div class="hero-content">
-        <!-- LEFT: Text -->
         <div class="hero-text">
-            <div class="hero-badge">
-                <span class="badge-dot"></span>
-                Terpercaya Sejak 1995 · Diawasi OJK · Dijamin LPS
-            </div>
-
+            <div class="hero-badge"><span class="badge-dot"></span> Terpercaya Sejak 1995 · Diawasi OJK · Dijamin LPS</div>
             <h1 class="hero-h1">
                 <span class="line"><span class="line-inner">Mitra Keuangan</span></span>
                 <span class="line"><span class="line-inner"><span class="gold-word">Terpercaya</span> untuk</span></span>
                 <span class="line"><span class="line-inner">Masa Depan <span class="italic-serif gold-word">Anda</span></span></span>
             </h1>
-
             <p class="hero-sub">Solusi perbankan modern yang mudah, aman, dan menguntungkan untuk individu maupun usaha Anda.</p>
             <p class="hero-desc">Bersama BPR Nusantara Sejahtera, wujudkan impian finansial Anda dengan layanan profesional dan bunga kompetitif.</p>
-
             <div class="hero-btns">
-                <a href="#layanan" class="btn-gold">
-                    Jelajahi Layanan
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-                <a href="#kontak" class="btn-ghost">
-                    <span class="play-icon"><i class="fas fa-play" style="margin-left:2px"></i></span>
-                    Hubungi Kami
-                </a>
+                <a href="#layanan" class="btn-gold">Jelajahi Layanan <i class="fas fa-arrow-right"></i></a>
+                <a href="#kontak" class="btn-ghost"><span class="play-icon"><i class="fas fa-play" style="margin-left:2px"></i></span> Hubungi Kami</a>
             </div>
-
             <div class="hero-stats">
-                <div class="hero-stat">
-                    <span class="num" data-target="30" data-suffix="+">0</span>
-                    <div class="lbl">Tahun Pengalaman</div>
-                </div>
-                <div class="hero-stat">
-                    <span class="num" data-target="50" data-suffix="K+">0</span>
-                    <div class="lbl">Nasabah Puas</div>
-                </div>
-                <div class="hero-stat">
-                    <span class="num" data-target="15" data-suffix="">0</span>
-                    <div class="lbl">Kantor Cabang</div>
-                </div>
-                <div class="hero-stat">
-                    <span class="num" data-target="2" data-suffix="T+">0</span>
-                    <div class="lbl">Aset Kelolaan</div>
-                </div>
+                <div class="hero-stat"><span class="num" data-target="30" data-suffix="+">0</span><div class="lbl">Tahun Pengalaman</div></div>
+                <div class="hero-stat"><span class="num" data-target="50" data-suffix="K+">0</span><div class="lbl">Nasabah Puas</div></div>
+                <div class="hero-stat"><span class="num" data-target="15" data-suffix="">0</span><div class="lbl">Kantor Cabang</div></div>
+                <div class="hero-stat"><span class="num" data-target="2" data-suffix="T+">0</span><div class="lbl">Aset Kelolaan</div></div>
             </div>
         </div>
-
-        <!-- RIGHT: Blob Image -->
         <div class="hero-visual">
             <div class="hero-frame">
-                <!-- Orbit rings -->
-                <div class="orbit-ring o1">
-                    <div class="orbit-diamond"></div>
-                    <div class="orbit-diamond"></div>
-                </div>
-                <div class="orbit-ring o2">
-                    <div class="orbit-diamond"></div>
-                    <div class="orbit-diamond"></div>
-                </div>
+                <div class="orbit-ring o1"><div class="orbit-diamond"></div><div class="orbit-diamond"></div></div>
+                <div class="orbit-ring o2"><div class="orbit-diamond"></div><div class="orbit-diamond"></div></div>
                 <div class="orbit-ring o3"></div>
-
-                <!-- Glow -->
                 <div class="blob-glow"></div>
-
-                <!-- Gold border blob -->
                 <div class="blob-border"></div>
-
-                <!-- Main blob image -->
                 <div class="blob-main">
                     <img src="https://images.unsplash.com/photo-1560472355-536de3962603?w=700&q=80" alt="BPR Nusantara Sejahtera">
                 </div>
-
-                <!-- Decorative dots -->
                 <div class="blob-dot d1"></div>
                 <div class="blob-dot d2"></div>
                 <div class="blob-dot d3"></div>
                 <div class="blob-dot d4"></div>
-
-                <!-- Floating cards -->
-                <div class="float-card fc-shield">
-                    <div class="fc-icon"><i class="fas fa-shield-alt"></i></div>
-                    <div class="fc-text">
-                        <div class="fc-val">Dijamin LPS</div>
-                        <div class="fc-lbl">Hingga Rp 2 Miliar</div>
-                    </div>
-                </div>
-                <div class="float-card fc-chart">
-                    <div class="fc-icon"><i class="fas fa-chart-line"></i></div>
-                    <div class="fc-text">
-                        <div class="fc-val">4.5% p.a</div>
-                        <div class="fc-lbl">Bunga Deposito</div>
-                    </div>
-                </div>
-                <div class="float-card fc-users">
-                    <div class="fc-icon"><i class="fas fa-users"></i></div>
-                    <div class="fc-text">
-                        <div class="fc-val">50,000+</div>
-                        <div class="fc-lbl">Nasabah Aktif</div>
-                    </div>
-                </div>
+                <div class="float-card fc-shield"><div class="fc-icon"><i class="fas fa-shield-alt"></i></div><div class="fc-text"><div class="fc-val">Dijamin LPS</div><div class="fc-lbl">Hingga Rp 2 Miliar</div></div></div>
+                <div class="float-card fc-chart"><div class="fc-icon"><i class="fas fa-chart-line"></i></div><div class="fc-text"><div class="fc-val">4.5% p.a</div><div class="fc-lbl">Bunga Deposito</div></div></div>
+                <div class="float-card fc-users"><div class="fc-icon"><i class="fas fa-users"></i></div><div class="fc-text"><div class="fc-val">50,000+</div><div class="fc-lbl">Nasabah Aktif</div></div></div>
             </div>
         </div>
     </div>
+    <div class="scroll-indicator"><div class="scroll-mouse"></div><span>Scroll</span></div>
+</section>
 
-    <!-- Scroll indicator -->
-    <div class="scroll-indicator">
-        <div class="scroll-mouse"></div>
-        <span>Scroll</span>
+<!-- TENTANG -->
+<section id="tentang" class="section-pad">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-visual sr-l">
+                <div class="about-exp-badge"><span class="num">30+</span><span class="txt">Tahun Melayani</span></div>
+                <div class="about-img-main"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&q=80" alt="Kantor BPR NS"></div>
+                <div class="about-img-accent"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=300&q=80" alt="Meeting"></div>
+            </div>
+            <div class="about-text sr-r">
+                <div class="section-label">Tentang Kami</div>
+                <h2 class="section-title">Membangun Kepercayaan<br>Sejak 1995</h2>
+                <p class="about-desc">BPR Nusantara Sejahtera didirikan dengan visi menjadi lembaga perbankan terpercaya yang melayani masyarakat hingga ke pelosok nusantara. Selama lebih dari 30 tahun, kami telah membantu puluhan ribu nasabah mewujudkan impian finansial mereka.</p>
+                <p class="about-desc">Kami berkomitmen untuk terus berinovasi dan memberikan pelayanan terbaik dengan mengedepankan prinsip kehati-hatian dan tata kelola yang baik sesuai regulasi OJK.</p>
+                <div class="about-features">
+                    <div class="about-feat"><i class="fas fa-check-circle"></i> Terdaftar & Diawasi OJK</div>
+                    <div class="about-feat"><i class="fas fa-check-circle"></i> Dijamin LPS</div>
+                    <div class="about-feat"><i class="fas fa-check-circle"></i> Layanan Personal</div>
+                    <div class="about-feat"><i class="fas fa-check-circle"></i> Bunga Kompetitif</div>
+                </div>
+                <a href="#layanan" class="btn-dark">Selengkapnya <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
     </div>
 </section>
 
+<!-- LAYANAN -->
+<section id="layanan" class="section-pad">
+    <div class="container">
+        <div class="section-head sr">
+            <div class="section-label">Layanan Kami</div>
+            <h2 class="section-title">Solusi Keuangan Terintegrasi</h2>
+            <p class="section-subtitle">Berbagai layanan perbankan yang dirancang khusus untuk memenuhi setiap kebutuhan finansial Anda</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card sr"><div class="service-card-img"><img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=500&q=80" alt="Tabungan"></div><div class="service-card-body"><div class="sc-icon"><i class="fas fa-piggy-bank"></i></div><h3>Simpanan & Tabungan</h3><p>Berbagai pilihan tabungan dengan bunga kompetitif dan penarikan fleksibel sesuai kebutuhan Anda.</p><a href="#produk" class="sc-link">Pelajari Lebih Lanjut <i class="fas fa-arrow-right"></i></a></div></div>
+            <div class="service-card sr"><div class="service-card-img"><img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=500&q=80" alt="Deposito"></div><div class="service-card-body"><div class="sc-icon"><i class="fas fa-chart-line"></i></div><h3>Deposito Berjangka</h3><p>Investasi aman dengan imbal hasil optimal dan dijamin oleh Lembaga Penjamin Simpanan (LPS).</p><a href="#produk" class="sc-link">Pelajari Lebih Lanjut <i class="fas fa-arrow-right"></i></a></div></div>
+            <div class="service-card sr"><div class="service-card-img"><img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=500&q=80" alt="Kredit Usaha"></div><div class="service-card-body"><div class="sc-icon"><i class="fas fa-store"></i></div><h3>Kredit Usaha Mikro</h3><p>Pembiayaan usaha mikro dengan proses cepat, bunga ringan, dan pendampingan usaha profesional.</p><a href="#produk" class="sc-link">Pelajari Lebih Lanjut <i class="fas fa-arrow-right"></i></a></div></div>
+            <div class="service-card sr"><div class="service-card-img"><img src="https://images.unsplash.com/photo-1560472354-82029e773b59?w=500&q=80" alt="Kredit Multiguna"></div><div class="service-card-body"><div class="sc-icon"><i class="fas fa-bullseye"></i></div><h3>Kredit Multiguna</h3><p>Pinjaman untuk berbagai kebutuhan: pendidikan, renovasi rumah, pernikahan, dan lainnya.</p><a href="#produk" class="sc-link">Pelajari Lebih Lanjut <i class="fas fa-arrow-right"></i></a></div></div>
+            <div class="service-card sr"><div class="service-card-img"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=500&q=80" alt="Kredit Konsumtif"></div><div class="service-card-body"><div class="sc-icon"><i class="fas fa-house"></i></div><h3>Kredit Konsumtif</h3><p>Wujudkan impian memiliki rumah atau kendaraan baru dengan cicilan terjangkau dan tenor fleksibel.</p><a href="#produk" class="sc-link">Pelajari Lebih Lanjut <i class="fas fa-arrow-right"></i></a></div></div>
+            <div class="service-card sr"><div class="service-card-img"><img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=500&q=80" alt="Digital Banking"></div><div class="service-card-body"><div class="sc-icon"><i class="fas fa-mobile-alt"></i></div><h3>Digital Banking</h3><p>Layanan transfer, pembayaran tagihan, dan transaksi digital yang mudah, cepat, dan aman.</p><a href="#produk" class="sc-link">Pelajari Lebih Lanjut <i class="fas fa-arrow-right"></i></a></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- PRODUK -->
+<section id="produk" class="section-pad">
+    <div class="container">
+        <div class="section-head sr">
+            <div class="section-label">Produk Kami</div>
+            <h2 class="section-title">Produk Unggulan</h2>
+            <p class="section-subtitle">Pilih produk perbankan yang paling sesuai dengan kebutuhan dan tujuan finansial Anda</p>
+        </div>
+        <div class="product-tabs sr">
+            <button class="p-tab active" data-tab="simpanan">💰 Simpanan</button>
+            <button class="p-tab" data-tab="pinjaman">🏦 Pinjaman</button>
+            <button class="p-tab" data-tab="lainnya">⚡ Layanan Digital</button>
+        </div>
+        <div class="p-content active" id="simpanan"><div class="p-grid">
+            <div class="p-item sr"><div class="p-item-icon"><i class="fas fa-wallet"></i></div><div><h4>Tabungan Nusantara</h4><p>Tabungan reguler dengan bunga kompetitif, setoran awal ringan, dan fasilitas ATM.</p><span class="p-tag"><i class="fas fa-tag"></i> Setoran awal Rp 50.000 · Bunga 2.5% p.a</span></div></div>
+            <div class="p-item sr"><div class="p-item-icon"><i class="fas fa-coins"></i></div><div><h4>TabunganKu</h4><p>Program tabungan nasional tanpa biaya administrasi bulanan, cocok untuk pemula.</p><span class="p-tag"><i class="fas fa-tag"></i> Setoran awal Rp 20.000 · Tanpa biaya admin</span></div></div>
+            <div class="p-item sr"><div class="p-item-icon"><i class="fas fa-child"></i></div><div><h4>Tabungan Anak Cerdas</h4><p>Tabungan khusus anak-anak untuk membangun kebiasaan menabung sejak dini.</p><span class="p-tag"><i class="fas fa-tag"></i> Setoran awal Rp 10.000 · Bonus buku tabungan</span></div></div>
+            <div class="p-item sr"><div class="p-item-icon"><i class="fas fa-landmark"></i></div><div><h4>Deposito Berjangka</h4><p>Investasi berjangka dengan bunga tinggi dan dijamin LPS hingga Rp 2 Miliar.</p><span class="p-tag"><i class="fas fa-tag"></i> Tenor 1-12 bulan · Bunga hingga 4.5% p.a</span></div></div>
+        </div></div>
+        <div class="p-content" id="pinjaman"><div class="p-grid">
+            <div class="p-item sr"><div class="p-item-icon"><i class="fas fa-briefcase"></i></div><div><h4>Kredit Modal Kerja</h4><p>Pembiayaan untuk modal usaha dengan proses cepat dan persyaratan mudah.</p><span class="p-tag"><i class="fas fa-tag"></i> Plafon s/d Rp 500 juta · Tenor fleksibel</span></div></div>
+            <div class="p-item sr"><div class="p-item-icon"><i class="fas fa-industry"></i></div><div><h4>Kredit Investasi</h4><p>Pembiayaan untuk pengembangan dan ekspansi usaha Anda.</p><span class="p-tag"><i class="fas fa-tag"></i> Plafon s/d Rp 1 Miliar · Tenor s/d 10 tahun</span></div></div>
+            <div class="p-item sr"><div class="p-item-icon"><i class="fas fa-car"></i></div><div><h4>Kredit Kendaraan</h4><p>Miliki kendaraan impian dengan DP ringan dan cicilan terjangkau.</p><span class="p-tag"><i class="fas fa-tag"></i> DP ringan · Tenor s/d 5 tahun</span></div></div>
+            <div class="p-item sr"><div class="p-item-icon"><i class="fas fa-tools"></i></div><div><h4>Kredit Renovasi Rumah</h4><p>Wujudkan rumah impian dengan renovasi tanpa membebani keuangan.</p><span class="p-tag"><i class="fas fa-tag"></i> Plafon s/d Rp 200 juta · Proses 3 hari</span></div></div>
+        </div></div>
+        <div class="p-content" id="lainnya"><div class="p-grid">
+            <div class="p-item sr"><div class="p-item-icon"><i class="fas fa-bolt"></i></div><div><h4>Pembayaran Tagihan</h4><p>Bayar listrik, air, dan utilitas lainnya langsung dari rekening BPR Anda.</p><span class="p-tag"><i class="fas fa-tag"></i> Online 24 jam · Tanpa antri</span></div></div>
+            <div class="p-item sr"><div class="p-item-icon"><i class="fas fa-exchange-alt"></i></div><div><h4>Transfer Antar Bank</h4><p>Transfer dana ke rekening bank lain dengan cepat dan biaya terjangkau.</p><span class="p-tag"><i class="fas fa-tag"></i> Real-time · Biaya mulai Rp 2.500</span></div></div>
+            <div class="p-item sr"><div class="p-item-icon"><i class="fas fa-mobile-alt"></i></div><div><h4>Mobile Banking BPR NS</h4><p>Akses layanan perbankan dari smartphone kapan saja dan di mana saja.</p><span class="p-tag"><i class="fas fa-tag"></i> Aman · Mudah · Praktis</span></div></div>
+            <div class="p-item sr"><div class="p-item-icon"><i class="fas fa-crown"></i></div><div><h4>Layanan Prioritas</h4><p>Layanan eksklusif untuk nasabah prioritas dengan benefit khusus.</p><span class="p-tag"><i class="fas fa-tag"></i> Personal banker · Lounge eksklusif</span></div></div>
+        </div></div>
+    </div>
+</section>
+
+<!-- KEUNGGULAN -->
+<section id="keunggulan" class="section-pad">
+    <div class="container">
+        <div class="section-head sr">
+            <div class="section-label">Keunggulan</div>
+            <h2 class="section-title">Mengapa Memilih Kami?</h2>
+            <p class="section-subtitle">Kepercayaan Anda adalah prioritas utama kami dalam setiap langkah perjalanan perbankan</p>
+        </div>
+        <div class="adv-grid">
+            <div class="adv-card sr"><div class="adv-icon"><i class="fas fa-shield-alt"></i></div><h3>Diawasi OJK</h3><p>Operasional kami sepenuhnya diawasi oleh Otoritas Jasa Keuangan untuk menjamin keamanan dan kepatuhan.</p></div>
+            <div class="adv-card sr"><div class="adv-icon"><i class="fas fa-lock"></i></div><h3>Dijamin LPS</h3><p>Simpanan Anda dijamin oleh Lembaga Penjamin Simpanan hingga Rp 2 Miliar per nasabah.</p></div>
+            <div class="adv-card sr"><div class="adv-icon"><i class="fas fa-bolt"></i></div><h3>Proses Cepat</h3><p>Pengajuan kredit diproses dalam 1-3 hari kerja dengan persyaratan yang tidak berbelit.</p></div>
+            <div class="adv-card sr"><div class="adv-icon"><i class="fas fa-handshake"></i></div><h3>Pelayanan Personal</h3><p>Setiap nasabah mendapat perhatian dan layanan personal dari tim profesional kami.</p></div>
+            <div class="adv-card sr"><div class="adv-icon"><i class="fas fa-chart-bar"></i></div><h3>Bunga Kompetitif</h3><p>Suku bunga simpanan dan pinjaman yang bersaing dan transparan tanpa biaya tersembunyi.</p></div>
+            <div class="adv-card sr"><div class="adv-icon"><i class="fas fa-globe"></i></div><h3>Akses Digital</h3><p>Layanan mobile banking untuk transaksi kapan saja, di mana saja, dengan keamanan terjamin.</p></div>
+        </div>
+    </div>
+</section>
+
+<!-- TIM -->
+<section id="tim" class="section-pad">
+    <div class="container">
+        <div class="section-head sr">
+            <div class="section-label">Tim Kami</div>
+            <h2 class="section-title">Tim Profesional</h2>
+            <p class="section-subtitle">Dipimpin oleh para profesional berpengalaman di industri perbankan Indonesia</p>
+        </div>
+        <div class="team-grid">
+            <div class="team-card sr"><div class="team-photo"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" alt="Hendra Wijaya"><div class="team-socials"><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fas fa-envelope"></i></a></div></div><div class="team-info"><h3>Ir. Hendra Wijaya, MBA</h3><p>Direktur Utama</p></div></div>
+            <div class="team-card sr"><div class="team-photo"><img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" alt="Siti Rahmawati"><div class="team-socials"><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fas fa-envelope"></i></a></div></div><div class="team-info"><h3>Dra. Siti Rahmawati</h3><p>Direktur Operasional</p></div></div>
+            <div class="team-card sr"><div class="team-photo"><img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80" alt="Agus Prasetyo"><div class="team-socials"><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fas fa-envelope"></i></a></div></div><div class="team-info"><h3>Agus Prasetyo, SE, MM</h3><p>Kepala Cabang Utama</p></div></div>
+            <div class="team-card sr"><div class="team-photo"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80" alt="Linda Kusuma"><div class="team-socials"><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fas fa-envelope"></i></a></div></div><div class="team-info"><h3>Linda Kusuma, S.Ak</h3><p>Kepala Divisi Keuangan</p></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONI -->
+<section id="testimoni" class="section-pad">
+    <div class="container">
+        <div class="section-head sr">
+            <div class="section-label">Testimoni</div>
+            <h2 class="section-title">Apa Kata Nasabah Kami</h2>
+            <p class="section-subtitle">Dengarkan pengalaman nyata dari nasabah yang telah mempercayakan keuangannya kepada kami</p>
+        </div>
+        <div class="testi-wrapper sr">
+            <div class="testi-slider"><div class="testi-track" id="testiTrack">
+                <div class="testi-card"><div class="quote-mark">"</div><p>"BPR Nusantara Sejahtera sangat membantu pengembangan usaha saya. Proses kredit cepat, bunganya ringan, dan staff-nya sangat membantu dalam memberikan konsultasi keuangan untuk usaha saya."</p><div class="testi-author"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Budi Santoso"><div><h4>Budi Santoso</h4><span>Pemilik Toko Sembako</span></div></div></div>
+                <div class="testi-card"><div class="quote-mark">"</div><p>"Tabungan dan deposito di BPR NS memberikan bunga yang sangat kompetitif. Pelayanan juga sangat ramah dan profesional. Saya merasa aman menyimpan dana di sini karena dijamin LPS."</p><div class="testi-author"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" alt="Rina Marlina"><div><h4>Rina Marlina</h4><span>Guru SD</span></div></div></div>
+                <div class="testi-card"><div class="quote-mark">"</div><p>"Dari modal kerja hingga ekspansi bisnis kuliner saya, BPR NS selalu menjadi partner keuangan yang bisa diandalkan. Prosesnya transparan dan tidak ada biaya tersembunyi."</p><div class="testi-author"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80" alt="Ahmad Fauzi"><div><h4>Ahmad Fauzi</h4><span>Pengusaha Kuliner</span></div></div></div>
+                <div class="testi-card"><div class="quote-mark">"</div><p>"Saya sudah 10 tahun menjadi nasabah BPR NS. Tidak pernah kecewa dengan pelayanan dan keamanan dananya. Mobile banking-nya juga sangat memudahkan transaksi sehari-hari."</p><div class="testi-author"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=80" alt="Dewi Kartika"><div><h4>Dewi Kartika</h4><span>Pemilik Salon</span></div></div></div>
+            </div></div>
+            <div class="testi-dots" id="testiDots"></div>
+            <div class="testi-nav">
+                <button onclick="moveTesti(-1)"><i class="fas fa-chevron-left"></i></button>
+                <button onclick="moveTesti(1)"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- GALERI -->
+<section id="galeri" class="section-pad">
+    <div class="container">
+        <div class="section-head sr">
+            <div class="section-label">Galeri</div>
+            <h2 class="section-title">Galeri Kegiatan</h2>
+            <p class="section-subtitle">Dokumentasi berbagai kegiatan dan momen penting BPR Nusantara Sejahtera</p>
+        </div>
+        <div class="gallery-grid sr">
+            <div class="gallery-item" onclick="openLB(this)"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" alt=""><div class="gallery-overlay"><i class="fas fa-expand"></i><span>Kantor Pusat BPR NS</span></div></div>
+            <div class="gallery-item" onclick="openLB(this)"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&q=80" alt=""><div class="gallery-overlay"><i class="fas fa-expand"></i><span>Rapat Direksi</span></div></div>
+            <div class="gallery-item" onclick="openLB(this)"><img src="https://images.unsplash.com/photo-1556745757-8d76bdb6984b?w=500&q=80" alt=""><div class="gallery-overlay"><i class="fas fa-expand"></i><span>Layanan Nasabah</span></div></div>
+            <div class="gallery-item" onclick="openLB(this)"><img src="https://images.unsplash.com/photo-1559223607-a43c990c692c?w=500&q=80" alt=""><div class="gallery-overlay"><i class="fas fa-expand"></i><span>Kerjasama Mitra</span></div></div>
+            <div class="gallery-item" onclick="openLB(this)"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&q=80" alt=""><div class="gallery-overlay"><i class="fas fa-expand"></i><span>Acara Komunitas</span></div></div>
+            <div class="gallery-item" onclick="openLB(this)"><img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=500&q=80" alt=""><div class="gallery-overlay"><i class="fas fa-expand"></i><span>Team Building</span></div></div>
+            <div class="gallery-item" onclick="openLB(this)"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=500&q=80" alt=""><div class="gallery-overlay"><i class="fas fa-expand"></i><span>Edukasi Keuangan</span></div></div>
+            <div class="gallery-item" onclick="openLB(this)"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=500&q=80" alt=""><div class="gallery-overlay"><i class="fas fa-expand"></i><span>Gedung Kantor</span></div></div>
+        </div>
+    </div>
+</section>
+
+<div class="lightbox" id="lightbox" onclick="closeLB()">
+    <span class="lightbox-close" onclick="closeLB()"><i class="fas fa-times"></i></span>
+    <img src="" alt="" id="lbImg">
+</div>
+
+<!-- KARIR -->
+<section id="karir" class="section-pad">
+    <div class="container">
+        <div class="section-head sr">
+            <div class="section-label">Karir</div>
+            <h2 class="section-title">Bergabung Bersama Kami</h2>
+            <p class="section-subtitle">Jadilah bagian dari tim profesional BPR Nusantara Sejahtera dan bangun karir Anda</p>
+        </div>
+        <div class="career-list">
+            <div class="career-card sr"><div><h3>Account Officer</h3><div class="career-tags"><span class="career-tag"><i class="fas fa-clock"></i> Full Time</span><span class="career-tag"><i class="fas fa-map-marker-alt"></i> Jakarta</span><span class="career-tag"><i class="fas fa-graduation-cap"></i> Min. S1, Pengalaman 2 Tahun</span></div></div><a href="#kontak" class="btn-gold">Lamar</a></div>
+            <div class="career-card sr"><div><h3>Customer Service</h3><div class="career-tags"><span class="career-tag"><i class="fas fa-clock"></i> Full Time</span><span class="career-tag"><i class="fas fa-map-marker-alt"></i> Bandung</span><span class="career-tag"><i class="fas fa-graduation-cap"></i> Min. D3, Fresh Graduate</span></div></div><a href="#kontak" class="btn-gold">Lamar</a></div>
+            <div class="career-card sr"><div><h3>Teller</h3><div class="career-tags"><span class="career-tag"><i class="fas fa-clock"></i> Full Time</span><span class="career-tag"><i class="fas fa-map-marker-alt"></i> Surabaya</span><span class="career-tag"><i class="fas fa-graduation-cap"></i> Min. SMA/SMK</span></div></div><a href="#kontak" class="btn-gold">Lamar</a></div>
+            <div class="career-card sr"><div><h3>IT Support</h3><div class="career-tags"><span class="career-tag"><i class="fas fa-clock"></i> Full Time</span><span class="career-tag"><i class="fas fa-map-marker-alt"></i> Jakarta</span><span class="career-tag"><i class="fas fa-graduation-cap"></i> Min. S1 Teknik Informatika</span></div></div><a href="#kontak" class="btn-gold">Lamar</a></div>
+        </div>
+    </div>
+</section>
+
+<!-- BERITA -->
+<section id="berita" class="section-pad">
+    <div class="container">
+        <div class="section-head sr">
+            <div class="section-label">Berita</div>
+            <h2 class="section-title">Berita & Artikel Terkini</h2>
+            <p class="section-subtitle">Informasi terbaru seputar kegiatan, pencapaian, dan tips keuangan</p>
+        </div>
+        <div class="news-grid">
+            <div class="news-card sr"><div class="news-img"><img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt=""></div><div class="news-body"><span class="news-date"><i class="fas fa-calendar-alt"></i> 15 Juni 2026</span><h3>BPR NS Raih Penghargaan BPR Terbaik 2026</h3><p>BPR Nusantara Sejahtera meraih penghargaan sebagai BPR Terbaik kategori aset di atas 1 Triliun...</p><a href="#" class="news-link">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a></div></div>
+            <div class="news-card sr"><div class="news-img"><img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80" alt=""></div><div class="news-body"><span class="news-date"><i class="fas fa-calendar-alt"></i> 10 Juni 2026</span><h3>Tips Mengelola Keuangan Usaha Kecil</h3><p>Mengelola keuangan usaha kecil membutuhkan strategi yang tepat. Berikut 5 tips yang bisa Anda terapkan...</p><a href="#" class="news-link">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a></div></div>
+            <div class="news-card sr"><div class="news-img"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80" alt=""></div><div class="news-body"><span class="news-date"><i class="fas fa-calendar-alt"></i> 5 Juni 2026</span><h3>Program Literasi Keuangan untuk UMKM</h3><p>BPR NS mengadakan program edukasi keuangan gratis untuk pelaku UMKM di 5 kota besar di Indonesia...</p><a href="#" class="news-link">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section-pad">
+    <div class="container">
+        <div class="section-head sr">
+            <div class="section-label">FAQ</div>
+            <h2 class="section-title">Pertanyaan Umum</h2>
+            <p class="section-subtitle">Temukan jawaban atas pertanyaan yang paling sering ditanyakan oleh nasabah kami</p>
+        </div>
+        <div class="faq-list sr">
+            <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Apa itu BPR dan bagaimana perbedaannya dengan bank umum?</span><i class="fas fa-chevron-down"></i></div><div class="faq-a"><p>BPR (Bank Perkreditan Rakyat) adalah bank yang melaksanakan kegiatan usaha secara konvensional atau berdasarkan prinsip syariah yang dalam kegiatannya tidak memberikan jasa dalam lalu lintas pembayaran. Perbedaan utama dengan bank umum adalah BPR tidak dapat menerbitkan giro dan fokus melayani masyarakat kecil dan UMKM.</p></div></div>
+            <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Apakah simpanan saya di BPR dijamin?</span><i class="fas fa-chevron-down"></i></div><div class="faq-a"><p>Ya, simpanan Anda di BPR dijamin oleh Lembaga Penjamin Simpanan (LPS) dengan nilai penjaminan hingga Rp 2 Miliar per nasabah per bank, sepanjang memenuhi syarat yang ditetapkan LPS.</p></div></div>
+            <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Bagaimana cara membuka rekening tabungan?</span><i class="fas fa-chevron-down"></i></div><div class="faq-a"><p>Anda cukup datang ke kantor cabang BPR NS terdekat dengan membawa KTP, NPWP (jika ada), dan setoran awal minimal Rp 50.000. Proses pembukaan rekening hanya membutuhkan waktu 15-20 menit.</p></div></div>
+            <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Berapa suku bunga deposito saat ini?</span><i class="fas fa-chevron-down"></i></div><div class="faq-a"><p>Suku bunga deposito kami bervariasi tergantung tenor yang dipilih, berkisar antara 3.5% - 4.5% per tahun. Hubungi customer service kami untuk informasi terkini.</p></div></div>
+            <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Berapa lama proses pengajuan kredit?</span><i class="fas fa-chevron-down"></i></div><div class="faq-a"><p>Proses pengajuan kredit membutuhkan waktu 1-3 hari kerja untuk plafon hingga Rp 100 juta, dan 3-7 hari kerja untuk kredit di atas Rp 100 juta setelah dokumen lengkap diterima.</p></div></div>
+            <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Apakah BPR NS memiliki layanan mobile banking?</span><i class="fas fa-chevron-down"></i></div><div class="faq-a"><p>Ya, BPR NS menyediakan layanan Mobile Banking yang bisa diunduh di Play Store dan App Store untuk cek saldo, transfer, pembayaran tagihan, dan berbagai transaksi lainnya.</p></div></div>
+        </div>
+    </div>
+</section>
+
+<!-- KONTAK -->
+<section id="kontak" class="section-pad">
+    <div class="container">
+        <div class="section-head sr">
+            <div class="section-label">Kontak</div>
+            <h2 class="section-title">Hubungi Kami</h2>
+            <p class="section-subtitle">Kami siap membantu Anda. Jangan ragu untuk menghubungi kami</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info sr-l">
+                <h3>Informasi Kontak</h3>
+                <div class="ci-item"><div class="ci-icon"><i class="fas fa-map-marker-alt"></i></div><div class="ci-text"><h4>Alamat Kantor Pusat</h4><p>Jl. Jend. Sudirman No. 123, Jakarta Pusat 10220</p></div></div>
+                <div class="ci-item"><div class="ci-icon"><i class="fas fa-phone-alt"></i></div><div class="ci-text"><h4>Telepon</h4><p>(021) 5555-1234</p></div></div>
+                <div class="ci-item"><div class="ci-icon"><i class="fab fa-whatsapp"></i></div><div class="ci-text"><h4>WhatsApp</h4><p>+62 812-3456-7890</p></div></div>
+                <div class="ci-item"><div class="ci-icon"><i class="fas fa-envelope"></i></div><div class="ci-text"><h4>Email</h4><p>info@bprnusantara.co.id</p></div></div>
+                <div class="ci-item"><div class="ci-icon"><i class="fas fa-clock"></i></div><div class="ci-text"><h4>Jam Operasional</h4><p>Senin - Jumat: 08.00 - 16.00 WIB<br>Sabtu: 08.00 - 12.00 WIB</p></div></div>
+                <div class="contact-socials">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a><a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="contact-form sr-r">
+                <form id="contactForm" onsubmit="return handleSubmit(event)">
+                    <div class="fg"><label>Nama Lengkap *</label><input type="text" id="cNama" placeholder="Masukkan nama lengkap" required><p class="form-err" id="eNama">Nama wajib diisi</p></div>
+                    <div class="fg"><label>Email *</label><input type="email" id="cEmail" placeholder="Masukkan email" required><p class="form-err" id="eEmail">Format email tidak valid</p></div>
+                    <div class="fg"><label>No. Telepon *</label><input type="tel" id="cTelp" placeholder="Contoh: 081234567890" required><p class="form-err" id="eTelp">No. telepon wajib diisi</p></div>
+                    <div class="fg"><label>Pilih Layanan</label><select id="cLay"><option value="">-- Pilih Layanan --</option><option>Tabungan</option><option>Deposito</option><option>Kredit</option><option>Umum</option></select></div>
+                    <div class="fg"><label>Pesan *</label><textarea id="cPesan" placeholder="Tulis pesan Anda..." required></textarea><p class="form-err" id="ePesan">Pesan wajib diisi</p></div>
+                    <button type="submit" class="btn-gold"><i class="fas fa-paper-plane"></i> Kirim Pesan</button>
+                </form>
+                <p id="formOk" style="display:none;color:#27ae60;text-align:center;margin-top:20px;font-weight:700;font-size:15px;"><i class="fas fa-check-circle"></i> Pesan berhasil terkirim! Kami akan segera menghubungi Anda.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MAP -->
+<div class="map-section">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8195613!3d-6.1753924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5d2e764b12d%3A0x3d2ad6e1e0e9bcc8!2sMonumen%20Nasional!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" allowfullscreen="" loading="lazy"></iframe>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-about">
+                <div class="footer-logo"><div class="nav-logo-icon"><i class="fas fa-landmark"></i></div><span>BPR Nusantara Sejahtera</span></div>
+                <p>Mitra keuangan terpercaya yang telah melayani masyarakat Indonesia selama lebih dari 30 tahun dengan layanan perbankan profesional, aman, dan menguntungkan.</p>
+                <div class="footer-badges"><span class="footer-badge"><i class="fas fa-shield-alt"></i> Diawasi OJK</span><span class="footer-badge"><i class="fas fa-lock"></i> Dijamin LPS</span></div>
+            </div>
+            <div>
+                <h4>Link Cepat</h4>
+                <ul class="footer-links"><li><a href="#tentang">Tentang Kami</a></li><li><a href="#layanan">Layanan</a></li><li><a href="#produk">Produk</a></li><li><a href="#karir">Karir</a></li><li><a href="#berita">Berita</a></li><li><a href="#kontak">Kontak</a></li></ul>
+            </div>
+            <div>
+                <h4>Layanan Kami</h4>
+                <ul class="footer-links"><li><a href="#produk">Tabungan</a></li><li><a href="#produk">Deposito</a></li><li><a href="#produk">Kredit Usaha</a></li><li><a href="#produk">Kredit Multiguna</a></li><li><a href="#produk">Mobile Banking</a></li><li><a href="#produk">Transfer</a></li></ul>
+            </div>
+            <div>
+                <h4>Hubungi Kami</h4>
+                <ul class="footer-contact"><li><i class="fas fa-map-marker-alt"></i> Jl. Jend. Sudirman No. 123, Jakarta Pusat 10220</li><li><i class="fas fa-phone-alt"></i> (021) 5555-1234</li><li><i class="fas fa-envelope"></i> info@bprnusantara.co.id</li><li><i class="fab fa-whatsapp"></i> +62 812-3456-7890</li></ul>
+                <div class="contact-socials" style="margin-top:20px;"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 BPR Nusantara Sejahtera. All Rights Reserved.</p>
+            <p><a href="#">Privacy Policy</a> · <a href="#">Terms of Service</a> · <a href="#">Disclaimer</a></p>
+        </div>
+    </div>
+</footer>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-chevron-up"></i></button>
+
 <script>
-// Particles
+// PRELOADER
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        document.getElementById('preloader').classList.add('hidden');
+        startCounters();
+    }, 1200);
+});
+
+// PARTICLES
 (function(){
     const c = document.getElementById('heroParticles');
-    for(let i = 0; i < 30; i++){
+    for(let i=0;i<30;i++){
         const p = document.createElement('div');
         p.classList.add('h-particle');
-        const s = Math.random() * 4 + 1.5;
-        p.style.cssText = `
-            left: ${Math.random()*100}%;
-            width: ${s}px;
-            height: ${s}px;
-            animation-duration: ${Math.random()*14+8}s;
-            animation-delay: ${Math.random()*10}s;
-        `;
+        const s = Math.random()*4+1.5;
+        p.style.cssText = `left:${Math.random()*100}%;width:${s}px;height:${s}px;animation-duration:${Math.random()*14+8}s;animation-delay:${Math.random()*10}s;`;
         c.appendChild(p);
     }
 })();
 
-// Counter animation
+// NAVBAR SCROLL
+const navbar = document.getElementById('navbar');
+const backTop = document.getElementById('backTop');
+window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+    backTop.classList.toggle('visible', window.scrollY > 400);
+});
+
+// HAMBURGER
+const hamburger = document.getElementById('hamburger');
+const navMenu = document.getElementById('navMenu');
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+});
+
+// Mobile dropdown toggle
+document.querySelectorAll('.nav-item.has-dropdown .nav-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+        if(window.innerWidth <= 1024) {
+            e.preventDefault();
+            this.parentElement.classList.toggle('dd-open');
+        }
+    });
+});
+
+document.querySelectorAll('.nav-menu a[href^="#"]').forEach(a => {
+    a.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+    });
+});
+
+// COUNTERS
 function startCounters(){
     document.querySelectorAll('.hero-stat .num').forEach(el => {
         const target = +el.dataset.target;
         const suffix = el.dataset.suffix || '';
         const dur = 2200;
-        const inc = target / (dur / 16);
+        const inc = target / (dur/16);
         let cur = 0;
         function update(){
             cur += inc;
@@ -898,8 +1221,105 @@ function startCounters(){
         setTimeout(update, 1500);
     });
 }
-window.addEventListener('load', () => {
-    setTimeout(startCounters, 1400);
+
+// SCROLL REVEAL
+const srObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('show'); });
+}, {threshold: 0.1, rootMargin: '0px 0px -40px 0px'});
+document.querySelectorAll('.sr,.sr-l,.sr-r').forEach(el => srObs.observe(el));
+
+// PRODUCT TABS
+document.querySelectorAll('.p-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+        document.querySelectorAll('.p-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.p-content').forEach(c => c.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.tab).classList.add('active');
+    });
+});
+
+// TESTIMONIAL
+let curTesti = 0;
+const tTrack = document.getElementById('testiTrack');
+const tTotal = tTrack.children.length;
+const tDots = document.getElementById('testiDots');
+for(let i=0;i<tTotal;i++){
+    const d = document.createElement('div');
+    d.classList.add('testi-dot');
+    if(i===0) d.classList.add('active');
+    d.addEventListener('click', () => goToTesti(i));
+    tDots.appendChild(d);
+}
+function goToTesti(i){
+    curTesti = i;
+    tTrack.style.transform = `translateX(-${i*100}%)`;
+    document.querySelectorAll('.testi-dot').forEach((d,idx) => d.classList.toggle('active', idx===i));
+}
+function moveTesti(dir){
+    curTesti += dir;
+    if(curTesti >= tTotal) curTesti = 0;
+    if(curTesti < 0) curTesti = tTotal - 1;
+    goToTesti(curTesti);
+}
+setInterval(() => moveTesti(1), 5000);
+
+// LIGHTBOX
+function openLB(el){
+    document.getElementById('lbImg').src = el.querySelector('img').src;
+    document.getElementById('lightbox').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+function closeLB(){
+    document.getElementById('lightbox').classList.remove('active');
+    document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeLB(); });
+
+// FAQ
+function toggleFaq(el){
+    const item = el.parentElement;
+    const wasActive = item.classList.contains('active');
+    document.querySelectorAll('.faq-item').forEach(f => f.classList.remove('active'));
+    if(!wasActive) item.classList.add('active');
+}
+
+// CONTACT FORM
+function handleSubmit(e){
+    e.preventDefault();
+    let ok = true;
+    const fields = [
+        {el: document.getElementById('cNama'), err: document.getElementById('eNama'), check: v => v.trim() !== ''},
+        {el: document.getElementById('cEmail'), err: document.getElementById('eEmail'), check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)},
+        {el: document.getElementById('cTelp'), err: document.getElementById('eTelp'), check: v => v.trim() !== ''},
+        {el: document.getElementById('cPesan'), err: document.getElementById('ePesan'), check: v => v.trim() !== ''}
+    ];
+    fields.forEach(f => {
+        f.el.classList.remove('error');
+        f.err.style.display = 'none';
+        if(!f.check(f.el.value)){
+            f.el.classList.add('error');
+            f.err.style.display = 'block';
+            ok = false;
+        }
+    });
+    if(ok){
+        document.getElementById('contactForm').style.display = 'none';
+        document.getElementById('formOk').style.display = 'block';
+    }
+    return false;
+}
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', function(e){
+        const id = this.getAttribute('href');
+        if(id === '#') return;
+        const target = document.querySelector(id);
+        if(target){
+            e.preventDefault();
+            target.scrollIntoView({behavior:'smooth'});
+        }
+    });
 });
 </script>
 </body>
