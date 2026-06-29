@@ -124,152 +124,106 @@
         .hamburger.active span:nth-child(2) { opacity: 0; }
         .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
 
-/* =============================================
-   HERO - BIRU TERANG #0033A0 + LAYOUT 2 BARIS
+        /* =============================================
+   HERO - OPTIMIZED FOR 100vh FULL SCREEN
    ============================================= */
-
-/* --- PALET BIRU TAMBAHAN --- */
-:root {
-    --hero-blue1: #000d2b;
-    --hero-blue2: #001545;
-    --hero-blue3: #001e66;
-    --hero-blue4: #0033A0;
-    --hero-blue5: #1a4db8;
-    --hero-blue6: #2e62cc;
-    --hero-blue7: #4d80d6;
-    --hero-accent: #6fa3e8;
-}
-
 .hero {
     height: 100vh;
     min-height: 720px;
     max-height: 100vh;
     position: relative;
     overflow: hidden;
-    background: var(--hero-blue4);
+    background: var(--navy);
     display: flex;
     align-items: center;
 }
-
-/* --- BACKGROUND DEGRADASI BIRU PROPORSIONAL --- */
 .hero-bg { position: absolute; inset: 0; z-index: 0; }
 .hero-bg::before {
     content: ''; position: absolute; inset: 0;
     background:
-        radial-gradient(ellipse 90% 70% at 15% 50%, rgba(0,13,43,0.95) 0%, transparent 60%),
-        radial-gradient(ellipse 70% 90% at 85% 25%, rgba(0,30,102,0.7) 0%, transparent 55%),
-        radial-gradient(ellipse 60% 60% at 50% 90%, rgba(0,9,30,0.9) 0%, transparent 50%),
-        radial-gradient(ellipse 40% 40% at 70% 60%, rgba(26,77,184,0.4) 0%, transparent 50%),
-        linear-gradient(155deg, #000d2b 0%, #001545 15%, #001e66 30%, #0033A0 50%, #1a4db8 70%, #001e66 85%, #00103a 100%);
+        radial-gradient(ellipse 80% 60% at 20% 50%, rgba(17,24,50,1) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 80% at 80% 30%, rgba(26,35,64,0.8) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 50% 80%, rgba(15,20,40,1) 0%, transparent 50%),
+        linear-gradient(160deg, #070b18 0%, #0c1225 25%, #111d3a 50%, #0f1729 75%, #080d1c 100%);
 }
 .hero-bg::after {
     content: ''; position: absolute; inset: 0;
     background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80') center/cover;
-    opacity: 0.03; mix-blend-mode: overlay;
+    opacity: 0.04; mix-blend-mode: luminosity;
 }
-
-/* Grid pattern - biru muda */
 .hero-grid-pattern {
-    position: absolute; inset: 0; z-index: 1; opacity: 0.03;
+    position: absolute; inset: 0; z-index: 1; opacity: 0.025;
     background-image:
-        linear-gradient(rgba(111,163,232,1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(111,163,232,1) 1px, transparent 1px);
+        linear-gradient(rgba(201,168,76,1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,1) 1px, transparent 1px);
     background-size: 100px 100px;
     mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, transparent 70%);
     -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 20%, transparent 70%);
 }
-
-/* --- ORBS - Degradasi Biru + Gold --- */
 .hero-orb { position: absolute; border-radius: 50%; filter: blur(80px); z-index: 1; pointer-events: none; }
-.hero-orb.orb1 {
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(111,163,232,0.2) 0%, rgba(45,96,204,0.1) 40%, transparent 70%);
-    top: -10%; right: 10%;
-    animation: orbFloat1 12s ease-in-out infinite;
-}
-.hero-orb.orb2 {
-    width: 350px; height: 350px;
-    background: radial-gradient(circle, rgba(201,168,76,0.1) 0%, rgba(0,51,160,0.15) 50%, transparent 70%);
-    bottom: -5%; left: 5%;
-    animation: orbFloat2 15s ease-in-out infinite;
-}
-.hero-orb.orb3 {
-    width: 250px; height: 250px;
-    background: radial-gradient(circle, rgba(77,128,214,0.12) 0%, transparent 70%);
-    top: 40%; left: 30%;
-    animation: orbFloat3 18s ease-in-out infinite;
-}
+.hero-orb.orb1 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%); top: -10%; right: 10%; animation: orbFloat1 12s ease-in-out infinite; }
+.hero-orb.orb2 { width: 350px; height: 350px; background: radial-gradient(circle, rgba(30,58,95,0.3) 0%, transparent 70%); bottom: -5%; left: 5%; animation: orbFloat2 15s ease-in-out infinite; }
+.hero-orb.orb3 { width: 250px; height: 250px; background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%); top: 40%; left: 30%; animation: orbFloat3 18s ease-in-out infinite; }
 @keyframes orbFloat1 { 0%,100%{transform:translate(0,0) scale(1)} 33%{transform:translate(-30px,20px) scale(1.05)} 66%{transform:translate(20px,-15px) scale(0.95)} }
 @keyframes orbFloat2 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(25px,-20px) scale(1.1)} }
 @keyframes orbFloat3 { 0%,100%{transform:translate(0,0)} 25%{transform:translate(15px,10px)} 50%{transform:translate(-10px,20px)} 75%{transform:translate(-20px,-10px)} }
 
-/* Particles - biru muda + gold mix */
 .hero-particles { position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
-.h-particle { position: absolute; border-radius: 50%; opacity: 0; animation: particleRise linear infinite; }
-@keyframes particleRise { 0%{transform:translateY(100vh) scale(0);opacity:0} 10%{opacity:0.6} 90%{opacity:0.6} 100%{transform:translateY(-5vh) scale(1);opacity:0} }
+.h-particle { position: absolute; background: var(--gold); border-radius: 50%; opacity: 0; animation: particleRise linear infinite; }
+@keyframes particleRise { 0%{transform:translateY(100vh) scale(0);opacity:0} 10%{opacity:0.5} 90%{opacity:0.5} 100%{transform:translateY(-5vh) scale(1);opacity:0} }
 
-/* Lines - biru muda shimmer */
 .hero-lines { position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: hidden; }
-.hero-line { position: absolute; width: 1px; }
-.hero-line.l1 { left: 15%; height: 100%; background: linear-gradient(180deg, transparent, rgba(111,163,232,0.2), transparent); animation: lineShimmer 8s ease-in-out infinite; }
-.hero-line.l2 { left: 35%; height: 80%; top: 10%; background: linear-gradient(180deg, transparent, rgba(111,163,232,0.15), transparent); animation: lineShimmer 8s ease-in-out infinite 2s; }
-.hero-line.l3 { right: 25%; height: 70%; top: 15%; background: linear-gradient(180deg, transparent, rgba(201,168,76,0.12), transparent); animation: lineShimmer 8s ease-in-out infinite 4s; }
-.hero-line.l4 { right: 10%; height: 90%; top: 5%; background: linear-gradient(180deg, transparent, rgba(111,163,232,0.18), transparent); animation: lineShimmer 8s ease-in-out infinite 6s; }
-@keyframes lineShimmer { 0%,100%{opacity:0.3} 50%{opacity:0.9} }
+.hero-line { position: absolute; background: linear-gradient(180deg, transparent, rgba(201,168,76,0.15), transparent); width: 1px; }
+.hero-line.l1 { left: 15%; height: 100%; animation: lineShimmer 8s ease-in-out infinite; }
+.hero-line.l2 { left: 35%; height: 80%; top: 10%; animation: lineShimmer 8s ease-in-out infinite 2s; }
+.hero-line.l3 { right: 25%; height: 70%; top: 15%; animation: lineShimmer 8s ease-in-out infinite 4s; }
+.hero-line.l4 { right: 10%; height: 90%; top: 5%; animation: lineShimmer 8s ease-in-out infinite 6s; }
+@keyframes lineShimmer { 0%,100%{opacity:0.3} 50%{opacity:0.8} }
 
-/* =============================================
-   🔑 LAYOUT 2 BARIS - KUNCI UTAMA
-   ============================================= */
+/* 🔑 KUNCI UTAMA: Padding hero-content diperkecil */
 .hero-content {
     position: relative; z-index: 10;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px; /* was 60px */
+    align-items: center;
     width: 100%;
-    max-width: 1320px;
+    max-width: 1280px;
     margin: 0 auto;
-    padding: 95px 40px 45px;
-    height: 100%;
-    justify-content: center;
+    padding: 100px 40px 50px; /* was 140px 40px 100px */
 }
 
-/* --- BARIS 1: Heading Full Width --- */
-.hero-top {
-    margin-bottom: 20px;
-    max-width: 100%;
-}
-
+/* TEXT CONTENT - Diperkecil */
+.hero-text { color: #fff; }
 .hero-badge {
     display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(111,163,232,0.12);
-    border: 1px solid rgba(111,163,232,0.25);
-    padding: 8px 20px;
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 8px 18px; /* was 10px 24px */
     border-radius: 60px;
-    font-size: 12px;
-    color: var(--hero-accent);
+    font-size: 12px; /* was 13px */
+    color: var(--gold2);
     font-weight: 600;
-    margin-bottom: 16px;
+    margin-bottom: 20px; /* was 32px */
     backdrop-filter: blur(10px);
     opacity: 0;
     animation: heroFadeUp 0.8s ease 0.2s forwards;
 }
 .hero-badge .badge-dot {
     width: 7px; height: 7px;
-    background: var(--gold2);
+    background: var(--gold);
     border-radius: 50%;
     animation: badgePulse 2s ease-in-out infinite;
-    box-shadow: 0 0 8px rgba(228,199,107,0.5);
 }
-@keyframes badgePulse { 0%,100%{box-shadow:0 0 0 0 rgba(228,199,107,0.4)} 50%{box-shadow:0 0 0 8px rgba(228,199,107,0)} }
+@keyframes badgePulse { 0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,0.4)} 50%{box-shadow:0 0 0 8px rgba(201,168,76,0)} }
 
-/* Heading - lebih besar karena full width */
+/* 🔑 Heading diperkecil agar muat di 1 layar */
 .hero-h1 {
-    font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+    font-size: clamp(2.2rem, 4vw, 3.5rem); /* was clamp(2.6rem, 5.5vw, 4.5rem) */
     font-weight: 800;
-    line-height: 1.12;
-    margin-bottom: 0;
+    line-height: 1.1;
+    margin-bottom: 4px; /* was 8px */
     letter-spacing: -1.5px;
-    color: #fff;
 }
 .hero-h1 .line { display: block; overflow: hidden; }
 .hero-h1 .line-inner {
@@ -281,17 +235,8 @@
 .hero-h1 .line:nth-child(1) .line-inner { animation-delay: 0.4s; }
 .hero-h1 .line:nth-child(2) .line-inner { animation-delay: 0.55s; }
 .hero-h1 .line:nth-child(3) .line-inner { animation-delay: 0.7s; }
-
-/* Gold word tetap dipertahankan - kontras bagus di atas biru */
 .hero-h1 .gold-word {
-    background: linear-gradient(135deg, #d4a843 0%, #f0d97a 35%, #ffe89a 50%, #e4c76b 70%, #c9a84c 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    filter: drop-shadow(0 2px 8px rgba(201,168,76,0.25));
-}
-.hero-h1 .blue-word {
-    background: linear-gradient(135deg, #6fa3e8 0%, #a8ccf5 50%, #6fa3e8 100%);
+    background: linear-gradient(135deg, #b8943e 0%, #e4c76b 40%, #f0d97a 60%, #c9a84c 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -304,139 +249,89 @@
 }
 @keyframes heroLineReveal { to { opacity: 1; transform: translateY(0); } }
 
-/* --- BARIS 2: Grid 2 Kolom (Text Kiri | Visual Kanan) --- */
-.hero-bottom {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: center;
-    flex: 1;
-    min-height: 0;
-}
-
-.hero-bottom-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.hero-text { color: #fff; }
-
+/* 🔑 Subtitle & Deskripsi diperkecil */
 .hero-sub {
-    font-size: 16px;
-    color: rgba(255,255,255,0.8);
-    line-height: 1.65;
-    margin: 0 0 8px;
-    max-width: 520px;
+    font-size: 16px; /* was 19px */
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6; /* was 1.7 */
+    margin: 18px 0 8px; /* was 28px 0 12px */
+    max-width: 500px;
     font-weight: 300;
-    opacity: 0;
-    animation: heroFadeUp 0.8s ease 0.9s forwards;
-}
-.hero-desc {
-    font-size: 13px;
-    color: rgba(255,255,255,0.45);
-    line-height: 1.7;
-    margin-bottom: 22px;
-    max-width: 480px;
     opacity: 0;
     animation: heroFadeUp 0.8s ease 1s forwards;
 }
-.hero-btns {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-bottom: 28px;
+.hero-desc {
+    font-size: 13px; /* was 14px */
+    color: rgba(255,255,255,0.4);
+    line-height: 1.7; /* was 1.8 */
+    margin-bottom: 24px; /* was 40px */
+    max-width: 460px;
     opacity: 0;
     animation: heroFadeUp 0.8s ease 1.1s forwards;
 }
-
-/* Tombol - disesuaikan untuk tema biru */
-.btn-gold {
-    display: inline-flex; align-items: center; gap: 10px;
-    background: linear-gradient(135deg, #d4a843, #e4c76b, #f0d97a);
-    color: #001545;
-    padding: 13px 30px;
-    border-radius: 60px;
-    font-weight: 700;
-    font-size: 13px;
-    letter-spacing: 0.5px;
-    border: none; cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    font-family: 'Inter', sans-serif;
-    box-shadow: 0 8px 30px rgba(201,168,76,0.35);
-    position: relative; overflow: hidden;
+.hero-btns {
+    display: flex;
+    gap: 12px; /* was 16px */
+    flex-wrap: wrap;
+    margin-bottom: 32px; /* was 55px */
+    opacity: 0;
+    animation: heroFadeUp 0.8s ease 1.2s forwards;
 }
-.btn-gold::before {
-    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.6s ease;
-}
-.btn-gold:hover::before { left: 100%; }
-.btn-gold:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(201,168,76,0.5); }
-
-.btn-ghost {
-    display: inline-flex; align-items: center; gap: 10px;
-    border: 1.5px solid rgba(255,255,255,0.2);
-    color: rgba(255,255,255,0.85);
-    padding: 12px 28px;
-    border-radius: 60px;
-    font-weight: 600;
-    font-size: 13px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    background: rgba(255,255,255,0.05);
-    font-family: 'Inter', sans-serif;
-    backdrop-filter: blur(10px);
-}
-.btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: var(--hero-accent); color: var(--hero-accent); }
-
 .btn-ghost .play-icon {
     width: 26px; height: 26px;
-    background: rgba(201,168,76,0.2);
+    background: rgba(201,168,76,0.15);
     border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 9px; color: var(--gold2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: var(--gold);
 }
 
-/* Stats */
+/* 🔑 Stats diperkecil */
 .hero-stats {
     display: flex;
     gap: 0;
     opacity: 0;
-    animation: heroFadeUp 0.8s ease 1.3s forwards;
+    animation: heroFadeUp 0.8s ease 1.4s forwards;
 }
-.hero-stat { padding: 0 22px; position: relative; }
+.hero-stat {
+    padding: 0 22px; /* was 0 32px */
+    position: relative;
+}
 .hero-stat:first-child { padding-left: 0; }
 .hero-stat + .hero-stat::before {
     content: '';
-    position: absolute; left: 0; top: 4px; bottom: 4px;
+    position: absolute;
+    left: 0;
+    top: 4px;
+    bottom: 4px;
     width: 1px;
-    background: linear-gradient(180deg, transparent, rgba(111,163,232,0.35), transparent);
+    background: linear-gradient(180deg, transparent, rgba(201,168,76,0.3), transparent);
 }
 .hero-stat .num {
     font-family: 'Playfair Display', serif;
-    font-size: 28px;
+    font-size: 28px; /* was 36px */
     font-weight: 800;
-    background: linear-gradient(135deg, #d4a843, #f0d97a, #ffe89a);
+    background: linear-gradient(135deg, var(--gold3), var(--gold2), var(--gold4));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     display: block;
     line-height: 1;
-    filter: drop-shadow(0 1px 4px rgba(201,168,76,0.2));
 }
 .hero-stat .lbl {
-    font-size: 11px;
-    color: rgba(255,255,255,0.4);
-    margin-top: 4px;
+    font-size: 11px; /* was 12px */
+    color: rgba(255,255,255,0.35);
+    margin-top: 4px; /* was 6px */
     font-weight: 500;
     letter-spacing: 0.5px;
 }
 @keyframes heroFadeUp {
-    from { opacity: 0; transform: translateY(25px); }
+    from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- VISUAL (BLOB) - di Baris 2 Kanan --- */
+/* 🔑 Visual (Blob) diperkecil */
 .hero-visual {
     position: relative;
     display: flex;
@@ -444,7 +339,6 @@
     align-items: center;
     opacity: 0;
     animation: heroVisualIn 1.2s cubic-bezier(0.23,1,0.32,1) 0.6s forwards;
-    align-self: center;
 }
 @keyframes heroVisualIn {
     from { opacity: 0; transform: translateX(50px) scale(0.95); }
@@ -453,7 +347,7 @@
 .hero-frame {
     position: relative;
     width: 100%;
-    max-width: 420px;
+    max-width: 460px; /* was 560px */
     aspect-ratio: 1;
     display: flex;
     align-items: center;
@@ -466,16 +360,17 @@
     overflow: hidden;
     border-radius: 62% 38% 46% 54% / 55% 60% 40% 45%;
     animation: blobMorph 12s ease-in-out infinite;
-    box-shadow: 0 25px 60px rgba(0,13,43,0.5), 0 0 40px rgba(0,51,160,0.2);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.4);
 }
 .blob-main img {
-    width: 100%; height: 100%; object-fit: cover;
+    width: 100%; height: 100%;
+    object-fit: cover;
     animation: blobImgFloat 8s ease-in-out infinite;
 }
 .blob-main::after {
     content: '';
     position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(0,51,160,0.15) 0%, transparent 40%, transparent 60%, rgba(201,168,76,0.08) 100%);
+    background: linear-gradient(135deg, rgba(201,168,76,0.1) 0%, transparent 40%, transparent 60%, rgba(201,168,76,0.05) 100%);
     border-radius: inherit;
     pointer-events: none;
 }
@@ -488,16 +383,14 @@
 }
 @keyframes blobImgFloat { 0%,100%{transform:scale(1) translateY(0)} 50%{transform:scale(1.03) translateY(-8px)} }
 
-/* Blob border - biru + gold gradient */
 .blob-border {
     position: absolute; z-index: 4;
     width: 92%; height: 92%;
     border-radius: 62% 38% 46% 54% / 55% 60% 40% 45%;
     animation: blobMorph 12s ease-in-out infinite;
     border: 2px solid transparent;
-    background:
-        linear-gradient(var(--hero-blue3), var(--hero-blue3)) padding-box,
-        linear-gradient(135deg, var(--gold3), var(--hero-accent), transparent, var(--gold2)) border-box;
+    background: linear-gradient(var(--navy), var(--navy)) padding-box,
+                linear-gradient(135deg, var(--gold3), var(--gold2), transparent, var(--gold3)) border-box;
     opacity: 0.6;
 }
 .blob-glow {
@@ -505,77 +398,82 @@
     width: 85%; height: 85%;
     border-radius: 62% 38% 46% 54% / 55% 60% 40% 45%;
     animation: blobMorph 12s ease-in-out infinite;
-    background: radial-gradient(circle, rgba(0,51,160,0.25) 0%, rgba(111,163,232,0.1) 40%, transparent 70%);
+    background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);
     filter: blur(40px);
 }
 
-/* Orbit rings - biru muda */
-.orbit-ring { position: absolute; border-radius: 50%; z-index: 3; }
-.orbit-ring.o1 { width: 110%; height: 110%; border: 1px dashed rgba(111,163,232,0.12); animation: orbitSpin 50s linear infinite; }
-.orbit-ring.o2 { width: 130%; height: 130%; border: 1px dotted rgba(111,163,232,0.07); animation: orbitSpin 70s linear infinite reverse; }
-.orbit-ring.o3 { width: 95%; height: 95%; border: 1px dashed rgba(255,255,255,0.05); animation: orbitSpin 35s linear infinite; }
+.orbit-ring { position: absolute; border-radius: 50%; border: 1px dashed rgba(201,168,76,0.08); z-index: 3; }
+.orbit-ring.o1 { width: 110%; height: 110%; animation: orbitSpin 50s linear infinite; }
+.orbit-ring.o2 { width: 130%; height: 130%; border-style: dotted; border-color: rgba(201,168,76,0.05); animation: orbitSpin 70s linear infinite reverse; }
+.orbit-ring.o3 { width: 95%; height: 95%; border-color: rgba(255,255,255,0.04); animation: orbitSpin 35s linear infinite; }
 @keyframes orbitSpin { to { transform: rotate(360deg); } }
 
 .orbit-diamond {
     position: absolute;
     width: 8px; height: 8px;
-    background: var(--gold2);
+    background: var(--gold);
     transform: rotate(45deg);
     box-shadow: 0 0 15px rgba(201,168,76,0.5);
 }
 .orbit-ring.o1 .orbit-diamond { top: 5%; right: 10%; }
 .orbit-ring.o1 .orbit-diamond:nth-child(2) { bottom: 10%; left: 5%; top: auto; right: auto; }
-.orbit-ring.o2 .orbit-diamond { top: 15%; left: 3%; width: 6px; height: 6px; background: var(--hero-accent); box-shadow: 0 0 12px rgba(111,163,232,0.5); }
+.orbit-ring.o2 .orbit-diamond { top: 15%; left: 3%; width: 6px; height: 6px; background: var(--gold2); box-shadow: 0 0 12px rgba(201,168,76,0.3); }
 .orbit-ring.o2 .orbit-diamond:nth-child(2) { bottom: 5%; right: 15%; top: auto; left: auto; width: 5px; height: 5px; }
 
-/* Float cards - disesuaikan untuk tema biru */
+/* 🔑 Float cards diperkecil */
 .float-card {
     position: absolute; z-index: 8;
     background: rgba(255,255,255,0.95);
     backdrop-filter: blur(20px) saturate(1.5);
-    border-radius: 14px;
-    padding: 12px 16px;
-    display: flex; align-items: center; gap: 10px;
-    box-shadow: 0 12px 30px rgba(0,13,43,0.2), 0 0 0 1px rgba(255,255,255,0.1);
+    border-radius: 14px; /* was 18px */
+    padding: 12px 16px; /* was 18px 22px */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* was 14px */
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12), 0 0 0 1px rgba(255,255,255,0.1);
 }
 .float-card .fc-icon {
-    width: 38px; height: 38px;
-    border-radius: 11px;
-    background: linear-gradient(135deg, var(--hero-blue4), var(--hero-blue5));
-    display: flex; align-items: center; justify-content: center;
-    font-size: 15px; color: #fff;
+    width: 38px; height: 38px; /* was 46px */
+    border-radius: 11px; /* was 14px */
+    background: linear-gradient(135deg, var(--gold3), var(--gold2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px; /* was 18px */
+    color: var(--navy);
     flex-shrink: 0;
-    box-shadow: 0 4px 12px rgba(0,51,160,0.3);
 }
 .float-card .fc-text .fc-val {
-    font-size: 15px; font-weight: 800;
-    color: var(--hero-blue3);
+    font-size: 15px; /* was 18px */
+    font-weight: 800;
+    color: var(--navy);
     font-family: 'Playfair Display', serif;
     line-height: 1.2;
 }
 .float-card .fc-text .fc-lbl {
-    font-size: 10px;
+    font-size: 10px; /* was 11px */
     color: var(--text-light);
     font-weight: 500;
 }
-.float-card.fc-shield { bottom: 8%; left: -5%; animation: floatCard1 7s ease-in-out infinite; }
-.float-card.fc-chart { top: 5%; right: -3%; animation: floatCard2 8s ease-in-out infinite 1s; }
-.float-card.fc-users { top: 52%; right: -10%; animation: floatCard3 9s ease-in-out infinite 0.5s; }
+.float-card.fc-shield { bottom: 10%; left: -5%; animation: floatCard1 7s ease-in-out infinite; }
+.float-card.fc-chart { top: 6%; right: -3%; animation: floatCard2 8s ease-in-out infinite 1s; }
+.float-card.fc-users { top: 55%; right: -10%; animation: floatCard3 9s ease-in-out infinite 0.5s; }
 @keyframes floatCard1 { 0%,100%{transform:translateY(0) rotate(-2deg)} 50%{transform:translateY(-14px) rotate(1deg)} }
 @keyframes floatCard2 { 0%,100%{transform:translateY(0) rotate(2deg)} 50%{transform:translateY(-11px) rotate(-1deg)} }
 @keyframes floatCard3 { 0%,100%{transform:translateY(0) rotate(1deg)} 50%{transform:translateY(-9px) rotate(-2deg)} }
 
-.blob-dot { position: absolute; width: 5px; height: 5px; border-radius: 50%; z-index: 6; opacity: 0.5; }
-.blob-dot.d1 { top: 5%; left: 20%; background: var(--hero-accent); animation: dotPulse 3s ease-in-out infinite; }
-.blob-dot.d2 { top: 30%; right: 2%; background: var(--gold2); animation: dotPulse 3s ease-in-out infinite 1s; }
-.blob-dot.d3 { bottom: 20%; left: 5%; background: var(--hero-accent); animation: dotPulse 3s ease-in-out infinite 2s; width: 4px; height: 4px; }
-.blob-dot.d4 { bottom: 5%; right: 25%; background: var(--gold2); animation: dotPulse 3s ease-in-out infinite 0.5s; }
+.blob-dot { position: absolute; width: 5px; height: 5px; background: var(--gold); border-radius: 50%; z-index: 6; opacity: 0.5; }
+.blob-dot.d1 { top: 5%; left: 20%; animation: dotPulse 3s ease-in-out infinite; }
+.blob-dot.d2 { top: 30%; right: 2%; animation: dotPulse 3s ease-in-out infinite 1s; }
+.blob-dot.d3 { bottom: 20%; left: 5%; animation: dotPulse 3s ease-in-out infinite 2s; width: 4px; height: 4px; }
+.blob-dot.d4 { bottom: 5%; right: 25%; animation: dotPulse 3s ease-in-out infinite 0.5s; }
 @keyframes dotPulse { 0%,100%{opacity:0.3;transform:scale(1)} 50%{opacity:0.8;transform:scale(1.5)} }
 
-/* Scroll indicator */
+/* 🔑 Scroll indicator lebih kecil */
 .scroll-indicator {
     position: absolute;
-    bottom: 18px; left: 50%;
+    bottom: 20px; /* was 35px */
+    left: 50%;
     transform: translateX(-50%);
     z-index: 10;
     display: flex;
@@ -584,55 +482,75 @@
     gap: 6px;
 }
 .scroll-mouse {
-    width: 20px; height: 32px;
-    border: 2px solid rgba(255,255,255,0.18);
+    width: 20px; /* was 24px */
+    height: 32px; /* was 38px */
+    border: 2px solid rgba(255,255,255,0.15);
     border-radius: 20px;
     position: relative;
 }
 .scroll-mouse::after {
     content: '';
     width: 3px; height: 6px;
-    background: var(--hero-accent);
+    background: var(--gold);
     border-radius: 3px;
     position: absolute;
-    top: 6px; left: 50%;
+    top: 6px;
+    left: 50%;
     transform: translateX(-50%);
     animation: scrollDot 2s ease infinite;
 }
 @keyframes scrollDot { 0%{opacity:1;top:6px} 100%{opacity:0;top:18px} }
 .scroll-indicator span {
-    font-size: 9px;
-    color: rgba(255,255,255,0.3);
+    font-size: 9px; /* was 10px */
+    color: rgba(255,255,255,0.25);
     letter-spacing: 2px;
     text-transform: uppercase;
     font-weight: 600;
 }
 
+/* 🔑 Tombol juga diperkecil agar muat */
+.btn-gold {
+    padding: 13px 28px; /* was 16px 36px */
+    font-size: 13px; /* was 14px */
+}
+.btn-ghost {
+    padding: 12px 28px; /* was 15px 36px */
+    font-size: 13px; /* was 14px */
+}
+
 /* =============================================
-   RESPONSIVE
+   TAMBAHAN RESPONSIVE - Mencegah overflow
    ============================================= */
 @media (max-width: 1200px) {
-    .hero-content { padding: 90px 24px 40px; }
-    .hero-h1 { font-size: clamp(2.2rem, 3.8vw, 3.2rem); }
-    .hero-frame { max-width: 380px; }
+    .hero-content {
+        padding: 95px 24px 40px;
+        gap: 30px;
+    }
+    .hero-h1 { font-size: clamp(2rem, 3.5vw, 3rem); }
+    .hero-frame { max-width: 400px; }
+    .float-card { padding: 10px 14px; }
+    .float-card .fc-icon { width: 34px; height: 34px; font-size: 14px; }
+    .float-card .fc-text .fc-val { font-size: 14px; }
     .hero-stat { padding: 0 18px; }
     .hero-stat .num { font-size: 24px; }
 }
 
 @media (max-width: 1024px) {
-    .hero { height: auto; min-height: 100vh; }
-    .hero-content { padding: 100px 24px 50px; }
-    .hero-bottom {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        text-align: center;
+    .hero {
+        height: auto;
+        min-height: 100vh;
     }
-    .hero-bottom-left { align-items: center; }
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 100px 24px 50px;
+        gap: 40px;
+    }
+    .hero-visual { order: -1; }
+    .hero-frame { max-width: 340px; }
     .hero-sub, .hero-desc { margin-left: auto; margin-right: auto; }
     .hero-btns { justify-content: center; }
     .hero-stats { justify-content: center; }
-    .hero-visual { order: -1; }
-    .hero-frame { max-width: 320px; }
     .float-card.fc-users { display: none; }
     .float-card.fc-shield { left: 0; bottom: 5%; }
     .float-card.fc-chart { right: 0; }
@@ -642,27 +560,17 @@
     .hero { min-height: auto; padding-bottom: 40px; }
     .hero-content { padding: 90px 20px 30px; }
     .hero-h1 { font-size: clamp(1.8rem, 7vw, 2.5rem); letter-spacing: -1px; }
-    .hero-top { margin-bottom: 16px; }
     .hero-sub { font-size: 14px; }
     .hero-desc { font-size: 12px; }
     .hero-stats { flex-wrap: wrap; gap: 16px; justify-content: center; }
     .hero-stat { padding: 0 16px; }
     .hero-stat + .hero-stat::before { display: none; }
     .hero-stat .num { font-size: 22px; }
-    .hero-frame { max-width: 260px; }
+    .hero-frame { max-width: 280px; }
     .float-card.fc-shield { left: -5%; bottom: 0; }
     .float-card.fc-chart { right: -5%; top: 0; }
     .hero-btns { flex-direction: column; align-items: center; }
     .btn-gold, .btn-ghost { width: 100%; justify-content: center; }
-}
-
-@media (max-width: 480px) {
-    .hero-frame { max-width: 220px; }
-    .float-card { padding: 8px 12px; }
-    .float-card .fc-icon { width: 30px; height: 30px; font-size: 12px; border-radius: 8px; }
-    .float-card .fc-text .fc-val { font-size: 12px; }
-    .float-card .fc-text .fc-lbl { font-size: 9px; }
-    .hero-badge { font-size: 10px; padding: 6px 14px; }
 }
         /* ABOUT */
         #tentang { background: #fff; }
@@ -1049,7 +957,7 @@
     </div>
 </nav>
 
-<!-- HERO - LAYOUT 2 BARIS + TEMA BIRU -->
+<!-- HERO -->
 <section class="hero" id="hero">
     <div class="hero-bg"></div>
     <div class="hero-grid-pattern"></div>
@@ -1058,75 +966,42 @@
     <div class="hero-orb orb3"></div>
     <div class="hero-particles" id="heroParticles"></div>
     <div class="hero-lines"><div class="hero-line l1"></div><div class="hero-line l2"></div><div class="hero-line l3"></div><div class="hero-line l4"></div></div>
-    
     <div class="hero-content">
-
-        <!-- ═══════════════════════════════════
-             BARIS 1: HEADING FULL WIDTH
-             Badge + H1 memanjang ke kanan
-             ═══════════════════════════════════ -->
-        <div class="hero-top">
-            <div class="hero-badge">
-                <span class="badge-dot"></span>
-                Terpercaya Sejak 1995 · Diawasi OJK · Dijamin LPS
-            </div>
+        <div class="hero-text">
+            <div class="hero-badge"><span class="badge-dot"></span> Terpercaya Sejak 1995 · Diawasi OJK · Dijamin LPS</div>
             <h1 class="hero-h1">
-                <span class="line"><span class="line-inner">Mitra Keuangan <span class="gold-word">Terpercaya</span> untuk</span></span>
-                <span class="line"><span class="line-inner">Masa Depan <span class="italic-serif gold-word">Anda</span> yang Lebih <span class="blue-word">Cerah</span></span></span>
-                <span class="line"><span class="line-inner">Solusi Perbankan Modern, Aman & Menguntungkan</span></span>
+                <span class="line"><span class="line-inner">Mitra Keuangan</span></span>
+                <span class="line"><span class="line-inner"><span class="gold-word">Terpercaya</span> untuk</span></span>
+                <span class="line"><span class="line-inner">Masa Depan <span class="italic-serif gold-word">Anda</span></span></span>
             </h1>
+            <p class="hero-sub">Solusi perbankan modern yang mudah, aman, dan menguntungkan untuk individu maupun usaha Anda.</p>
+            <p class="hero-desc">Bersama BPR Nusantara Sejahtera, wujudkan impian finansial Anda dengan layanan profesional dan bunga kompetitif.</p>
+            <div class="hero-btns">
+                <a href="#layanan" class="btn-gold">Jelajahi Layanan <i class="fas fa-arrow-right"></i></a>
+                <a href="#kontak" class="btn-ghost"><span class="play-icon"><i class="fas fa-play" style="margin-left:2px"></i></span> Hubungi Kami</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat"><span class="num" data-target="30" data-suffix="+">0</span><div class="lbl">Tahun Pengalaman</div></div>
+                <div class="hero-stat"><span class="num" data-target="50" data-suffix="K+">0</span><div class="lbl">Nasabah Puas</div></div>
+                <div class="hero-stat"><span class="num" data-target="15" data-suffix="">0</span><div class="lbl">Kantor Cabang</div></div>
+                <div class="hero-stat"><span class="num" data-target="2" data-suffix="T+">0</span><div class="lbl">Aset Kelolaan</div></div>
+            </div>
         </div>
-
-        <!-- ═══════════════════════════════════
-             BARIS 2: KIRI (Text+Stats) | KANAN (Visual)
-             Konten naik ke atas sejajar visual
-             ═══════════════════════════════════ -->
-        <div class="hero-bottom">
-
-            <!-- KIRI: Subtitle, Desc, Buttons, Stats -->
-            <div class="hero-bottom-left hero-text">
-                <p class="hero-sub">BPR Nusantara Sejahtera hadir dengan solusi perbankan modern yang mudah, aman, dan menguntungkan untuk individu maupun usaha Anda.</p>
-                <p class="hero-desc">Wujudkan impian finansial Anda bersama kami — layanan profesional, bunga kompetitif, dan keamanan terjamin oleh LPS.</p>
-                <div class="hero-btns">
-                    <a href="#layanan" class="btn-gold">Jelajahi Layanan <i class="fas fa-arrow-right"></i></a>
-                    <a href="#kontak" class="btn-ghost"><span class="play-icon"><i class="fas fa-play" style="margin-left:2px"></i></span> Hubungi Kami</a>
-                </div>
-                <div class="hero-stats">
-                    <div class="hero-stat"><span class="num" data-target="30" data-suffix="+">0</span><div class="lbl">Tahun Pengalaman</div></div>
-                    <div class="hero-stat"><span class="num" data-target="50" data-suffix="K+">0</span><div class="lbl">Nasabah Puas</div></div>
-                    <div class="hero-stat"><span class="num" data-target="15" data-suffix="">0</span><div class="lbl">Kantor Cabang</div></div>
-                    <div class="hero-stat"><span class="num" data-target="2" data-suffix="T+">0</span><div class="lbl">Aset Kelolaan</div></div>
-                </div>
+        <div class="hero-visual">
+            <div class="hero-frame">
+                <div class="orbit-ring o1"><div class="orbit-diamond"></div><div class="orbit-diamond"></div></div>
+                <div class="orbit-ring o2"><div class="orbit-diamond"></div><div class="orbit-diamond"></div></div>
+                <div class="orbit-ring o3"></div>
+                <div class="blob-glow"></div>
+                <div class="blob-border"></div>
+                <div class="blob-main"><img src="https://images.unsplash.com/photo-1560472355-536de3962603?w=700&q=80" alt="BPR Nusantara Sejahtera"></div>
+                <div class="blob-dot d1"></div><div class="blob-dot d2"></div><div class="blob-dot d3"></div><div class="blob-dot d4"></div>
+                <div class="float-card fc-shield"><div class="fc-icon"><i class="fas fa-shield-alt"></i></div><div class="fc-text"><div class="fc-val">Dijamin LPS</div><div class="fc-lbl">Hingga Rp 2 Miliar</div></div></div>
+                <div class="float-card fc-chart"><div class="fc-icon"><i class="fas fa-chart-line"></i></div><div class="fc-text"><div class="fc-val">4.5% p.a</div><div class="fc-lbl">Bunga Deposito</div></div></div>
+                <div class="float-card fc-users"><div class="fc-icon"><i class="fas fa-users"></i></div><div class="fc-text"><div class="fc-val">50,000+</div><div class="fc-lbl">Nasabah Aktif</div></div></div>
             </div>
-
-            <!-- KANAN: Visual Blob + Float Cards -->
-            <div class="hero-visual">
-                <div class="hero-frame">
-                    <div class="orbit-ring o1"><div class="orbit-diamond"></div><div class="orbit-diamond"></div></div>
-                    <div class="orbit-ring o2"><div class="orbit-diamond"></div><div class="orbit-diamond"></div></div>
-                    <div class="orbit-ring o3"></div>
-                    <div class="blob-glow"></div>
-                    <div class="blob-border"></div>
-                    <div class="blob-main"><img src="https://images.unsplash.com/photo-1560472355-536de3962603?w=700&q=80" alt="BPR Nusantara Sejahtera"></div>
-                    <div class="blob-dot d1"></div><div class="blob-dot d2"></div><div class="blob-dot d3"></div><div class="blob-dot d4"></div>
-                    <div class="float-card fc-shield">
-                        <div class="fc-icon"><i class="fas fa-shield-alt"></i></div>
-                        <div class="fc-text"><div class="fc-val">Dijamin LPS</div><div class="fc-lbl">Hingga Rp 2 Miliar</div></div>
-                    </div>
-                    <div class="float-card fc-chart">
-                        <div class="fc-icon"><i class="fas fa-chart-line"></i></div>
-                        <div class="fc-text"><div class="fc-val">4.5% p.a</div><div class="fc-lbl">Bunga Deposito</div></div>
-                    </div>
-                    <div class="float-card fc-users">
-                        <div class="fc-icon"><i class="fas fa-users"></i></div>
-                        <div class="fc-text"><div class="fc-val">50,000+</div><div class="fc-lbl">Nasabah Aktif</div></div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
-
     <div class="scroll-indicator"><div class="scroll-mouse"></div><span>Scroll</span></div>
 </section>
 
@@ -1406,16 +1281,14 @@ window.addEventListener('load', () => {
     }, 1200);
 });
 
-// PARTICLES - Mix Biru & Gold
+// PARTICLES
 (function(){
     const c = document.getElementById('heroParticles');
-    const colors = ['#6fa3e8','#a8ccf5','#c9a84c','#e4c76b','#4d80d6'];
     for(let i=0;i<30;i++){
         const p = document.createElement('div');
         p.classList.add('h-particle');
         const s = Math.random()*4+1.5;
-        const color = colors[Math.floor(Math.random()*colors.length)];
-        p.style.cssText = `left:${Math.random()*100}%;width:${s}px;height:${s}px;background:${color};animation-duration:${Math.random()*14+8}s;animation-delay:${Math.random()*10}s;box-shadow:0 0 ${s*2}px ${color};`;
+        p.style.cssText = `left:${Math.random()*100}%;width:${s}px;height:${s}px;animation-duration:${Math.random()*14+8}s;animation-delay:${Math.random()*10}s;`;
         c.appendChild(p);
     }
 })();
