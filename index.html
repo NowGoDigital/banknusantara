@@ -1,1 +1,1780 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BPR Nusantara Sejahtera - Mitra Keuangan Terpercaya</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+            background: #fff;
+        }
+        h1, h2, h3, h4, h5 { font-family: 'Playfair Display', serif; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .section-padding { padding: 100px 0; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header .sub { color: #C9A84C; font-weight: 600; text-transform: uppercase; letter-spacing: 3px; font-size: 14px; margin-bottom: 10px; font-family: 'Poppins', sans-serif; }
+        .section-header h2 { font-size: clamp(2rem, 4vw, 3rem); color: #0A1628; margin-bottom: 15px; }
+        .section-header p { color: #666; max-width: 600px; margin: 0 auto; font-size: 16px; line-height: 1.7; }
+        .btn-primary {
+            display: inline-block; background: linear-gradient(135deg, #C9A84C, #D4B85A); color: #0A1628;
+            padding: 14px 32px; border-radius: 50px; font-weight: 600; font-size: 15px;
+            transition: all 0.3s ease; border: none; cursor: pointer; font-family: 'Poppins', sans-serif;
+        }
+        .btn-primary:hover { transform: translateY(-2px) scale(1.05); box-shadow: 0 10px 30px rgba(201,168,76,0.4); }
+        .btn-outline {
+            display: inline-block; border: 2px solid rgba(255,255,255,0.6); color: #fff;
+            padding: 12px 32px; border-radius: 50px; font-weight: 600; font-size: 15px;
+            transition: all 0.3s ease; cursor: pointer; background: transparent; font-family: 'Poppins', sans-serif;
+        }
+        .btn-outline:hover { background: #fff; color: #0A1628; }
 
+        /* ============================================
+           PRELOADER
+           ============================================ */
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0A1628;
+            display: flex; align-items: center; justify-content: center; z-index: 99999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        #preloader.hidden { opacity: 0; visibility: hidden; }
+        .loader {
+            text-align: center;
+        }
+        .loader-icon {
+            font-size: 50px; margin-bottom: 20px; animation: pulse 1.5s ease-in-out infinite;
+        }
+        .loader-bar {
+            width: 200px; height: 4px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; margin: 0 auto;
+        }
+        .loader-bar::after {
+            content: ''; display: block; width: 60%; height: 100%; background: #C9A84C; border-radius: 10px;
+            animation: loading 1.2s ease-in-out infinite;
+        }
+        @keyframes loading { 0%{transform:translateX(-100%)} 50%{transform:translateX(80%)} 100%{transform:translateX(-100%)} }
+        @keyframes pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.1);opacity:0.7} }
+
+        /* ============================================
+           NAVBAR
+           ============================================ */
+        .navbar {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 15px 0;
+            transition: all 0.4s ease; background: transparent;
+        }
+        .navbar.scrolled {
+            background: rgba(10, 22, 40, 0.95); backdrop-filter: blur(20px); padding: 10px 0;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.3);
+        }
+        .nav-container {
+            max-width: 1200px; margin: 0 auto; padding: 0 20px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-logo { display: flex; align-items: center; gap: 10px; }
+        .nav-logo span { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: #C9A84C; }
+        .nav-logo i { color: #C9A84C; font-size: 28px; }
+        .nav-menu { display: flex; align-items: center; gap: 5px; }
+        .nav-menu a {
+            color: rgba(255,255,255,0.85); font-size: 13px; font-weight: 500; padding: 8px 12px;
+            border-radius: 8px; transition: all 0.3s ease; white-space: nowrap;
+        }
+        .nav-menu a:hover, .nav-menu a.active { color: #C9A84C; background: rgba(201,168,76,0.1); }
+        .nav-cta {
+            background: linear-gradient(135deg, #C9A84C, #D4B85A) !important; color: #0A1628 !important;
+            font-weight: 600 !important; padding: 10px 24px !important; border-radius: 50px !important;
+        }
+        .nav-cta:hover { transform: scale(1.05); box-shadow: 0 5px 20px rgba(201,168,76,0.4); }
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
+        .hamburger span { width: 28px; height: 3px; background: #fff; border-radius: 3px; transition: all 0.3s ease; }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        .hero {
+            min-height: 100vh; position: relative; display: flex; align-items: center;
+            background: linear-gradient(135deg, #0A1628 0%, #0F2440 40%, #1E3A5F 100%);
+            overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1920&q=80') center/cover;
+            opacity: 0.15; z-index: 0;
+        }
+        .hero-particles {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; overflow: hidden;
+        }
+        .particle {
+            position: absolute; width: 6px; height: 6px; background: #C9A84C; border-radius: 50%; opacity: 0.3;
+            animation: floatParticle linear infinite;
+        }
+        @keyframes floatParticle {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+        }
+        .hero-content {
+            position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr;
+            gap: 60px; align-items: center; width: 100%; max-width: 1200px; margin: 0 auto; padding: 120px 20px 80px;
+        }
+        .hero-text { color: #fff; }
+        .hero-badge {
+            display: inline-block; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3);
+            padding: 8px 20px; border-radius: 50px; font-size: 14px; color: #C9A84C; font-weight: 500;
+            margin-bottom: 25px; animation: fadeInDown 1s ease;
+        }
+        .hero-text h1 {
+            font-size: clamp(2.8rem, 5.5vw, 4.5rem); line-height: 1.15; margin-bottom: 20px; font-weight: 800;
+        }
+        .hero-text h1 .line { display: block; overflow: hidden; }
+        .hero-text h1 .line span {
+            display: inline-block; transform: translateY(100%);
+            animation: revealText 0.8s ease forwards;
+        }
+        .hero-text h1 .line:nth-child(2) span { animation-delay: 0.3s; }
+        .hero-text h1 .gold { color: #C9A84C; text-shadow: 0 0 40px rgba(201,168,76,0.3); }
+        @keyframes revealText { to { transform: translateY(0); } }
+        .hero-subtitle {
+            font-size: 18px; color: rgba(255,255,255,0.8); margin-bottom: 10px; line-height: 1.6;
+            opacity: 0; animation: fadeInUp 1s ease 0.6s forwards;
+        }
+        .hero-desc {
+            font-size: 15px; color: rgba(255,255,255,0.6); margin-bottom: 35px; line-height: 1.7;
+            opacity: 0; animation: fadeInUp 1s ease 0.8s forwards;
+        }
+        .hero-buttons {
+            display: flex; gap: 15px; margin-bottom: 50px; flex-wrap: wrap;
+            opacity: 0; animation: fadeInUp 1s ease 1s forwards;
+        }
+        .hero-stats {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+            opacity: 0; animation: fadeInUp 1s ease 1.2s forwards;
+        }
+        .hero-stat { text-align: center; }
+        .hero-stat .number {
+            font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 700; color: #C9A84C; display: block;
+        }
+        .hero-stat .label { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 5px; }
+        .hero-visual {
+            position: relative; display: flex; justify-content: center; align-items: center;
+            opacity: 0; animation: fadeInRight 1.2s ease 0.5s forwards;
+        }
+        .hero-img-wrapper {
+            position: relative; width: 100%; max-width: 480px;
+        }
+        .hero-img-wrapper img {
+            width: 100%; height: 500px; object-fit: cover; border-radius: 20px;
+            border: 3px solid rgba(201,168,76,0.3);
+            animation: heroFloat 6s ease-in-out infinite;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+        }
+        .hero-img-decorator {
+            position: absolute; width: 120%; height: 120%; top: -10%; left: -10%;
+            border: 2px solid rgba(201,168,76,0.15); border-radius: 50%;
+            animation: rotateSlow 20s linear infinite;
+        }
+        .hero-img-decorator2 {
+            position: absolute; width: 90%; height: 90%; top: 5%; left: 5%;
+            border: 1px solid rgba(201,168,76,0.1); border-radius: 50%;
+            animation: rotateSlow 15s linear infinite reverse;
+        }
+        @keyframes heroFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+        @keyframes rotateSlow { to { transform: rotate(360deg); } }
+        @keyframes fadeInUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes fadeInDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes fadeInRight { from{opacity:0;transform:translateX(50px)} to{opacity:1;transform:translateX(0)} }
+        .scroll-indicator {
+            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+            z-index: 2; text-align: center; color: rgba(255,255,255,0.5); font-size: 12px;
+        }
+        .scroll-indicator i { display: block; font-size: 20px; margin-bottom: 8px; animation: bounce 2s ease infinite; }
+        @keyframes bounce { 0%,20%,50%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-10px)} 60%{transform:translateY(-5px)} }
+
+        /* ============================================
+           ABOUT SECTION
+           ============================================ */
+        #tentang { background: #fff; }
+        .about-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+        }
+        .about-img { position: relative; }
+        .about-img img { width: 100%; height: 450px; object-fit: cover; border-radius: 20px; }
+        .about-badge {
+            position: absolute; bottom: -20px; right: -20px; background: linear-gradient(135deg, #C9A84C, #D4B85A);
+            color: #0A1628; padding: 20px 30px; border-radius: 16px; font-weight: 700; font-size: 14px;
+            box-shadow: 0 10px 30px rgba(201,168,76,0.3); text-align: center;
+        }
+        .about-badge .big { font-family: 'Playfair Display', serif; font-size: 36px; display: block; }
+        .about-text .sub { color: #C9A84C; font-weight: 600; text-transform: uppercase; letter-spacing: 3px; font-size: 14px; margin-bottom: 10px; }
+        .about-text h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); color: #0A1628; margin-bottom: 20px; }
+        .about-text p { color: #666; line-height: 1.8; margin-bottom: 25px; }
+        .about-features { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; }
+        .about-feature {
+            display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500; color: #333;
+        }
+        .about-feature i { color: #C9A84C; font-size: 18px; }
+
+        /* ============================================
+           SERVICES SECTION
+           ============================================ */
+        #layanan { background: #F5F7FA; }
+        .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .service-card {
+            background: #fff; border-radius: 20px; overflow: hidden;
+            transition: all 0.4s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .service-card-img { height: 200px; overflow: hidden; }
+        .service-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .service-card:hover .service-card-img img { transform: scale(1.1); }
+        .service-card-body { padding: 30px; }
+        .service-card-icon {
+            width: 60px; height: 60px; background: linear-gradient(135deg, #C9A84C, #D4B85A);
+            border-radius: 16px; display: flex; align-items: center; justify-content: center;
+            font-size: 24px; color: #0A1628; margin-bottom: 20px; margin-top: -50px;
+            position: relative; box-shadow: 0 10px 25px rgba(201,168,76,0.3);
+        }
+        .service-card-body h3 { font-size: 20px; color: #0A1628; margin-bottom: 12px; font-family: 'Poppins', sans-serif; font-weight: 600; }
+        .service-card-body p { color: #666; font-size: 14px; line-height: 1.7; margin-bottom: 20px; }
+        .service-card-body a { color: #C9A84C; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px; transition: gap 0.3s ease; }
+        .service-card-body a:hover { gap: 14px; }
+
+        /* ============================================
+           PRODUCTS SECTION
+           ============================================ */
+        #produk { background: #fff; }
+        .product-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; flex-wrap: wrap; }
+        .product-tab {
+            padding: 12px 30px; border-radius: 50px; font-size: 14px; font-weight: 600; cursor: pointer;
+            transition: all 0.3s ease; border: 2px solid #e0e0e0; background: #fff; color: #666;
+            font-family: 'Poppins', sans-serif;
+        }
+        .product-tab.active, .product-tab:hover { background: #0A1628; color: #C9A84C; border-color: #0A1628; }
+        .product-content { display: none; }
+        .product-content.active { display: block; animation: fadeInUp 0.5s ease; }
+        .product-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .product-item {
+            display: flex; gap: 20px; background: #F5F7FA; border-radius: 16px; padding: 25px;
+            transition: all 0.3s ease; border: 1px solid transparent;
+        }
+        .product-item:hover { border-color: #C9A84C; background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .product-item-icon {
+            width: 55px; height: 55px; min-width: 55px; background: linear-gradient(135deg, #0A1628, #1E3A5F);
+            border-radius: 14px; display: flex; align-items: center; justify-content: center;
+            font-size: 22px; color: #C9A84C;
+        }
+        .product-item-info h4 { font-size: 16px; color: #0A1628; margin-bottom: 8px; font-family: 'Poppins', sans-serif; font-weight: 600; }
+        .product-item-info p { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 10px; }
+        .product-item-info .tag { font-size: 12px; color: #C9A84C; font-weight: 600; }
+
+        /* ============================================
+           ADVANTAGES SECTION
+           ============================================ */
+        #keunggulan {
+            background: linear-gradient(135deg, #0A1628 0%, #1E3A5F 100%);
+            position: relative; overflow: hidden;
+        }
+        #keunggulan::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        #keunggulan .section-header h2 { color: #fff; }
+        #keunggulan .section-header p { color: rgba(255,255,255,0.6); }
+        .advantages-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; position: relative; z-index: 1; }
+        .advantage-card {
+            background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px; padding: 40px 30px; text-align: center; transition: all 0.4s ease;
+        }
+        .advantage-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-5px); border-color: rgba(201,168,76,0.3); }
+        .advantage-icon {
+            width: 80px; height: 80px; background: linear-gradient(135deg, #C9A84C, #D4B85A);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 32px; margin: 0 auto 25px; transition: transform 0.3s ease;
+        }
+        .advantage-card:hover .advantage-icon { transform: scale(1.1); }
+        .advantage-card h3 { color: #fff; font-size: 20px; margin-bottom: 12px; font-family: 'Poppins', sans-serif; font-weight: 600; }
+        .advantage-card p { color: rgba(255,255,255,0.6); font-size: 14px; line-height: 1.7; }
+
+        /* ============================================
+           TEAM SECTION
+           ============================================ */
+        #tim { background: #F5F7FA; }
+        .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+        .team-card {
+            background: #fff; border-radius: 20px; overflow: hidden; text-align: center;
+            transition: all 0.4s ease; box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        .team-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .team-img { position: relative; overflow: hidden; height: 280px; }
+        .team-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .team-card:hover .team-img img { transform: scale(1.1); }
+        .team-social {
+            position: absolute; bottom: -50px; left: 0; width: 100%; display: flex;
+            justify-content: center; gap: 10px; padding: 15px; transition: bottom 0.4s ease;
+            background: linear-gradient(transparent, rgba(10,22,40,0.8));
+        }
+        .team-card:hover .team-social { bottom: 0; }
+        .team-social a {
+            width: 36px; height: 36px; background: rgba(255,255,255,0.2); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; color: #fff;
+            font-size: 14px; transition: all 0.3s ease;
+        }
+        .team-social a:hover { background: #C9A84C; color: #0A1628; }
+        .team-info { padding: 25px; }
+        .team-info h3 { font-size: 18px; color: #0A1628; margin-bottom: 5px; font-family: 'Poppins', sans-serif; font-weight: 600; }
+        .team-info p { color: #C9A84C; font-size: 13px; font-weight: 500; }
+
+        /* ============================================
+           TESTIMONIALS SECTION
+           ============================================ */
+        #testimoni { background: #fff; }
+        .testimonial-slider { position: relative; max-width: 900px; margin: 0 auto; overflow: hidden; }
+        .testimonial-track { display: flex; transition: transform 0.6s ease; }
+        .testimonial-card {
+            min-width: 100%; padding: 50px; background: #F5F7FA; border-radius: 20px;
+            border-left: 5px solid #C9A84C; position: relative;
+        }
+        .testimonial-card .quote-icon {
+            position: absolute; top: 30px; right: 40px; font-size: 60px; color: rgba(201,168,76,0.15);
+        }
+        .testimonial-card p {
+            font-size: 17px; color: #444; line-height: 1.8; margin-bottom: 30px;
+            font-style: italic; position: relative; z-index: 1;
+        }
+        .testimonial-author { display: flex; align-items: center; gap: 15px; }
+        .testimonial-author img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 3px solid #C9A84C; }
+        .testimonial-author-info h4 { font-size: 16px; color: #0A1628; font-family: 'Poppins', sans-serif; font-weight: 600; }
+        .testimonial-author-info span { font-size: 13px; color: #C9A84C; }
+        .testimonial-dots { display: flex; justify-content: center; gap: 10px; margin-top: 30px; }
+        .testimonial-dot {
+            width: 12px; height: 12px; border-radius: 50%; background: #ddd; cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .testimonial-dot.active { background: #C9A84C; width: 35px; border-radius: 10px; }
+        .testimonial-nav { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+        .testimonial-nav button {
+            width: 45px; height: 45px; border-radius: 50%; border: 2px solid #ddd;
+            background: #fff; cursor: pointer; font-size: 16px; color: #333;
+            transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;
+        }
+        .testimonial-nav button:hover { border-color: #C9A84C; color: #C9A84C; }
+
+        /* ============================================
+           GALLERY SECTION
+           ============================================ */
+        #galeri { background: #F5F7FA; }
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 220px; gap: 15px;
+        }
+        .gallery-item {
+            position: relative; overflow: hidden; border-radius: 16px; cursor: pointer;
+        }
+        .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+        .gallery-item:nth-child(4) { grid-column: span 2; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .gallery-item:hover img { transform: scale(1.1); }
+        .gallery-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10,22,40,0.7); display: flex; align-items: center;
+            justify-content: center; opacity: 0; transition: opacity 0.4s ease;
+        }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+        .gallery-overlay span { color: #fff; font-size: 14px; font-weight: 500; }
+        .gallery-overlay i { color: #C9A84C; font-size: 30px; margin-bottom: 10px; }
+        .gallery-overlay div { text-align: center; }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95);
+            z-index: 10000; display: none; align-items: center; justify-content: center;
+        }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 85%; max-height: 85vh; border-radius: 10px; }
+        .lightbox-close {
+            position: absolute; top: 20px; right: 30px; color: #fff; font-size: 30px;
+            cursor: pointer; z-index: 10001;
+        }
+
+        /* ============================================
+           CAREER SECTION
+           ============================================ */
+        #karir {
+            background: linear-gradient(135deg, #0A1628, #1E3A5F);
+            position: relative;
+        }
+        #karir .section-header h2 { color: #fff; }
+        #karir .section-header p { color: rgba(255,255,255,0.6); }
+        .career-list { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+        .career-card {
+            background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px; padding: 30px; display: flex; align-items: center;
+            justify-content: space-between; gap: 20px; transition: all 0.3s ease;
+        }
+        .career-card:hover { background: rgba(255,255,255,0.1); border-color: rgba(201,168,76,0.3); }
+        .career-info h3 { color: #fff; font-size: 18px; margin-bottom: 8px; font-family: 'Poppins', sans-serif; font-weight: 600; }
+        .career-tags { display: flex; gap: 10px; flex-wrap: wrap; }
+        .career-tag {
+            font-size: 12px; color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.1);
+            padding: 4px 12px; border-radius: 20px;
+        }
+        .career-card .btn-primary { white-space: nowrap; padding: 10px 24px; font-size: 13px; }
+
+        /* ============================================
+           NEWS SECTION
+           ============================================ */
+        #berita { background: #fff; }
+        .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .news-card {
+            background: #fff; border-radius: 20px; overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05); transition: all 0.4s ease;
+        }
+        .news-card:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+        .news-img { height: 220px; overflow: hidden; }
+        .news-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .news-card:hover .news-img img { transform: scale(1.1); }
+        .news-body { padding: 30px; }
+        .news-date {
+            display: inline-block; background: rgba(201,168,76,0.1); color: #C9A84C;
+            padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-bottom: 15px;
+        }
+        .news-body h3 { font-size: 18px; color: #0A1628; margin-bottom: 12px; line-height: 1.4; font-family: 'Poppins', sans-serif; font-weight: 600; }
+        .news-body p { color: #666; font-size: 14px; line-height: 1.7; margin-bottom: 20px; }
+        .news-body a { color: #C9A84C; font-weight: 600; font-size: 14px; display: flex; align-items: center; gap: 8px; transition: gap 0.3s ease; }
+        .news-body a:hover { gap: 14px; }
+
+        /* ============================================
+           FAQ SECTION
+           ============================================ */
+        #faq { background: #F5F7FA; }
+        .faq-list { max-width: 800px; margin: 0 auto; }
+        .faq-item {
+            background: #fff; border-radius: 16px; margin-bottom: 15px; overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03); border: 1px solid #eee;
+        }
+        .faq-question {
+            padding: 25px 30px; cursor: pointer; display: flex; justify-content: space-between;
+            align-items: center; font-weight: 600; font-size: 15px; color: #0A1628;
+            transition: all 0.3s ease;
+        }
+        .faq-question:hover { color: #C9A84C; }
+        .faq-question i { transition: transform 0.3s ease; color: #C9A84C; font-size: 14px; }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
+        .faq-answer {
+            max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 30px;
+        }
+        .faq-item.active .faq-answer { max-height: 300px; padding: 0 30px 25px; }
+        .faq-answer p { color: #666; font-size: 14px; line-height: 1.8; }
+
+        /* ============================================
+           CONTACT SECTION
+           ============================================ */
+        #kontak { background: #fff; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        .contact-info h3 { font-size: 24px; color: #0A1628; margin-bottom: 25px; }
+        .contact-item { display: flex; gap: 15px; margin-bottom: 25px; }
+        .contact-item-icon {
+            width: 50px; height: 50px; min-width: 50px; background: rgba(201,168,76,0.1);
+            border-radius: 14px; display: flex; align-items: center; justify-content: center;
+            font-size: 20px; color: #C9A84C;
+        }
+        .contact-item-text h4 { font-size: 15px; color: #0A1628; margin-bottom: 3px; font-family: 'Poppins', sans-serif; font-weight: 600; }
+        .contact-item-text p { color: #666; font-size: 14px; }
+        .contact-socials { display: flex; gap: 12px; margin-top: 30px; }
+        .contact-socials a {
+            width: 45px; height: 45px; border-radius: 50%; background: #0A1628;
+            display: flex; align-items: center; justify-content: center; color: #C9A84C;
+            font-size: 18px; transition: all 0.3s ease;
+        }
+        .contact-socials a:hover { background: #C9A84C; color: #0A1628; transform: translateY(-3px); }
+        .contact-form { background: #F5F7FA; border-radius: 20px; padding: 40px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 14px; font-weight: 600; color: #0A1628; margin-bottom: 8px; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 14px 20px; border: 2px solid #e0e0e0; border-radius: 12px;
+            font-size: 14px; font-family: 'Poppins', sans-serif; transition: border-color 0.3s ease;
+            background: #fff;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none; border-color: #C9A84C;
+        }
+        .form-group textarea { height: 120px; resize: vertical; }
+        .form-group .error { border-color: #e74c3c; }
+        .form-error { color: #e74c3c; font-size: 12px; margin-top: 5px; display: none; }
+        .contact-form .btn-primary { width: 100%; padding: 16px; font-size: 16px; }
+        .map-section { margin-top: 0; }
+        .map-section iframe { width: 100%; height: 350px; border: none; border-radius: 0; }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer { background: #060E1A; color: rgba(255,255,255,0.7); padding: 80px 0 0; }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 50px; }
+        .footer-about .footer-logo { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+        .footer-about .footer-logo i { color: #C9A84C; font-size: 28px; }
+        .footer-about .footer-logo span { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #C9A84C; }
+        .footer-about p { font-size: 14px; line-height: 1.8; margin-bottom: 20px; }
+        .footer-badges { display: flex; gap: 15px; }
+        .footer-badge {
+            background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.2);
+            padding: 8px 14px; border-radius: 8px; font-size: 11px; color: #C9A84C; font-weight: 600;
+        }
+        .footer h4 { color: #fff; font-size: 16px; margin-bottom: 25px; font-family: 'Poppins', sans-serif; font-weight: 600; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a { font-size: 14px; transition: color 0.3s ease; display: flex; align-items: center; gap: 8px; }
+        .footer-links a:hover { color: #C9A84C; }
+        .footer-links a::before { content: '›'; color: #C9A84C; font-weight: bold; }
+        .footer-contact li { display: flex; gap: 10px; margin-bottom: 15px; font-size: 14px; }
+        .footer-contact li i { color: #C9A84C; margin-top: 3px; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1); padding: 25px 0;
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;
+        }
+        .footer-bottom p { font-size: 13px; }
+        .footer-bottom a { color: #C9A84C; }
+
+        /* ============================================
+           BACK TO TOP
+           ============================================ */
+        .back-to-top {
+            position: fixed; bottom: 30px; right: 30px; width: 50px; height: 50px;
+            background: linear-gradient(135deg, #C9A84C, #D4B85A); color: #0A1628;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 20px; cursor: pointer; opacity: 0; visibility: hidden;
+            transition: all 0.3s ease; z-index: 999; box-shadow: 0 5px 20px rgba(201,168,76,0.4);
+            border: none;
+        }
+        .back-to-top.visible { opacity: 1; visibility: visible; }
+        .back-to-top:hover { transform: translateY(-3px) scale(1.1); }
+
+        /* ============================================
+           SCROLL REVEAL ANIMATIONS
+           ============================================ */
+        .reveal {
+            opacity: 0; transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+        .reveal.revealed { opacity: 1; transform: translateY(0); }
+        .reveal-left { opacity: 0; transform: translateX(-50px); transition: all 0.8s ease; }
+        .reveal-left.revealed { opacity: 1; transform: translateX(0); }
+        .reveal-right { opacity: 0; transform: translateX(50px); transition: all 0.8s ease; }
+        .reveal-right.revealed { opacity: 1; transform: translateX(0); }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 1024px) {
+            .hero-content { grid-template-columns: 1fr; text-align: center; }
+            .hero-visual { display: none; }
+            .hero-stats { grid-template-columns: repeat(4, 1fr); }
+            .hero-buttons { justify-content: center; }
+            .nav-menu {
+                position: fixed; top: 0; right: -100%; width: 300px; height: 100vh;
+                background: #0A1628; flex-direction: column; padding: 80px 30px 30px;
+                transition: right 0.4s ease; gap: 5px; align-items: stretch;
+                box-shadow: -5px 0 30px rgba(0,0,0,0.3);
+            }
+            .nav-menu.active { right: 0; }
+            .nav-menu a { padding: 12px 15px; font-size: 15px; }
+            .hamburger { display: flex; }
+            .about-grid { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            .team-grid { grid-template-columns: repeat(2, 1fr); }
+            .advantages-grid { grid-template-columns: repeat(2, 1fr); }
+            .news-grid { grid-template-columns: repeat(2, 1fr); }
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+            .contact-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .section-padding { padding: 70px 0; }
+            .services-grid { grid-template-columns: 1fr; }
+            .product-list { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: 1fr 1fr; }
+            .advantages-grid { grid-template-columns: 1fr; }
+            .news-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 180px; }
+            .gallery-item:nth-child(1) { grid-column: span 2; }
+            .gallery-item:nth-child(4) { grid-column: span 1; }
+            .hero-stats { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            .career-card { flex-direction: column; text-align: center; }
+            .career-tags { justify-content: center; }
+            .testimonial-card { padding: 30px 25px; }
+        }
+        @media (max-width: 480px) {
+            .hero-stats { grid-template-columns: repeat(2, 1fr); }
+            .team-grid { grid-template-columns: 1fr; }
+            .about-features { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 150px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="loader">
+            <div class="loader-icon">🏦</div>
+            <p style="color:#C9A84C; font-family:'Playfair Display',serif; font-size:20px; margin-bottom:20px; font-weight:700;">BPR Nusantara Sejahtera</p>
+            <div class="loader-bar"></div>
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                <i class="fas fa-landmark"></i>
+                <span>BPR Nusantara Sejahtera</span>
+            </a>
+            <div class="nav-menu" id="navMenu">
+                <a href="#hero">Beranda</a>
+                <a href="#tentang">Tentang</a>
+                <a href="#layanan">Layanan</a>
+                <a href="#produk">Produk</a>
+                <a href="#keunggulan">Keunggulan</a>
+                <a href="#tim">Tim</a>
+                <a href="#testimoni">Testimoni</a>
+                <a href="#galeri">Galeri</a>
+                <a href="#karir">Karir</a>
+                <a href="#berita">Berita</a>
+                <a href="#faq">FAQ</a>
+                <a href="#kontak">Kontak</a>
+                <a href="#kontak" class="nav-cta">Buka Rekening</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
+        <div class="hero-particles" id="heroParticles"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">🏦 Terpercaya Sejak 1995</div>
+                <h1>
+                    <div class="line"><span>BPR Nusantara</span></div>
+                    <div class="line"><span class="gold">Sejahtera</span></div>
+                </h1>
+                <p class="hero-subtitle">Mitra Keuangan Terpercaya untuk Masa Depan Anda</p>
+                <p class="hero-desc">Solusi perbankan yang mudah, aman, dan menguntungkan untuk individu maupun usaha Anda. Bersama kami, wujudkan impian finansial Anda.</p>
+                <div class="hero-buttons">
+                    <a href="#layanan" class="btn-primary">Jelajahi Layanan Kami <i class="fas fa-arrow-right" style="margin-left:8px"></i></a>
+                    <a href="#kontak" class="btn-outline"><i class="fas fa-phone" style="margin-right:8px"></i> Hubungi Kami</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="number" data-target="30">0</span><span class="number-suffix" style="color:#C9A84C;font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;">+</span>
+                        <div class="label">Tahun Pengalaman</div>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="number" data-target="50000">0</span><span class="number-suffix" style="color:#C9A84C;font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;">+</span>
+                        <div class="label">Nasabah Puas</div>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="number" data-target="15">0</span>
+                        <div class="label">Cabang</div>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="number" data-target="2">0</span><span class="number-suffix" style="color:#C9A84C;font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:700;">T+</span>
+                        <div class="label">Aset Kelolaan</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-img-wrapper">
+                    <div class="hero-img-decorator"></div>
+                    <div class="hero-img-decorator2"></div>
+                    <img src="https://images.unsplash.com/photo-1560472355-536de3962603?w=600&q=80" alt="BPR Nusantara Sejahtera Team">
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+            <span>Scroll ke bawah</span>
+        </div>
+    </section>
+
+    <!-- TENTANG KAMI -->
+    <section id="tentang" class="section-padding">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-img reveal-left">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=700&q=80" alt="Kantor BPR Nusantara Sejahtera">
+                    <div class="about-badge">
+                        <span class="big">30+</span>
+                        Tahun Melayani
+                    </div>
+                </div>
+                <div class="about-text reveal-right">
+                    <div class="sub">Tentang Kami</div>
+                    <h2>Membangun Kepercayaan Sejak 1995</h2>
+                    <p>BPR Nusantara Sejahtera didirikan dengan visi menjadi lembaga perbankan terpercaya yang melayani masyarakat hingga ke pelosok nusantara. Selama lebih dari 30 tahun, kami telah membantu puluhan ribu nasabah mewujudkan impian finansial mereka melalui layanan perbankan yang profesional, aman, dan menguntungkan.</p>
+                    <p>Kami berkomitmen untuk terus berinovasi dan memberikan pelayanan terbaik dengan mengedepankan prinsip kehati-hatian dan tata kelola yang baik sesuai regulasi OJK.</p>
+                    <div class="about-features">
+                        <div class="about-feature"><i class="fas fa-check-circle"></i> Terdaftar & Diawasi OJK</div>
+                        <div class="about-feature"><i class="fas fa-check-circle"></i> Dijamin LPS</div>
+                        <div class="about-feature"><i class="fas fa-check-circle"></i> Layanan Personal</div>
+                        <div class="about-feature"><i class="fas fa-check-circle"></i> Bunga Kompetitif</div>
+                    </div>
+                    <a href="#layanan" class="btn-primary">Selengkapnya <i class="fas fa-arrow-right" style="margin-left:8px"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LAYANAN -->
+    <section id="layanan" class="section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="sub">Layanan Kami</div>
+                <h2>Solusi Keuangan Terintegrasi</h2>
+                <p>Berbagai layanan perbankan yang dirancang khusus untuk memenuhi setiap kebutuhan finansial Anda</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card reveal">
+                    <div class="service-card-img">
+                        <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=500&q=80" alt="Simpanan & Tabungan">
+                    </div>
+                    <div class="service-card-body">
+                        <div class="service-card-icon"><i class="fas fa-piggy-bank"></i></div>
+                        <h3>Simpanan & Tabungan</h3>
+                        <p>Berbagai pilihan tabungan dengan bunga kompetitif dan penarikan yang fleksibel sesuai kebutuhan Anda.</p>
+                        <a href="#produk">Pelajari Lebih Lanjut <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-card-img">
+                        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=500&q=80" alt="Deposito Berjangka">
+                    </div>
+                    <div class="service-card-body">
+                        <div class="service-card-icon"><i class="fas fa-chart-line"></i></div>
+                        <h3>Deposito Berjangka</h3>
+                        <p>Investasi aman dengan imbal hasil optimal dan dijamin oleh Lembaga Penjamin Simpanan (LPS).</p>
+                        <a href="#produk">Pelajari Lebih Lanjut <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-card-img">
+                        <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=500&q=80" alt="Kredit Usaha Mikro">
+                    </div>
+                    <div class="service-card-body">
+                        <div class="service-card-icon"><i class="fas fa-store"></i></div>
+                        <h3>Kredit Usaha Mikro</h3>
+                        <p>Pembiayaan usaha mikro dengan proses cepat, bunga ringan, dan pendampingan usaha yang profesional.</p>
+                        <a href="#produk">Pelajari Lebih Lanjut <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-card-img">
+                        <img src="https://images.unsplash.com/photo-1560472354-82029e773b59?w=500&q=80" alt="Kredit Multiguna">
+                    </div>
+                    <div class="service-card-body">
+                        <div class="service-card-icon"><i class="fas fa-bullseye"></i></div>
+                        <h3>Kredit Multiguna</h3>
+                        <p>Pinjaman untuk berbagai kebutuhan: pendidikan, renovasi rumah, pernikahan, dan kebutuhan lainnya.</p>
+                        <a href="#produk">Pelajari Lebih Lanjut <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-card-img">
+                        <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=500&q=80" alt="Kredit Konsumtif">
+                    </div>
+                    <div class="service-card-body">
+                        <div class="service-card-icon"><i class="fas fa-house"></i></div>
+                        <h3>Kredit Konsumtif</h3>
+                        <p>Wujudkan impian memiliki rumah atau kendaraan baru dengan cicilan yang terjangkau dan tenor fleksibel.</p>
+                        <a href="#produk">Pelajari Lebih Lanjut <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="service-card reveal">
+                    <div class="service-card-img">
+                        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=500&q=80" alt="Transfer & Pembayaran">
+                    </div>
+                    <div class="service-card-body">
+                        <div class="service-card-icon"><i class="fas fa-credit-card"></i></div>
+                        <h3>Transfer & Pembayaran</h3>
+                        <p>Layanan transfer antar bank dan pembayaran tagihan yang mudah, cepat, dan aman kapan saja.</p>
+                        <a href="#produk">Pelajari Lebih Lanjut <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUK -->
+    <section id="produk" class="section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="sub">Produk Kami</div>
+                <h2>Produk Unggulan Kami</h2>
+                <p>Pilih produk perbankan yang paling sesuai dengan kebutuhan dan tujuan finansial Anda</p>
+            </div>
+            <div class="product-tabs reveal">
+                <button class="product-tab active" data-tab="simpanan">💰 Simpanan</button>
+                <button class="product-tab" data-tab="pinjaman">🏦 Pinjaman</button>
+                <button class="product-tab" data-tab="lainnya">⚡ Lainnya</button>
+            </div>
+            <div class="product-content active" id="simpanan">
+                <div class="product-list">
+                    <div class="product-item reveal">
+                        <div class="product-item-icon"><i class="fas fa-wallet"></i></div>
+                        <div class="product-item-info">
+                            <h4>Tabungan Nusantara</h4>
+                            <p>Tabungan reguler dengan bunga kompetitif, setoran awal ringan, dan fasilitas ATM di seluruh Indonesia.</p>
+                            <span class="tag">Setoran awal Rp 50.000 • Bunga 2.5% p.a</span>
+                        </div>
+                    </div>
+                    <div class="product-item reveal">
+                        <div class="product-item-icon"><i class="fas fa-coins"></i></div>
+                        <div class="product-item-info">
+                            <h4>TabunganKu</h4>
+                            <p>Program tabungan nasional tanpa biaya administrasi bulanan, cocok untuk pemula dan pelajar.</p>
+                            <span class="tag">Setoran awal Rp 20.000 • Tanpa biaya admin</span>
+                        </div>
+                    </div>
+                    <div class="product-item reveal">
+                        <div class="product-item-icon"><i class="fas fa-child"></i></div>
+                        <div class="product-item-info">
+                            <h4>Tabungan Anak Cerdas</h4>
+                            <p>Tabungan khusus anak-anak untuk membangun kebiasaan menabung sejak dini dengan bonus menarik.</p>
+                            <span class="tag">Setoran awal Rp 10.000 • Bonus buku tabungan</span>
+                        </div>
+                    </div>
+                    <div class="product-item reveal">
+                        <div class="product-item-icon"><i class="fas fa-landmark"></i></div>
+                        <div class="product-item-info">
+                            <h4>Deposito Berjangka</h4>
+                            <p>Investasi berjangka dengan bunga tinggi dan dijamin LPS hingga Rp 2 Miliar per nasabah.</p>
+                            <span class="tag">Tenor 1-12 bulan • Bunga hingga 4.5% p.a</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-content" id="pinjaman">
+                <div class="product-list">
+                    <div class="product-item reveal">
+                        <div class="product-item-icon"><i class="fas fa-briefcase"></i></div>
+                        <div class="product-item-info">
+                            <h4>Kredit Modal Kerja</h4>
+                            <p>Pembiayaan untuk modal usaha dengan proses cepat dan persyaratan yang mudah dipenuhi.</p>
+                            <span class="tag">Plafon s/d Rp 500 juta • Tenor fleksibel</span>
+                        </div>
+                    </div>
+                    <div class="product-item reveal">
+                        <div class="product-item-icon"><i class="fas fa-industry"></i></div>
+                        <div class="product-item-info">
+                            <h4>Kredit Investasi</h4>
+                            <p>Pembiayaan untuk pengembangan dan ekspansi usaha Anda ke level yang lebih tinggi.</p>
+                            <span class="tag">Plafon s/d Rp 1 Miliar • Tenor s/d 10 tahun</span>
+                        </div>
+                    </div>
+                    <div class="product-item reveal">
+                        <div class="product-item-icon"><i class="fas fa-car"></i></div>
+                        <div class="product-item-info">
+                            <h4>Kredit Kendaraan</h4>
+                            <p>Miliki kendaraan impian Anda dengan DP ringan dan cicilan yang terjangkau.</p>
+                            <span class="tag">DP ringan • Tenor s/d 5 tahun</span>
+                        </div>
+                    </div>
+                    <div class="product-item reveal">
+                        <div class="product-item-icon"><i class="fas fa-tools"></i></div>
+                        <div class="product-item-info">
+                            <h4>Kredit Renovasi Rumah</h4>
+                            <p>Wujudkan rumah impian dengan renovasi tanpa membebani keuangan keluarga Anda.</p>
+                            <span class="tag">Plafon s/d Rp 200 juta • Proses 3 hari</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-content" id="lainnya">
+                <div class="product-list">
+                    <div class="product-item reveal">
+                        <div class="product-item-icon"><i class="fas fa-bolt"></i></div>
+                        <div class="product-item-info">
+                            <h4>Pembayaran Listrik & Air</h4>
+                            <p>Bayar tagihan listrik, air, dan utilitas lainnya langsung dari rekening BPR Anda.</p>
+                            <span class="tag">Online 24 jam • Tanpa antri</span>
+                        </div>
+                    </div>
+                    <div class="product-item reveal">
+                        <div class="product-item-icon"><i class="fas fa-exchange-alt"></i></div>
+                        <div class="product-item-info">
+                            <h4>Transfer Antar Bank</h4>
+                            <p>Transfer dana ke rekening bank lain dengan cepat dan biaya yang terjangkau.</p>
+                            <span class="tag">Real-time • Biaya mulai Rp 2.500</span>
+                        </div>
+                    </div>
+                    <div class="product-item reveal">
+                        <div class="product-item-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <div class="product-item-info">
+                            <h4>Mobile Banking BPR NS</h4>
+                            <p>Akses layanan perbankan dari smartphone Anda kapan saja dan di mana saja.</p>
+                            <span class="tag">Aman • Mudah • Praktis</span>
+                        </div>
+                    </div>
+                    <div class="product-item reveal">
+                        <div class="product-item-icon"><i class="fas fa-crown"></i></div>
+                        <div class="product-item-info">
+                            <h4>Layanan Prioritas</h4>
+                            <p>Layanan eksklusif untuk nasabah prioritas dengan benefit dan kemudahan khusus.</p>
+                            <span class="tag">Personal banker • Lounge eksklusif</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEUNGGULAN -->
+    <section id="keunggulan" class="section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="sub" style="color:#C9A84C;">Keunggulan Kami</div>
+                <h2>Mengapa Memilih Kami?</h2>
+                <p>Kepercayaan Anda adalah prioritas utama kami dalam setiap langkah perjalanan perbankan</p>
+            </div>
+            <div class="advantages-grid">
+                <div class="advantage-card reveal">
+                    <div class="advantage-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Diawasi OJK</h3>
+                    <p>Operasional kami sepenuhnya diawasi oleh Otoritas Jasa Keuangan untuk menjamin keamanan dan kepatuhan.</p>
+                </div>
+                <div class="advantage-card reveal">
+                    <div class="advantage-icon"><i class="fas fa-lock"></i></div>
+                    <h3>Dijamin LPS</h3>
+                    <p>Simpanan Anda dijamin oleh Lembaga Penjamin Simpanan hingga Rp 2 Miliar per nasabah.</p>
+                </div>
+                <div class="advantage-card reveal">
+                    <div class="advantage-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>Proses Cepat</h3>
+                    <p>Pengajuan kredit diproses dalam 1-3 hari kerja dengan persyaratan yang tidak berbelit-belit.</p>
+                </div>
+                <div class="advantage-card reveal">
+                    <div class="advantage-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>Pelayanan Personal</h3>
+                    <p>Setiap nasabah mendapat perhatian dan layanan yang personal dari tim profesional kami.</p>
+                </div>
+                <div class="advantage-card reveal">
+                    <div class="advantage-icon"><i class="fas fa-chart-bar"></i></div>
+                    <h3>Bunga Kompetitif</h3>
+                    <p>Suku bunga simpanan dan pinjaman yang bersaing dan transparan tanpa biaya tersembunyi.</p>
+                </div>
+                <div class="advantage-card reveal">
+                    <div class="advantage-icon"><i class="fas fa-globe"></i></div>
+                    <h3>Akses Digital</h3>
+                    <p>Layanan mobile banking untuk transaksi kapan saja, di mana saja, dengan keamanan terjamin.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIM KAMI -->
+    <section id="tim" class="section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="sub">Tim Kami</div>
+                <h2>Tim Profesional Kami</h2>
+                <p>Dipimpin oleh para profesional berpengalaman di industri perbankan Indonesia</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card reveal">
+                    <div class="team-img">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" alt="Ir. Hendra Wijaya, MBA">
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>Ir. Hendra Wijaya, MBA</h3>
+                        <p>Direktur Utama</p>
+                    </div>
+                </div>
+                <div class="team-card reveal">
+                    <div class="team-img">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" alt="Dra. Siti Rahmawati">
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>Dra. Siti Rahmawati</h3>
+                        <p>Direktur Operasional</p>
+                    </div>
+                </div>
+                <div class="team-card reveal">
+                    <div class="team-img">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80" alt="Agus Prasetyo, SE, MM">
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>Agus Prasetyo, SE, MM</h3>
+                        <p>Kepala Cabang Utama</p>
+                    </div>
+                </div>
+                <div class="team-card reveal">
+                    <div class="team-img">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80" alt="Linda Kusuma, S.Ak">
+                        <div class="team-social">
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>Linda Kusuma, S.Ak</h3>
+                        <p>Kepala Divisi Keuangan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONI -->
+    <section id="testimoni" class="section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="sub">Testimoni</div>
+                <h2>Apa Kata Nasabah Kami</h2>
+                <p>Dengarkan pengalaman nyata dari nasabah yang telah mempercayakan keuangannya kepada kami</p>
+            </div>
+            <div class="testimonial-slider reveal">
+                <div class="testimonial-track" id="testimonialTrack">
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-right quote-icon"></i>
+                        <p>"BPR Nusantara Sejahtera sangat membantu pengembangan usaha saya. Proses kredit cepat, bunganya ringan, dan staff-nya sangat membantu dalam memberikan konsultasi keuangan untuk usaha saya."</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Budi Santoso">
+                            <div class="testimonial-author-info">
+                                <h4>Budi Santoso</h4>
+                                <span>Pemilik Toko Sembako</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-right quote-icon"></i>
+                        <p>"Tabungan dan deposito di BPR NS memberikan bunga yang sangat kompetitif. Pelayanan juga sangat ramah dan profesional. Saya merasa aman menyimpan dana di sini karena dijamin LPS."</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" alt="Rina Marlina">
+                            <div class="testimonial-author-info">
+                                <h4>Rina Marlina</h4>
+                                <span>Guru SD</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-right quote-icon"></i>
+                        <p>"Dari modal kerja hingga ekspansi bisnis kuliner saya, BPR NS selalu menjadi partner keuangan yang bisa diandalkan. Prosesnya transparan dan tidak ada biaya tersembunyi."</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80" alt="Ahmad Fauzi">
+                            <div class="testimonial-author-info">
+                                <h4>Ahmad Fauzi</h4>
+                                <span>Pengusaha Kuliner</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <i class="fas fa-quote-right quote-icon"></i>
+                        <p>"Saya sudah 10 tahun menjadi nasabah BPR NS. Tidak pernah kecewa dengan pelayanan dan keamanan dananya. Mobile banking-nya juga sangat memudahkan transaksi sehari-hari."</p>
+                        <div class="testimonial-author">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&q=80" alt="Dewi Kartika">
+                            <div class="testimonial-author-info">
+                                <h4>Dewi Kartika</h4>
+                                <span>Pemilik Salon</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-dots" id="testimonialDots"></div>
+                <div class="testimonial-nav">
+                    <button onclick="moveTestimonial(-1)"><i class="fas fa-chevron-left"></i></button>
+                    <button onclick="moveTestimonial(1)"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERI -->
+    <section id="galeri" class="section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="sub">Galeri</div>
+                <h2>Galeri Kegiatan</h2>
+                <p>Dokumentasi berbagai kegiatan dan momen penting BPR Nusantara Sejahtera</p>
+            </div>
+            <div class="gallery-grid reveal">
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80" alt="Kantor Pusat BPR NS">
+                    <div class="gallery-overlay"><div><i class="fas fa-search-plus"></i><span>Kantor Pusat BPR NS</span></div></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&q=80" alt="Rapat Direksi">
+                    <div class="gallery-overlay"><div><i class="fas fa-search-plus"></i><span>Rapat Direksi</span></div></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1556745757-8d76bdb6984b?w=500&q=80" alt="Layanan Nasabah">
+                    <div class="gallery-overlay"><div><i class="fas fa-search-plus"></i><span>Layanan Nasabah</span></div></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1559223607-a43c990c692c?w=500&q=80" alt="Jabat Tangan Bisnis">
+                    <div class="gallery-overlay"><div><i class="fas fa-search-plus"></i><span>Kerjasama Mitra</span></div></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=500&q=80" alt="Acara Komunitas">
+                    <div class="gallery-overlay"><div><i class="fas fa-search-plus"></i><span>Acara Komunitas</span></div></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=500&q=80" alt="Team Building">
+                    <div class="gallery-overlay"><div><i class="fas fa-search-plus"></i><span>Team Building</span></div></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=500&q=80" alt="Edukasi Keuangan">
+                    <div class="gallery-overlay"><div><i class="fas fa-search-plus"></i><span>Edukasi Keuangan</span></div></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=500&q=80" alt="Gedung Kantor">
+                    <div class="gallery-overlay"><div><i class="fas fa-search-plus"></i><span>Gedung Kantor Modern</span></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close" onclick="closeLightbox()"><i class="fas fa-times"></i></span>
+        <img src="" alt="Gallery Image" id="lightboxImg">
+    </div>
+
+    <!-- KARIR -->
+    <section id="karir" class="section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="sub" style="color:#C9A84C;">Karir</div>
+                <h2>Bergabung Bersama Kami</h2>
+                <p>Jadilah bagian dari tim profesional BPR Nusantara Sejahtera dan bangun karir Anda bersama kami</p>
+            </div>
+            <div class="career-list">
+                <div class="career-card reveal">
+                    <div class="career-info">
+                        <h3>Account Officer</h3>
+                        <div class="career-tags">
+                            <span class="career-tag"><i class="fas fa-clock"></i> Full Time</span>
+                            <span class="career-tag"><i class="fas fa-map-marker-alt"></i> Jakarta</span>
+                            <span class="career-tag"><i class="fas fa-graduation-cap"></i> Min. S1, Pengalaman 2 Tahun</span>
+                        </div>
+                    </div>
+                    <a href="#kontak" class="btn-primary">Lamar Sekarang</a>
+                </div>
+                <div class="career-card reveal">
+                    <div class="career-info">
+                        <h3>Customer Service</h3>
+                        <div class="career-tags">
+                            <span class="career-tag"><i class="fas fa-clock"></i> Full Time</span>
+                            <span class="career-tag"><i class="fas fa-map-marker-alt"></i> Bandung</span>
+                            <span class="career-tag"><i class="fas fa-graduation-cap"></i> Min. D3, Fresh Graduate Welcome</span>
+                        </div>
+                    </div>
+                    <a href="#kontak" class="btn-primary">Lamar Sekarang</a>
+                </div>
+                <div class="career-card reveal">
+                    <div class="career-info">
+                        <h3>Teller</h3>
+                        <div class="career-tags">
+                            <span class="career-tag"><i class="fas fa-clock"></i> Full Time</span>
+                            <span class="career-tag"><i class="fas fa-map-marker-alt"></i> Surabaya</span>
+                            <span class="career-tag"><i class="fas fa-graduation-cap"></i> Min. SMA/SMK</span>
+                        </div>
+                    </div>
+                    <a href="#kontak" class="btn-primary">Lamar Sekarang</a>
+                </div>
+                <div class="career-card reveal">
+                    <div class="career-info">
+                        <h3>IT Support</h3>
+                        <div class="career-tags">
+                            <span class="career-tag"><i class="fas fa-clock"></i> Full Time</span>
+                            <span class="career-tag"><i class="fas fa-map-marker-alt"></i> Jakarta</span>
+                            <span class="career-tag"><i class="fas fa-graduation-cap"></i> Min. S1 Teknik Informatika</span>
+                        </div>
+                    </div>
+                    <a href="#kontak" class="btn-primary">Lamar Sekarang</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BERITA -->
+    <section id="berita" class="section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="sub">Berita & Artikel</div>
+                <h2>Berita & Artikel Terkini</h2>
+                <p>Informasi terbaru seputar kegiatan, pencapaian, dan tips keuangan dari BPR Nusantara Sejahtera</p>
+            </div>
+            <div class="news-grid">
+                <div class="news-card reveal">
+                    <div class="news-img">
+                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt="Penghargaan BPR Terbaik">
+                    </div>
+                    <div class="news-body">
+                        <span class="news-date"><i class="fas fa-calendar-alt"></i> 15 Juni 2026</span>
+                        <h3>BPR NS Raih Penghargaan BPR Terbaik 2026</h3>
+                        <p>BPR Nusantara Sejahtera meraih penghargaan sebagai BPR Terbaik kategori aset di atas 1 Triliun dari majalah Infobank...</p>
+                        <a href="#">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="news-card reveal">
+                    <div class="news-img">
+                        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80" alt="Tips Keuangan">
+                    </div>
+                    <div class="news-body">
+                        <span class="news-date"><i class="fas fa-calendar-alt"></i> 10 Juni 2026</span>
+                        <h3>Tips Mengelola Keuangan Usaha Kecil</h3>
+                        <p>Mengelola keuangan usaha kecil membutuhkan strategi yang tepat. Berikut 5 tips yang bisa Anda terapkan untuk...</p>
+                        <a href="#">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="news-card reveal">
+                    <div class="news-img">
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80" alt="Literasi Keuangan">
+                    </div>
+                    <div class="news-body">
+                        <span class="news-date"><i class="fas fa-calendar-alt"></i> 5 Juni 2026</span>
+                        <h3>Program Literasi Keuangan untuk UMKM</h3>
+                        <p>BPR NS mengadakan program edukasi keuangan gratis untuk pelaku UMKM di 5 kota besar di Indonesia...</p>
+                        <a href="#">Baca Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="sub">FAQ</div>
+                <h2>Pertanyaan yang Sering Diajukan</h2>
+                <p>Temukan jawaban atas pertanyaan yang paling sering ditanyakan oleh nasabah kami</p>
+            </div>
+            <div class="faq-list reveal">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Apa itu BPR dan bagaimana perbedaannya dengan bank umum?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>BPR (Bank Perkreditan Rakyat) adalah bank yang melaksanakan kegiatan usaha secara konvensional atau berdasarkan prinsip syariah yang dalam kegiatannya tidak memberikan jasa dalam lalu lintas pembayaran. Perbedaan utama dengan bank umum adalah BPR tidak dapat menerbitkan giro, tidak ikut dalam lalu lintas pembayaran internasional, dan fokus melayani masyarakat kecil dan UMKM.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Apakah simpanan saya di BPR dijamin?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ya, simpanan Anda di BPR dijamin oleh Lembaga Penjamin Simpanan (LPS) dengan nilai penjaminan hingga Rp 2 Miliar per nasabah per bank, sepanjang memenuhi syarat yang ditetapkan LPS yaitu: tercatat dalam pembukuan bank, tingkat bunga tidak melebihi bunga penjaminan LPS, dan tidak melakukan tindakan yang merugikan bank.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Bagaimana cara membuka rekening tabungan?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Anda cukup datang ke kantor cabang BPR NS terdekat dengan membawa KTP, NPWP (jika ada), dan setoran awal minimal Rp 50.000 untuk Tabungan Nusantara atau Rp 20.000 untuk TabunganKu. Proses pembukaan rekening hanya membutuhkan waktu 15-20 menit. Anda juga bisa menghubungi kami untuk informasi lebih lanjut.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Berapa suku bunga deposito saat ini?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Suku bunga deposito kami bervariasi tergantung tenor yang dipilih. Saat ini, bunga deposito berkisar antara 3.5% - 4.5% per tahun. Untuk informasi suku bunga terkini dan penawaran spesial, silakan hubungi customer service kami atau kunjungi kantor cabang terdekat.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Berapa lama proses pengajuan kredit?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Proses pengajuan kredit di BPR NS membutuhkan waktu 1-3 hari kerja untuk kredit dengan plafon hingga Rp 100 juta, dan 3-7 hari kerja untuk kredit di atas Rp 100 juta. Waktu tersebut dihitung setelah dokumen persyaratan lengkap diterima oleh tim kami.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Apakah BPR NS memiliki layanan mobile banking?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Ya, BPR NS menyediakan layanan Mobile Banking yang bisa diunduh di Play Store dan App Store. Dengan mobile banking, Anda dapat melakukan cek saldo, transfer, pembayaran tagihan, dan berbagai transaksi lainnya kapan saja dan di mana saja dengan keamanan terjamin.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Bagaimana cara mengajukan kredit usaha?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Untuk mengajukan kredit usaha, Anda perlu menyiapkan: KTP, KK, NPWP, dokumen usaha (SIUP/TDP/NIB), laporan keuangan usaha 6 bulan terakhir, dan agunan (jika diperlukan). Silakan datang ke kantor cabang atau hubungi Account Officer kami untuk konsultasi gratis sebelum mengajukan.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>Di mana saja lokasi cabang BPR NS?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>BPR Nusantara Sejahtera memiliki 15 kantor cabang yang tersebar di kota-kota besar Indonesia, antara lain: Jakarta (Kantor Pusat & 2 cabang), Bandung, Surabaya, Semarang, Yogyakarta, Medan, Makassar, Denpasar, Palembang, dan Banjarmasin. Hubungi kami untuk alamat lengkap cabang terdekat.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KONTAK -->
+    <section id="kontak" class="section-padding">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="sub">Kontak</div>
+                <h2>Hubungi Kami</h2>
+                <p>Kami siap membantu Anda. Jangan ragu untuk menghubungi kami melalui berbagai渠道 berikut</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info reveal-left">
+                    <h3>Informasi Kontak</h3>
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="contact-item-text">
+                            <h4>Alamat Kantor Pusat</h4>
+                            <p>Jl. Jend. Sudirman No. 123, Jakarta Pusat 10220</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div class="contact-item-text">
+                            <h4>Telepon</h4>
+                            <p>(021) 5555-1234</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fab fa-whatsapp"></i></div>
+                        <div class="contact-item-text">
+                            <h4>WhatsApp</h4>
+                            <p>+62 812-3456-7890</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-item-text">
+                            <h4>Email</h4>
+                            <p>info@bprnusantara.co.id</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon"><i class="fas fa-clock"></i></div>
+                        <div class="contact-item-text">
+                            <h4>Jam Operasional</h4>
+                            <p>Senin - Jumat: 08.00 - 16.00 WIB<br>Sabtu: 08.00 - 12.00 WIB</p>
+                        </div>
+                    </div>
+                    <div class="contact-socials">
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form reveal-right">
+                    <form id="contactForm" onsubmit="return handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="nama">Nama Lengkap *</label>
+                            <input type="text" id="nama" placeholder="Masukkan nama lengkap Anda" required>
+                            <p class="form-error" id="namaError">Nama lengkap wajib diisi</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" placeholder="Masukkan email Anda" required>
+                            <p class="form-error" id="emailError">Format email tidak valid</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="telepon">No. Telepon *</label>
+                            <input type="tel" id="telepon" placeholder="Contoh: 081234567890" required>
+                            <p class="form-error" id="teleponError">Nomor telepon wajib diisi</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="layanan">Pilih Layanan</label>
+                            <select id="layanan">
+                                <option value="">-- Pilih Layanan --</option>
+                                <option value="tabungan">Tabungan</option>
+                                <option value="deposito">Deposito</option>
+                                <option value="kredit">Kredit</option>
+                                <option value="umum">Pertanyaan Umum</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="pesan">Pesan *</label>
+                            <textarea id="pesan" placeholder="Tulis pesan Anda di sini..." required></textarea>
+                            <p class="form-error" id="pesanError">Pesan wajib diisi</p>
+                        </div>
+                        <button type="submit" class="btn-primary">
+                            <i class="fas fa-paper-plane" style="margin-right:8px"></i> Kirim Pesan
+                        </button>
+                    </form>
+                    <p id="formSuccess" style="display:none; color:#27ae60; text-align:center; margin-top:20px; font-weight:600;">
+                        <i class="fas fa-check-circle"></i> Pesan Anda berhasil terkirim! Kami akan segera menghubungi Anda.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GOOGLE MAPS -->
+    <div class="map-section">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d106.8195613!3d-6.1753924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5d2e764b12d%3A0x3d2ad6e1e0e9bcc8!2sMonumen%20Nasional!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <i class="fas fa-landmark"></i>
+                        <span>BPR Nusantara Sejahtera</span>
+                    </div>
+                    <p>Mitra keuangan terpercaya yang telah melayani masyarakat Indonesia selama lebih dari 30 tahun dengan layanan perbankan yang profesional, aman, dan menguntungkan.</p>
+                    <div class="footer-badges">
+                        <span class="footer-badge"><i class="fas fa-shield-alt"></i> Diawasi OJK</span>
+                        <span class="footer-badge"><i class="fas fa-lock"></i> Dijamin LPS</span>
+                    </div>
+                </div>
+                <div>
+                    <h4>Link Cepat</h4>
+                    <ul class="footer-links">
+                        <li><a href="#tentang">Tentang Kami</a></li>
+                        <li><a href="#layanan">Layanan</a></li>
+                        <li><a href="#produk">Produk</a></li>
+                        <li><a href="#karir">Karir</a></li>
+                        <li><a href="#berita">Berita</a></li>
+                        <li><a href="#kontak">Kontak</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Layanan Kami</h4>
+                    <ul class="footer-links">
+                        <li><a href="#produk">Tabungan</a></li>
+                        <li><a href="#produk">Deposito</a></li>
+                        <li><a href="#produk">Kredit Usaha</a></li>
+                        <li><a href="#produk">Kredit Multiguna</a></li>
+                        <li><a href="#produk">Mobile Banking</a></li>
+                        <li><a href="#produk">Transfer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Hubungi Kami</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i> Jl. Jend. Sudirman No. 123, Jakarta Pusat 10220</li>
+                        <li><i class="fas fa-phone-alt"></i> (021) 5555-1234</li>
+                        <li><i class="fas fa-envelope"></i> info@bprnusantara.co.id</li>
+                        <li><i class="fab fa-whatsapp"></i> +62 812-3456-7890</li>
+                    </ul>
+                    <div class="contact-socials" style="margin-top:20px;">
+                        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 BPR Nusantara Sejahtera. All Rights Reserved.</p>
+                <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#">Disclaimer</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- BACK TO TOP -->
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0, behavior:'smooth'})">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- ============================================
+         JAVASCRIPT
+         ============================================ -->
+    <script>
+        // ===== PRELOADER =====
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('preloader').classList.add('hidden');
+            }, 1500);
+            startCounters();
+        });
+
+        // ===== HERO PARTICLES =====
+        (function createParticles() {
+            const container = document.getElementById('heroParticles');
+            for (let i = 0; i < 30; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = (Math.random() * 6 + 2) + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDuration = (Math.random() * 15 + 10) + 's';
+                particle.style.animationDelay = (Math.random() * 10) + 's';
+                particle.style.opacity = Math.random() * 0.4 + 0.1;
+                container.appendChild(particle);
+            }
+        })();
+
+        // ===== NAVBAR SCROLL =====
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
+        const sections = document.querySelectorAll('section[id]');
+
+        window.addEventListener('scroll', function() {
+            const scrollY = window.scrollY;
+            // Navbar
+            if (scrollY > 80) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            // Back to top
+            if (scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+            // Active nav link
+            sections.forEach(function(section) {
+                const top = section.offsetTop - 150;
+                const height = section.offsetHeight;
+                const id = section.getAttribute('id');
+                if (scrollY >= top && scrollY < top + height) {
+                    document.querySelectorAll('.nav-menu a').forEach(function(a) {
+                        a.classList.remove('active');
+                        if (a.getAttribute('href') === '#' + id) {
+                            a.classList.add('active');
+                        }
+                    });
+                }
+            });
+        });
+
+        // ===== HAMBURGER MENU =====
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu on link click
+        document.querySelectorAll('.nav-menu a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // ===== COUNTER ANIMATION =====
+        function startCounters() {
+            const counters = document.querySelectorAll('.hero-stat .number');
+            counters.forEach(function(counter) {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+
+                function updateCounter() {
+                    current += increment;
+                    if (current < target) {
+                        if (target >= 1000) {
+                            counter.textContent = Math.floor(current).toLocaleString('id-ID');
+                        } else {
+                            counter.textContent = Math.floor(current);
+                        }
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        if (target >= 1000) {
+                            counter.textContent = target.toLocaleString('id-ID');
+                        } else {
+                            counter.textContent = target;
+                        }
+                    }
+                }
+                setTimeout(updateCounter, 1500);
+            });
+        }
+
+        // ===== SCROLL REVEAL =====
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        const revealObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        revealElements.forEach(function(el) {
+            revealObserver.observe(el);
+        });
+
+        // ===== PRODUCT TABS =====
+        document.querySelectorAll('.product-tab').forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.product-tab').forEach(function(t) { t.classList.remove('active'); });
+                document.querySelectorAll('.product-content').forEach(function(c) { c.classList.remove('active'); });
+                tab.classList.add('active');
+                document.getElementById(tab.getAttribute('data-tab')).classList.add('active');
+            });
+        });
+
+        // ===== TESTIMONIAL SLIDER =====
+        let currentTestimonial = 0;
+        const track = document.getElementById('testimonialTrack');
+        const totalSlides = track.children.length;
+        const dotsContainer = document.getElementById('testimonialDots');
+
+        // Create dots
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('testimonial-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', function() { goToTestimonial(i); });
+            dotsContainer.appendChild(dot);
+        }
+
+        function goToTestimonial(index) {
+            currentTestimonial = index;
+            track.style.transform = 'translateX(-' + (index * 100) + '%)';
+            document.querySelectorAll('.testimonial-dot').forEach(function(d, i) {
+                d.classList.toggle('active', i === index);
+            });
+        }
+
+        function moveTestimonial(dir) {
+            currentTestimonial += dir;
+            if (currentTestimonial >= totalSlides) currentTestimonial = 0;
+            if (currentTestimonial < 0) currentTestimonial = totalSlides - 1;
+            goToTestimonial(currentTestimonial);
+        }
+
+        // Auto-play
+        setInterval(function() { moveTestimonial(1); }, 5000);
+
+        // ===== GALLERY LIGHTBOX =====
+        function openLightbox(el) {
+            const img = el.querySelector('img');
+            document.getElementById('lightboxImg').src = img.src;
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close lightbox on Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // ===== FAQ ACCORDION =====
+        function toggleFaq(el) {
+            const item = el.parentElement;
+            const isActive = item.classList.contains('active');
+            // Close all
+            document.querySelectorAll('.faq-item').forEach(function(faq) { faq.classList.remove('active'); });
+            // Open clicked if not already active
+            if (!isActive) item.classList.add('active');
+        }
+
+        // ===== CONTACT FORM VALIDATION =====
+        function handleSubmit(e) {
+            e.preventDefault();
+            let valid = true;
+
+            const nama = document.getElementById('nama');
+            const email = document.getElementById('email');
+            const telepon = document.getElementById('telepon');
+            const pesan = document.getElementById('pesan');
+
+            // Reset
+            [nama, email, telepon, pesan].forEach(function(el) { el.classList.remove('error'); });
+            document.querySelectorAll('.form-error').forEach(function(el) { el.style.display = 'none'; });
+
+            if (nama.value.trim() === '') {
+                nama.classList.add('error');
+                document.getElementById('namaError').style.display = 'block';
+                valid = false;
+            }
+            if (!email.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                email.classList.add('error');
+                document.getElementById('emailError').style.display = 'block';
+                valid = false;
+            }
+            if (telepon.value.trim() === '') {
+                telepon.classList.add('error');
+                document.getElementById('teleponError').style.display = 'block';
+                valid = false;
+            }
+            if (pesan.value.trim() === '') {
+                pesan.classList.add('error');
+                document.getElementById('pesanError').style.display = 'block';
+                valid = false;
+            }
+
+            if (valid) {
+                document.getElementById('contactForm').style.display = 'none';
+                document.getElementById('formSuccess').style.display = 'block';
+            }
+
+            return false;
+        }
+
+        // ===== SMOOTH SCROLL FOR ALL ANCHOR LINKS =====
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
